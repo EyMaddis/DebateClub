@@ -11,10 +11,10 @@ public class Character : MonoBehaviour {
 	public int groundLayerId = 8;
 	public int wallLayerId = 10;
 
-	public GameObject footLeft;
-	public GameObject footRight;
-	public GameObject wallTriggerLeft;
-	public GameObject wallTriggerRight;
+	public GameObject footInBack;
+	public GameObject footInFront;
+	public GameObject wallTriggerBack;
+	public GameObject wallTriggerFront;
 
 	// public for debugging
 	public bool isGrounded = false;
@@ -30,24 +30,22 @@ public class Character : MonoBehaviour {
 	private int groundLayerMask; // ground layer
 	private int wallLayerMask; // ground layer
 
-	private LayerTrigger footLeftLayerTrigger;
-	private LayerTrigger footRightLayerTrigger;
-	private LayerTrigger wallLeftLayerTrigger;
-	private LayerTrigger wallRightLayerTrigger;
+	private LayerTrigger footInBackTrigger;
+	private LayerTrigger footInFrontTrigger;
+	private LayerTrigger wallInBackTrigger;
+	private LayerTrigger wallInFrontTrigger;
 	
 	void Start () {
 		animator = GetComponent("Animator") as Animator; 	// Get the "Animator" component and set it to "animator" var
 		wallLayerMask = 1 << wallLayerId;
 		groundLayerMask = 1 << groundLayerId;
-		footLeftLayerTrigger = footLeft.GetComponent<LayerTrigger> ();
-		footRightLayerTrigger = footRight.GetComponent<LayerTrigger> ();
-		wallLeftLayerTrigger = wallTriggerLeft.GetComponent<LayerTrigger> ();
-		wallRightLayerTrigger = wallTriggerRight.GetComponent<LayerTrigger> ();
+		footInBackTrigger = footInBack.GetComponent<LayerTrigger> ();
+		footInFrontTrigger = footInFront.GetComponent<LayerTrigger> ();
+		wallInBackTrigger = wallTriggerBack.GetComponent<LayerTrigger> ();
+		wallInFrontTrigger = wallTriggerFront.GetComponent<LayerTrigger> ();
 	}
 	
 	void Update () {
-		velX = rigidbody2D.velocity.x; 			// Store the x velocity in "vel" var
-		animator.SetFloat ("movementSpeed", Mathf.Abs(velX));
 
 		HandleInput(); 			// Handles Input
 		HandleMovement(); 		// Handles Movement
@@ -64,9 +62,18 @@ public class Character : MonoBehaviour {
 	}
 	
 	private void HandleMovement() {
+
 		Vector2 velocity = rigidbody2D.velocity;
+
+		// don't move if the player is stuck in a wall
+		if ((Direction()*velocity.x < 0 && HasWallInBack()) || (Direction()*velocity.x > 0 && HasWallInFront())) {
+			return;
+		}
+
 		velocity.x = horizontalInput * moveSpeed * Time.deltaTime; // Moves gameObject based on the "moveSpeed" var
 		rigidbody2D.velocity = velocity;
+		velX = rigidbody2D.velocity.x; 			// Store the x velocity in "vel" var
+		animator.SetFloat ("movementSpeed", Mathf.Abs(velX));
 	}
 	
 	private void HandleJump() {
@@ -82,14 +89,25 @@ public class Character : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	// flip the character and it's gameObject
 	private void Flip() {
 		isFacingRight = !isFacingRight; 				// Toggles between "true" and "false"
 		Vector3 scale = gameObject.transform.localScale;
 		scale.x *= -1;
 		gameObject.transform.localScale = scale; 		// Flip the gameObject based on localScale
 	}
-	
+
+	// returns -1 for left, 1 for right if facingRight=true
+	private int Direction() {
+		if (isFacingRight) {
+			return 1;
+		} else {
+			return -1;
+		}
+	}
+
+
 	private void SetIsFacingRight() {	
 		if(velX > 0 && !isFacingRight) { 			// If velocity is positive and gameObject isn't facing right
 			Flip();
@@ -97,40 +115,30 @@ public class Character : MonoBehaviour {
 			Flip();
 		}
 	}
-	
-//	private void SetIsMoving() {
-//		if(velX != 0) { 								// If velocity isn't 0, set "isMoving" to true
-//			isMoving = true;	
-//		} else { 									// If velocity is 0, set "isMoving" to false
-//			isMoving = false;
-//		}
-//		animator.SetBool("isMoving", isMoving); 	// Set the "isMoving" bool parameter to equal "isMoving" var	
-//	}
-
 
 	// Trigger interaction
-	public bool hasWallLeft () {
-		return wallLeftLayerTrigger.isTriggered;
+	public bool HasWallInBack () {
+		return wallInBackTrigger.isTriggered;
 	}
 	
-	public bool hasWallRight () {
-		return wallRightLayerTrigger.isTriggered;
+	public bool HasWallInFront () {
+		return wallInFrontTrigger.isTriggered;
 	}
 	
-	public bool isSliding () {
-		return hasWallLeft() || hasWallRight();
+	public bool IsSliding () {
+		return HasWallInBack() || HasWallInFront();
 	}
 	
-	public bool leftFootOnGround () {
-		return footLeftLayerTrigger.isTriggered;
+	public bool BackFootOnGround () {
+		return footInBackTrigger.isTriggered;
 	}
 	
-	public bool rightFootOnGround () {
-		return footRightLayerTrigger.isTriggered;
+	public bool FrontFootOnGround () {
+		return footInFrontTrigger.isTriggered;
 	}
 	
 	public bool isOnGround () {
-		return rightFootOnGround() || leftFootOnGround();
+		return FrontFootOnGround() || BackFootOnGround();
 	}
 
 }
