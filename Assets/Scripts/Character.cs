@@ -7,22 +7,28 @@ public class Character : MonoBehaviour {
 	public float jumpForce = 300f;			// Jump Force
 	public int maxJumps = 2;
 
+	public float groundDistance = 0.48f;
+
 	// public for debugging
 	public bool isGrounded = false;
+
 	
 	private float horizontalInput;
 	private float verticalInput;
 	
-	private bool isFacingRight = false;
+	private bool isFacingRight = true;
 	private bool isMoving = false;
 	private int jumpCount = 0;
 	
 	private float velX;
 	private Animator animator;
 	private int groundLayerMask = 1<<8; // ground layer
+
+	private Feet feet;
 	
 	void Start () {
 		animator = GetComponent("Animator") as Animator; 	// Get the "Animator" component and set it to "animator" var
+		feet = GetComponentsInChildren<Feet> ();
 	}
 	
 	void Update () {
@@ -51,6 +57,7 @@ public class Character : MonoBehaviour {
 		if(Input.GetButtonDown("Jump")) { 										// When "Jump" button is pressed
 			jumpCount++;														// Add 1 to jumpCount
 			if(isGrounded || jumpCount < maxJumps) {
+
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
 				rigidbody2D.AddForce(Vector2.up * jumpForce); 	// Add y force set by "jumpForce" * Time.deltaTime?
 			}
@@ -83,7 +90,7 @@ public class Character : MonoBehaviour {
 	
 	private void SetIsGrounded() {
 		
-		RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, -Vector2.up, 0.25f, groundLayerMask);	// Create a ray from the character to check for the ground layer
+		RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, -Vector2.up, groundDistance, groundLayerMask);	// Create a ray from the character to check for the ground layer
 		if(raycastHit.collider != null) {															// If the ray hit isn't null
 			//		if(raycastHit.collider.tag == "ground") {	
 			//		Debug.Log ("Ground!");											// Check if the collider is in the "ground" tag
