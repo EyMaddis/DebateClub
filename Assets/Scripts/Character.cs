@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 using System.Collections;
+using Debug = UnityEngine.Debug;
 
 public class Character : MonoBehaviour {
 
@@ -30,6 +32,9 @@ public class Character : MonoBehaviour {
 	public bool isGrounded = false;
 	public bool isWallSliding = false;
 	public bool isWallSlidingByDelay = false;
+    public bool wallFront = false;
+    public bool wallBack = false;
+  
 
 	private float horizontalInput;
 	private float verticalInput;
@@ -68,6 +73,7 @@ public class Character : MonoBehaviour {
 	}
 
 	void Update () {
+
         isGrounded = isOnGround ();
 		HandleInput (); 			// Handles Input
 		HandleMovement (); 		// Handles Movement
@@ -78,7 +84,17 @@ public class Character : MonoBehaviour {
 		HandleWallSliding ();
 
 		UpdateAnimator ();
+
+	    Debugger();
 	}
+
+
+   
+    private void Debugger()
+    {
+        wallBack = HasWallInBack();
+        wallFront = HasWallInFront();
+    }
 
 
 	private void HandleInput() {
@@ -88,8 +104,7 @@ public class Character : MonoBehaviour {
 	}
 
 	private void HandleMovement()
-	{
-
+    {
 	    if (isGrounded)
 	    {
 	        Vector2 velocity = rigidbody2D.velocity;
@@ -189,6 +204,7 @@ public class Character : MonoBehaviour {
 
 	// flip the character and it's gameObject
 	private void Flip() {
+        if(isWallSliding) return;
 		isFacingRight = !isFacingRight; 				// Toggles between "true" and "false"
 		Vector3 scale = gameObject.transform.localScale;
 		scale.x *= -1;
@@ -211,16 +227,16 @@ public class Character : MonoBehaviour {
 
 
 	private void SetIsFacingRight() {
-		if(velX > 0 && !isFacingRight) { 			// If velocity is positive and gameObject isn't facing right
+		if(horizontalInput > 0 && !isFacingRight) { 			// If velocity is positive and gameObject isn't facing right
 			Flip();
-		} else if(velX < 0 && isFacingRight) { 		// If velocity is negative and gameObject is facing right
+		} else if(horizontalInput < 0 && isFacingRight) { 		// If velocity is negative and gameObject is facing right
 			Flip();
 		}
 	}
 
 	// Trigger interaction
 	public bool HasWallInBack () {
-		return wallInBackTrigger.isTriggered;
+		return wallInBackTrigger.isTriggered; 
 	}
 
 	public bool HasWallInFront () {
