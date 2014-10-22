@@ -76,8 +76,9 @@ public class Character : MonoBehaviour {
 
 		HandleJump ();
 		HandleWallSliding ();
-	}
 
+		UpdateAnimator ();
+	}
 
 
 	private void HandleInput() {
@@ -95,7 +96,6 @@ public class Character : MonoBehaviour {
 	        velocity.x = horizontalInput*moveSpeed*Time.deltaTime; // Moves gameObject based on the "moveSpeed" var
 	        rigidbody2D.velocity = velocity;
 	        velX = rigidbody2D.velocity.x; // Store the x velocity in "vel" var
-	        animator.SetFloat("movementSpeed", Mathf.Abs(velX));
 
 	    }
 	    else //in Air
@@ -103,7 +103,6 @@ public class Character : MonoBehaviour {
 	        rigidbody2D.AddForce((verticalInput < 0 ? inputVector : new Vector2(horizontalInput, 0))*inAirSpeed);
 
 	        velX = rigidbody2D.velocity.x; 			// Store the x velocity in "vel" var
-            animator.SetFloat("movementSpeed", Mathf.Abs(velX));  
 	    }
 	}
 
@@ -181,6 +180,11 @@ public class Character : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
             rigidbody2D.AddForce((inputVector + Vector2.up + DirectionVector()*-1).normalized * wallJumpForce, ForceMode2D.Impulse); 	// Add y force set by "jumpForce" * Time.deltaTime?
 		}
+	}
+
+	private void UpdateAnimator() {
+		animator.SetFloat("movementSpeed", Mathf.Abs(velX));
+		animator.SetBool("isWallSliding", isWallSliding);
 	}
 
 	// flip the character and it's gameObject

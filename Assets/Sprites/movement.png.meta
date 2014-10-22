@@ -1,0 +1,256 @@
+fileFormatVersion: 2
+guid: 27e0eb89b4a79df44b11d74a04182cb1
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: movement_0
+    21300002: movement_1
+    21300004: movement_2
+    21300006: movement_3
+    21300008: movement_4
+    21300010: movement_5
+    21300012: movement_6
+    21300014: movement_7
+    21300016: movement_8
+    21300018: movement_9
+    21300020: movement_10
+    21300022: movement_11
+    21300024: movement_12
+    21300026: movement_13
+    21300028: movement_14
+    21300030: movement_15
+    21300032: movement_16
+    21300034: movement_17
+    21300036: movement_18
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 2
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1000
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: movement_0
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 2557
+        width: 659
+        height: 953
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_1
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 2563
+        width: 653
+        height: 986
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_2
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 2557
+        width: 795
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_3
+      rect:
+        serializedVersion: 2
+        x: 2591
+        y: 2726
+        width: 1099
+        height: 877
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4
+      rect:
+        serializedVersion: 2
+        x: 3803
+        y: 2563
+        width: 851
+        height: 1003
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1288
+        width: 702
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_6
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 1288
+        width: 716
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_7
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 1283
+        width: 755
+        height: 1127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_8
+      rect:
+        serializedVersion: 2
+        x: 2686
+        y: 1283
+        width: 750
+        height: 1116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_9
+      rect:
+        serializedVersion: 2
+        x: 3786
+        y: 1311
+        width: 783
+        height: 1116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_10
+      rect:
+        serializedVersion: 2
+        x: 4688
+        y: 1604
+        width: 468
+        height: 863
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_11
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 1277
+        width: 493
+        height: 1139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 792
+        height: 1006
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_13
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 0
+        width: 964
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_14
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 0
+        width: 614
+        height: 674
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_15
+      rect:
+        serializedVersion: 2
+        x: 2872
+        y: 3
+        width: 733
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_16
+      rect:
+        serializedVersion: 2
+        x: 3842
+        y: 0
+        width: 440
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_17
+      rect:
+        serializedVersion: 2
+        x: 4593
+        y: 76
+        width: 360
+        height: 897
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_18
+      rect:
+        serializedVersion: 2
+        x: 5218
+        y: 25
+        width: 468
+        height: 942
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
