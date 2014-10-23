@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: 6959ecb295b92b243bdc61697f143ce0
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: movement_4_0
+    21300002: movement_4_1
+    21300004: movement_4_2
+    21300006: movement_4_3
+    21300008: movement_4_4
+    21300010: movement_4_5
+    21300012: movement_4_6
+    21300014: movement_4_7
+    21300016: movement_4_8
+    21300018: movement_4_9
+    21300020: movement_4_10
+    21300022: movement_4_11
+    21300024: movement_4_12
+    21300026: movement_4_13
+    21300028: movement_4_14
+    21300030: movement_4_15
+    21300032: movement_4_16
+    21300034: movement_4_17
+    21300036: movement_4_18
+    21300038: movement_4_19
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 2
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1000
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: movement_4_0
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 2654
+        width: 603
+        height: 948
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_1
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 2654
+        width: 654
+        height: 987
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_2
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 2649
+        width: 795
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_3
+      rect:
+        serializedVersion: 2
+        x: 2574
+        y: 2818
+        width: 1099
+        height: 877
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_4
+      rect:
+        serializedVersion: 2
+        x: 3791
+        y: 2654
+        width: 846
+        height: 1004
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_5
+      rect:
+        serializedVersion: 2
+        x: 4879
+        y: 2649
+        width: 722
+        height: 947
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1289
+        width: 702
+        height: 592
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_7
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 1283
+        width: 716
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_8
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 1283
+        width: 755
+        height: 1129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_9
+      rect:
+        serializedVersion: 2
+        x: 2686
+        y: 1283
+        width: 750
+        height: 1117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_10
+      rect:
+        serializedVersion: 2
+        x: 3786
+        y: 1312
+        width: 783
+        height: 1117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_11
+      rect:
+        serializedVersion: 2
+        x: 4693
+        y: 1605
+        width: 463
+        height: 857
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_12
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 1278
+        width: 493
+        height: 1134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 792
+        height: 1004
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_14
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 0
+        width: 964
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_15
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 0
+        width: 614
+        height: 671
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_16
+      rect:
+        serializedVersion: 2
+        x: 2872
+        y: 3
+        width: 733
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_17
+      rect:
+        serializedVersion: 2
+        x: 3842
+        y: 0
+        width: 440
+        height: 652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_18
+      rect:
+        serializedVersion: 2
+        x: 4513
+        y: 37
+        width: 361
+        height: 891
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: movement_4_19
+      rect:
+        serializedVersion: 2
+        x: 5122
+        y: 59
+        width: 473
+        height: 942
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
