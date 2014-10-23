@@ -12,19 +12,29 @@ public class TwoPlayerCamera2D : MonoBehaviour
     public float SmoothTime = 0.2f;
     public float SmoothZoomTime = 0.2f;
 
-    [Header("Border")] 
+    [Header("Camera Movement Boundary")]
+    [Tooltip("Left outmost position for the camera")]
     public float MinCameraX = -10f;
+
+    [Tooltip("Right outmost position for the camera")]
     public float MaxCameraX = 10f;
+
+    [Tooltip("Lowest position for the camera")]
     public float MinCameraY = 10f;
+
+    [Tooltip("Highest position for the camera")]
     public float MaxCameraY = 10f;
 
     [Header("Automatic Zoom Controls")] 
-    [Range(0.001f, 2.0f)] 
-    public float SizeMultiplier = 0.5f;
+    [Range(0.001f, 2.0f)]
+    [Tooltip("Multiplied to the distance between the characters to find the zoom level (zoom = this*distance)")]
+    public float ZoomMultiplier = 0.4f;
     [Range(1.0f, 10.0f)]
+    [Tooltip("What is the nearest the camera can be to the characters?")]
     public float MinZoom = 1.5f;
 
     [Range(1.0f, 10.0f)]
+    [Tooltip("What is the furthest the camera can be to the characters?")]
     public float MaxZoom = 5.0f;
 
     private Camera _camera;
@@ -38,19 +48,17 @@ public class TwoPlayerCamera2D : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void LateUpdate ()
 	{
         // center camera
-	    var pos1 = DeleteZDimension(Player2.position);
-        var pos2 = DeleteZDimension(Player1.position);
+	    var pos1 = Utils.DeleteZDimension(Player2.position);
+        var pos2 = Utils.DeleteZDimension(Player1.position);
 	    var distance = pos2 - pos1;
 	    var center = pos1 + distance*0.5f;
 
         // enforce borders
-	    center.x = Math.Min(center.x, MaxCameraX);
-	    center.x = Math.Max(center.x, MinCameraX);
-	    center.y = Math.Min(center.y, MaxCameraY);
-	    center.y = Math.Max(center.y, MinCameraX);
+	    center.x = Utils.LimitValue(center.x, MinCameraX, MaxCameraX);
+	    center.y = Utils.LimitValue(center.y, MinCameraY, MaxCameraY);
 
 
         // smoothly set new camera position
@@ -59,16 +67,13 @@ public class TwoPlayerCamera2D : MonoBehaviour
 
         // set new orthographic size based on the distance between the players
         // TODO: check if players are visibile
-	    var newSize = distance.magnitude*SizeMultiplier;
+	    var newSize = distance.magnitude*ZoomMultiplier;
         
-        newSize = Math.Max(newSize, MinZoom);
+        newSize = Utils.LimitValue(newSize, MinZoom, MaxZoom);
 	    newSize = Math.Min(newSize, MaxZoom);
 	    _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, newSize, ref _sizeVelocity, SmoothZoomTime);
 
 	}
 
-    private Vector2 DeleteZDimension(Vector3 vec)
-    {
-        return new Vector2(vec.x, vec.y);
-    }
+    
 }
