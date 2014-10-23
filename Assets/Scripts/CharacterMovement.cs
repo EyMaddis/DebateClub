@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterMovement : MonoBehaviour {
-
+public class CharacterMovement : MonoBehaviour
+{
+    [Range(1,2)]
+    public int PlayerId = 1;
     public float MoveSpeed = 25f; 			// Movement Speed
     public float InAirSpeed = 10f; 			// Movement Speed
     public float JumpForce = 300f;			// Jump Force
@@ -23,8 +25,10 @@ public class CharacterMovement : MonoBehaviour {
     public GameObject WallTriggerBack;
     public GameObject WallTriggerFront;
 
-    //Buttons
-    public string JumpInputName = "Jump";
+    //Input Names
+    private string _jumpInputName;
+    private string _xAxisInputName;
+    private string _yAxisInputName;
 
     // public for debugging
     public bool _isGrounded = false;
@@ -42,12 +46,15 @@ public class CharacterMovement : MonoBehaviour {
     private int _direction = 1;
     private Animator _animator;
     private int _groundLayerMask; // ground layer
-    private int _wallLayerMask; // ground layer
+    private int _wallLayerMask; // ground layer    
+
+    private float _maxVelocity;
 
     private LayerTrigger _footInBackTrigger;
     private LayerTrigger _footInFrontTrigger;
     private LayerTrigger _wallInBackTrigger;
     private LayerTrigger _wallInFrontTrigger;
+
     private bool _backTriggered = false;
     private bool _frontTriggered = false;
     private bool _backFootTriggered = false;
@@ -68,8 +75,25 @@ public class CharacterMovement : MonoBehaviour {
         _footInFrontTrigger = FootInFront.GetComponent<LayerTrigger>();
         _wallInBackTrigger = WallTriggerBack.GetComponent<LayerTrigger>();
         _wallInFrontTrigger = WallTriggerFront.GetComponent<LayerTrigger>();
-
         _dragBackup = rigidbody2D.drag;
+
+        InitializeInputs();
+    }
+
+    private void InitializeInputs()
+    {
+        _jumpInputName = "Jump";
+        _xAxisInputName = "Horizontal";
+        _yAxisInputName = "Vertical";
+
+        if (PlayerId != 1)
+        {
+            _jumpInputName += PlayerId;
+            _xAxisInputName += PlayerId;
+            _yAxisInputName += PlayerId;
+        }
+
+
     }
 
     void Update()
@@ -89,15 +113,17 @@ public class CharacterMovement : MonoBehaviour {
     {
         _backTriggered = _wallInBackTrigger.isTriggered;
         _frontTriggered = _wallInFrontTrigger.isTriggered;
-        _backFootTriggered = _footInFrontTrigger.isTriggered;
+        _backFootTriggered = _footInBackTrigger.isTriggered;
         _frontFootTriggered = _footInFrontTrigger.isTriggered;
         _isGrounded = _frontFootTriggered || _backFootTriggered;
+        _maxVelocity = MoveSpeed*Time.deltaTime;
+
     }
 
    private void GetInput()
    {
-		_horizontalInput = Input.GetAxisRaw("Horizontal"); 		// Set "horiztonalInput" equal to the Horizontal Axis Input
-		_verticalInput = Input.GetAxisRaw("Vertical"); 			// Set "verticallInput" equal to the Vertical Axis Inpu
+		_horizontalInput = Input.GetAxisRaw(_xAxisInputName); 		// Set "horiztonalInput" equal to the Horizontal Axis Input
+		_verticalInput = Input.GetAxisRaw(_yAxisInputName); 			// Set "verticallInput" equal to the Vertical Axis Inpu
         _inputVector = new Vector2(_horizontalInput, _verticalInput).normalized;
    }
 
@@ -111,23 +137,33 @@ public class CharacterMovement : MonoBehaviour {
         }
     }
 
-   private void HandleMovement()
-   {
-       if (_isGrounded)
-       {
-           Vector2 velocity = rigidbody2D.velocity;
-           velocity.x = _horizontalInput * MoveSpeed * Time.deltaTime; // Moves gameObject based on the "moveSpeed" var
-           rigidbody2D.velocity = velocity;
-       }
-       else //in Air
-       {
-           rigidbody2D.AddForce((_verticalInput < 0 ? _inputVector : new Vector2(_horizontalInput, 0)) * InAirSpeed);
-       }
-   }
-
-    private void HandleJump()
+    private void HandleMovement()
     {
-        if (!Input.GetButtonDown(JumpInputName)) return;
+
+        if (_isGrounded)
+        {
+            Vector2 velocity = rigidbody2D.velocity;
+            velocity.x = _horizontalInput*MoveSpeed*Time.deltaTime; // Moves gameObject based on the "moveSpeed" var
+            rigidbody2D.velocity = velocity;
+        }
+        else //in Air
+        {
+            rigidbody2D.AddForce((_verticalInput < 0 ? _inputVector : new Vector2(_horizontalInput, 0))*InAirSpeed);
+
+            //Stop unlimmited acceleration.
+            Vector2 velocity = rigidbody2D.velocity;
+            if (velocity.x > _maxVelocity || velocity.x < (_maxVelocity*-1))
+            {
+                rigidbody2D.velocity = new Vector2(_maxVelocity*_direction, velocity.y);
+            }
+                
+        }
+    }
+
+    private
+       void HandleJump()
+    {
+        if (!Input.GetButtonDown(_jumpInputName)) return;
         if (_isGrounded)
         { // reset JumpCount
             _jumpCount = 0;
@@ -142,7 +178,6 @@ public class CharacterMovement : MonoBehaviour {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
                 rigidbody2D.AddForce((_inputVector + Vector2.up).normalized * JumpForce, ForceMode2D.Impulse); 	// Add y force set by "jumpForce" * Time.deltaTime?                
             } 
-          
            
         }
         else
