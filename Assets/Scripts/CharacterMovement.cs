@@ -31,6 +31,7 @@ public class CharacterMovement : MonoBehaviour
     private string _yAxisInputName;
 
     // public for debugging
+    [Header("Debugging")]
     public bool _isGrounded = false;
     public bool _isWallSliding = false;
     public bool _isWallSlidingByDelay = false;
