@@ -135,12 +135,15 @@ public class CharacterMovement : MonoBehaviour {
 
         if (!_isWallSliding)
         {
+            
             if (_jumpCount < MaxJumps)
             {
                 _jumpCount++;
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
                 rigidbody2D.AddForce((_inputVector + Vector2.up).normalized * JumpForce, ForceMode2D.Impulse); 	// Add y force set by "jumpForce" * Time.deltaTime?                
-            }
+            } 
+          
+           
         }
         else
         {
@@ -162,7 +165,7 @@ public class CharacterMovement : MonoBehaviour {
         _activeSliding = false;
 
         // let the character slowly slide down the wall when he jumped and pressed against the wall
-        if (_direction*_horizontalInput > 0 && _frontTriggered && !_isGrounded && !_isWallSliding)
+        if (/*_direction*_horizontalInput > 0 &&*/ _frontTriggered && !_isGrounded && !_isWallSliding)
         {
             StartWallSliding();
         }
