@@ -132,7 +132,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if(_isWallSliding) return;
         
-        if (_direction != (int)_horizontalInput && (int) _horizontalInput != 0)
+        if (_direction * _horizontalInput < 0)
         {
             Flip();
         }
