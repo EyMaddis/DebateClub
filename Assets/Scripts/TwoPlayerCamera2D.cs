@@ -48,7 +48,7 @@ public class TwoPlayerCamera2D : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void LateUpdate ()
 	{
         // center camera
 	    var pos1 = Utils.DeleteZDimension(Player2.position);
