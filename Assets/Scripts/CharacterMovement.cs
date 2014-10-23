@@ -5,18 +5,31 @@ public class CharacterMovement : MonoBehaviour
 {
     [Range(1,2)]
     public int PlayerId = 1;
+
+    [Tooltip("Is the character looking to the left (false) or right (true)?")]
+    public bool IsFacingRight = true;
+
+    [Header("Movement Speed")]
     public float MoveSpeed = 25f; 			// Movement Speed
-    public float InAirSpeed = 10f; 			// Movement Speed
+    public float InAirSpeed = 10f; 			// Movement Speed while jumping/falling
+    public float CrouchingSpeed = 5f; 			// Movement Speed while crouching
+
+    [Header("Jumping & Wallsliding")]
     public float JumpForce = 300f;			// Jump Force
     public float WallJumpForce = 3000f;			// Jump Force
+
+    [Tooltip("How often should the character be able to jump without landing")]
     public int MaxJumps = 2;
 
+    [Tooltip("How much drag should the character have while sliding down? 0 means no sliding")]
+    [Range(0.0f, 100f)]
     public float WallJumpDrag = 100.0f;
 
     [Range(0.0f, 2f)]
+    [Tooltip("How long will the character keep on sliding even without input from the player?")]
     public float WallSlideEndDelay = 0.3f;
 
-    public bool IsFacingRight = true;
+    [Header("Trigger")]
     public int GroundLayerId = 8;
     public int WallLayerId = 10;
 
@@ -25,16 +38,18 @@ public class CharacterMovement : MonoBehaviour
     public GameObject WallTriggerBack;
     public GameObject WallTriggerFront;
 
-    //Input Names
+    [Header("Input Names")]
     private string _jumpInputName;
     private string _xAxisInputName;
     private string _yAxisInputName;
 
-    // public for debugging
-    [Header("Debugging")]
+
+    [Header("Debugging Only")]
+
     public bool _isGrounded = false;
     public bool _isWallSliding = false;
     public bool _isWallSlidingByDelay = false;
+    public bool _isCrouching = false;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -45,9 +60,7 @@ public class CharacterMovement : MonoBehaviour
     public int _jumpCount = 0;
 
     private int _direction = 1;
-    private Animator _animator;
-    private int _groundLayerMask; // ground layer
-    private int _wallLayerMask; // ground layer    
+    private Animator _animator; 
 
     private float _maxVelocity;
 
@@ -69,9 +82,8 @@ public class CharacterMovement : MonoBehaviour
 
     void Start()
     {
-        _animator = GetComponent("Animator") as Animator; 	// Get the "Animator" component and set it to "animator" var
-        _wallLayerMask = 1 << WallLayerId;
-        _groundLayerMask = 1 << GroundLayerId;
+        _animator = GetComponent<Animator>() as Animator; 	// Get the "Animator" component and set it to "animator" var
+        
         _footInBackTrigger = FootInBack.GetComponent<LayerTrigger>();
         _footInFrontTrigger = FootInFront.GetComponent<LayerTrigger>();
         _wallInBackTrigger = WallTriggerBack.GetComponent<LayerTrigger>();
@@ -140,12 +152,19 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-
+        _isCrouching = false;
         if (_isGrounded)
         {
+            var speed = MoveSpeed;
+            if (_verticalInput < 0)
+            {
+                _isCrouching = true;
+                speed = CrouchingSpeed;
+            }
+            
             Vector2 velocity = rigidbody2D.velocity;
-            velocity.x = _horizontalInput*MoveSpeed*Time.deltaTime; // Moves gameObject based on the "moveSpeed" var
-            rigidbody2D.velocity = velocity;
+            velocity.x = _horizontalInput * speed * Time.deltaTime; // Moves gameObject
+            rigidbody2D.velocity = velocity;             
         }
         else //in Air
         {
@@ -277,6 +296,7 @@ public class CharacterMovement : MonoBehaviour
         var velX = rigidbody2D.velocity.x;
         _animator.SetFloat("movementSpeed", Mathf.Abs(velX));
         _animator.SetBool("isWallSliding", _isWallSliding);
+        _animator.SetBool("isCrouching", _isCrouching);
     }
 
 
