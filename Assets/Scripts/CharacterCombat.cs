@@ -2,44 +2,25 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (CharacterMovement))]
+[RequireComponent (typeof (Character))]
 public class CharacterCombat : MonoBehaviour
 {
-
-    public GameObject HighHit;
-    public GameObject MidHit;
-    public GameObject LowHit;
-
-    [Header("Debugging")]
-    public bool _highHitTriggered;
-    public bool _midHitTriggered;
-    public bool _lowHitTriggered;
-
-    private LayerTrigger _midTrigger;
-
-    private CharacterMovement _movement;
-    private int _playerId;
-
+    private Character _character;
     private string _punchInputName;
-   
-
-
-
-	// Use this for initialization
+    // Use this for initialization
 	void Start ()
 	{
-	    _movement = GetComponentInParent<CharacterMovement>();
-	    _playerId = _movement.PlayerId;
-	    _midTrigger = MidHit.GetComponent<LayerTrigger>();
+	    _character = GetComponentInParent<Character>() as Character;
 	    SetInputs();
 	}
 
     private void SetInputs()
     {
+        var id = _character.PlayerId;
         _punchInputName = "Punch";
-        if (_playerId != 1)
+        if (id != 1)
         {
-            _punchInputName += _playerId;
+            _punchInputName += id;
         }
     }
 	
@@ -48,28 +29,16 @@ public class CharacterCombat : MonoBehaviour
     {
 	    HandleCombat();
 	}
-
-    void FixedUpdate()
-    {
-        UpdateStates();
-    }
     
-    private void UpdateStates()
-    {       
-        _highHitTriggered = HighHit.GetComponent<LayerTrigger>().isTriggered;
-        _midHitTriggered = MidHit.GetComponent<LayerTrigger>().isTriggered;
-        _lowHitTriggered = LowHit.GetComponent<LayerTrigger>().isTriggered;
-    }
-
     private void HandleCombat()
     {
         if (!Input.GetButtonDown(_punchInputName)) return;
         /* Get Players State via Movement System */
 
         Debug.Log("Hit");
-        if (_highHitTriggered || _midHitTriggered || _lowHitTriggered)
+        if (_character.HighHitTriggered || _character.MidHitTriggered || _character.LowHitTriggered)
         {
-            Debug.Log("Hit of Player " + _playerId);
+            Debug.Log("Hit of Player ");
         }
     }
 
