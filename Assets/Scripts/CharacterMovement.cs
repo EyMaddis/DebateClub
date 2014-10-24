@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class CharacterMovement : MonoBehaviour
@@ -11,15 +12,21 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Movement Speed")]
     public float MoveSpeed = 25f; 			// Movement Speed
-    public float InAirSpeed = 10f; 			// Movement Speed while jumping/falling
     public float CrouchingSpeed = 5f; 			// Movement Speed while crouching
 
-    [Header("Jumping & Wallsliding")]
-    public float JumpForce = 300f;			// Jump Force
-    public float WallJumpForce = 3000f;			// Jump Force
+
+    [Header("Jumping")]
 
     [Tooltip("How often should the character be able to jump without landing")]
     public int MaxJumps = 2;
+    public float JumpForce = 300f;			// Jump Force
+    public float InAirSpeed = 10f; 			// Movement Speed while jumping/falling
+    [Tooltip("At which impact force the character should start rolling")]
+    public float RollingImpactThreshold = 6.0f;
+
+    [Header("Wallsliding")]
+
+    public float WallJumpForce = 3000f;			// Jump Force
 
     [Tooltip("How much drag should the character have while sliding down? 0 means no sliding")]
     [Range(0.0f, 100f)]
@@ -28,6 +35,7 @@ public class CharacterMovement : MonoBehaviour
     [Range(0.0f, 2f)]
     [Tooltip("How long will the character keep on sliding even without input from the player?")]
     public float WallSlideEndDelay = 0.3f;
+    
 
     [Header("Trigger")]
     public int GroundLayerId = 8;
@@ -55,8 +63,6 @@ public class CharacterMovement : MonoBehaviour
     private float _verticalInput;
     private Vector2 _inputVector;
 
-    private bool _isMoving = false;
-    private bool _hasWallJumped = false;
     public int _jumpCount = 0;
 
     private int _direction = 1;
@@ -76,9 +82,19 @@ public class CharacterMovement : MonoBehaviour
 
     private float _dragBackup;
     private bool _lastFrameSliding = false;
+    private bool _lastFrameGrounded = false;
+
+    private Vector2 _lastFrameVelocity;
+    private Vector2 _velocity;
+    
     private bool _activeSliding = false; // is sliding in current frame
     private bool _abortWallSlidingDelay = false;
 
+    // triggers that are only true for one frame (for the animator)
+    private bool _jumpingTrigger = false;
+    private bool _wallJumpingTrigger = false;
+    private bool _landingTrigger = false;
+    private bool _rollingTrigger = false;
 
     void Start()
     {
@@ -91,6 +107,7 @@ public class CharacterMovement : MonoBehaviour
         _dragBackup = rigidbody2D.drag;
 
         InitializeInputs();
+        RollingImpactThreshold *= RollingImpactThreshold; // square for performance
     }
 
     private void InitializeInputs()
@@ -124,10 +141,22 @@ public class CharacterMovement : MonoBehaviour
 
     private void UpdateStates()
     {
+        // reset triggers
+        _jumpingTrigger = false;
+        _wallJumpingTrigger = false;
+        _landingTrigger = false;
+        _rollingTrigger = false;
+
+
         _backTriggered = _wallInBackTrigger.isTriggered;
         _frontTriggered = _wallInFrontTrigger.isTriggered;
         _backFootTriggered = _footInBackTrigger.isTriggered;
         _frontFootTriggered = _footInFrontTrigger.isTriggered;
+
+        _lastFrameVelocity = _velocity;
+        _velocity = rigidbody2D.velocity;
+
+        _lastFrameGrounded = _isGrounded;
         _isGrounded = _frontFootTriggered || _backFootTriggered;
         _maxVelocity = MoveSpeed*Time.deltaTime;
 
@@ -155,15 +184,34 @@ public class CharacterMovement : MonoBehaviour
         _isCrouching = false;
         if (_isGrounded)
         {
+            
+
             var speed = MoveSpeed;
+
+            // player is pressing down: crouching
             if (_verticalInput < 0)
             {
                 _isCrouching = true;
                 speed = CrouchingSpeed;
             }
+
+            // did not stand before, so probably landed right now
+            if (!_lastFrameGrounded) // TODO does not always work!
+            {
+                _landingTrigger = true;
+                // landing very hard? Maybe unreliable
+                var forceSquared = _lastFrameVelocity.SqrMagnitude();
+                Debug.Log(_lastFrameVelocity + ", "+ forceSquared);
+                if (forceSquared >= RollingImpactThreshold)
+                {
+
+                    _rollingTrigger = true; // TODO move character while rolling
+                }
+            }
+            
             
             Vector2 velocity = rigidbody2D.velocity;
-            velocity.x = _horizontalInput * speed * Time.deltaTime; // Moves gameObject
+            velocity.x = _horizontalInput*speed * Time.deltaTime; // actually moves gameObject
             rigidbody2D.velocity = velocity;             
         }
         else //in Air
@@ -189,24 +237,25 @@ public class CharacterMovement : MonoBehaviour
             _jumpCount = 0;
         }
 
-        if (!_isWallSliding)
+        if (!_isWallSliding) // regular jump
         {
-            
             if (_jumpCount < MaxJumps)
             {
                 _jumpCount++;
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
                 rigidbody2D.AddForce((_inputVector + Vector2.up).normalized * JumpForce, ForceMode2D.Impulse); 	// Add y force set by "jumpForce" * Time.deltaTime?                
+                _jumpingTrigger = true; // trigger
             } 
            
         }
-        else
+        else // jumping from the wall
         {
             if (_direction * _horizontalInput < 0 && _backTriggered)
             {
                 _inputVector.x *= -1;
                 _inputVector.y *= 1;
             }
+            _wallJumpingTrigger = true;
 
             StopWalllSliding();
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
@@ -231,6 +280,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    // let the character slide on a wall/object
     private void StartWallSliding()
     {
         _dragBackup = rigidbody2D.drag;
@@ -241,9 +291,9 @@ public class CharacterMovement : MonoBehaviour
         Flip();
     }
 
+    // called every frame, if the character is sliding
     private void OnWallSliding()
     {
-        
         if ((_isWallSliding && !_backTriggered) || _verticalInput < 0)
         {
             StopWalllSliding();
@@ -265,6 +315,7 @@ public class CharacterMovement : MonoBehaviour
         
     }
 
+    // immediately stop sliding
     private void StopWalllSliding()
     {
         _abortWallSlidingDelay = true;
@@ -274,6 +325,7 @@ public class CharacterMovement : MonoBehaviour
         rigidbody2D.drag = _dragBackup;
     }
 
+    // will delay the end of the wall sliding for better user experience
     IEnumerator EndSlidingWithDelay()
     {
         _isWallSlidingByDelay = true;
@@ -291,14 +343,24 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    // inform the animator component about the new state of the character
     private void UpdateAnimator()
     {
         var velX = rigidbody2D.velocity.x;
         _animator.SetFloat("movementSpeed", Mathf.Abs(velX));
         _animator.SetBool("isWallSliding", _isWallSliding);
         _animator.SetBool("isCrouching", _isCrouching);
+        _animator.SetBool("isGrounded", _isGrounded);
+        
+        if (_rollingTrigger)
+            _animator.SetTrigger("startRolling");
+        
+        if (_jumpingTrigger)
+            _animator.SetTrigger("jumping");
+        
+        if (_wallJumpingTrigger)
+            _animator.SetTrigger("wallJumping");
     }
-
 
 
    private void Flip()
