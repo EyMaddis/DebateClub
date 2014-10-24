@@ -284,8 +284,8 @@ TextureImporter:
         y: 583
         width: 72
         height: 47
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 9
+      pivot: {x: .5, y: 1.04999995}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_22
       rect:
@@ -294,8 +294,8 @@ TextureImporter:
         y: 584
         width: 92
         height: 42
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 9
+      pivot: {x: .5, y: 1.10000002}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_23
       rect:
@@ -304,8 +304,8 @@ TextureImporter:
         y: 582
         width: 79
         height: 48
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 9
+      pivot: {x: .5, y: 1.01999998}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

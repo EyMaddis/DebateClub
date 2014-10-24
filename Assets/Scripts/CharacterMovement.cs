@@ -7,8 +7,8 @@ public class CharacterMovement : MonoBehaviour
     [Range(1,2)]
     public int PlayerId = 1;
 
-    [Tooltip("Is the character looking to the left (false) or right (true)?")]
-    public bool IsFacingRight = true;
+    //[Tooltip("Is the character looking to the left (false) or right (true)?")]
+    //public bool IsFacingRight = true;
 
     [Header("Movement Speed")]
     public float MoveSpeed = 25f; 			// Movement Speed
@@ -108,6 +108,7 @@ public class CharacterMovement : MonoBehaviour
 
         InitializeInputs();
         RollingImpactThreshold *= RollingImpactThreshold; // square for performance
+        if (transform.localScale.x < 0) _direction = -1;
     }
 
     private void InitializeInputs()
@@ -184,8 +185,6 @@ public class CharacterMovement : MonoBehaviour
         _isCrouching = false;
         if (_isGrounded)
         {
-            
-
             var speed = MoveSpeed;
 
             // player is pressing down: crouching
@@ -201,16 +200,14 @@ public class CharacterMovement : MonoBehaviour
                 _landingTrigger = true;
                 // landing very hard? Maybe unreliable
                 var forceSquared = _lastFrameVelocity.SqrMagnitude();
-                Debug.Log(_lastFrameVelocity + ", "+ forceSquared);
                 if (forceSquared >= RollingImpactThreshold)
                 {
-
                     _rollingTrigger = true; // TODO move character while rolling
                 }
             }
             
             
-            Vector2 velocity = rigidbody2D.velocity;
+            var velocity = rigidbody2D.velocity;
             velocity.x = _horizontalInput*speed * Time.deltaTime; // actually moves gameObject
             rigidbody2D.velocity = velocity;             
         }
@@ -219,7 +216,7 @@ public class CharacterMovement : MonoBehaviour
             rigidbody2D.AddForce((_verticalInput < 0 ? _inputVector : new Vector2(_horizontalInput, 0))*InAirSpeed);
 
             //Stop unlimmited acceleration.
-            Vector2 velocity = rigidbody2D.velocity;
+            var velocity = rigidbody2D.velocity;
             if (velocity.x > _maxVelocity || velocity.x < (_maxVelocity*-1))
             {
                 rigidbody2D.velocity = new Vector2(_maxVelocity*_direction, velocity.y);
