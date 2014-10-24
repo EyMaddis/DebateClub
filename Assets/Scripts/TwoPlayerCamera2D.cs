@@ -67,7 +67,7 @@ public class TwoPlayerCamera2D : MonoBehaviour
 
         // set new orthographic size based on the distance between the players
         // TODO: check if players are visibile
-	    var newSize = distance.magnitude*ZoomMultiplier;
+	    var newSize = distance.magnitude*ZoomMultiplier; // TODO Performance
         
         newSize = Utils.LimitValue(newSize, MinZoom, MaxZoom);
 	    newSize = Math.Min(newSize, MaxZoom);

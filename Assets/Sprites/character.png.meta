@@ -214,8 +214,8 @@ TextureImporter:
         y: 696
         width: 86
         height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 2
+      pivot: {x: .5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_15
       rect:
@@ -224,8 +224,8 @@ TextureImporter:
         y: 696
         width: 56
         height: 60
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .800000012}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_16
       rect:
@@ -234,8 +234,8 @@ TextureImporter:
         y: 696
         width: 68
         height: 44
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: 1.09000003}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_17
       rect:
@@ -244,8 +244,8 @@ TextureImporter:
         y: 696
         width: 39
         height: 59
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .790000021}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_18
       rect:
