@@ -44,16 +44,20 @@ public class CharacterCombat : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
-        UpdateStates();
+	void Update () 
+    {
 	    HandleCombat();
-
 	}
 
+    void FixedUpdate()
+    {
+        UpdateStates();
+    }
+    
     private void UpdateStates()
     {       
         _highHitTriggered = HighHit.GetComponent<LayerTrigger>().isTriggered;
-        _midHitTriggered = _midTrigger.isTriggered;
+        _midHitTriggered = MidHit.GetComponent<LayerTrigger>().isTriggered;
         _lowHitTriggered = LowHit.GetComponent<LayerTrigger>().isTriggered;
     }
 
@@ -62,6 +66,7 @@ public class CharacterCombat : MonoBehaviour
         if (!Input.GetButtonDown(_punchInputName)) return;
         /* Get Players State via Movement System */
 
+        Debug.Log("Hit");
         if (_highHitTriggered || _midHitTriggered || _lowHitTriggered)
         {
             Debug.Log("Hit of Player " + _playerId);
