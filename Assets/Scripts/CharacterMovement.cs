@@ -158,7 +158,7 @@ public class CharacterMovement : MonoBehaviour
         _velocity = rigidbody2D.velocity;
 
         _lastFrameGrounded = _isGrounded;
-        _isGrounded = _frontFootTriggered || _backFootTriggered;
+        _isGrounded = _frontFootTriggered && _backFootTriggered;
         _maxVelocity = MoveSpeed*Time.deltaTime;
 
     }
