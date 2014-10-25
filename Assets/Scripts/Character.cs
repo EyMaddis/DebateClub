@@ -46,7 +46,7 @@ public class Character : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-	    initializeTrigger();
+	    InitializeTrigger();
         Animator = GetComponent<Animator>() as Animator;
 	}
 	// Update is called once per frame
@@ -100,7 +100,7 @@ public class Character : MonoBehaviour {
         Animator.SetBool("isGrounded", IsGrounded);
     }
 
-    private void initializeTrigger()
+    private void InitializeTrigger()
     {
         _footBackTrigger = FootInBack.GetComponent<LayerTrigger>();
         _footFrontTrigger = FootInFront.GetComponent<LayerTrigger>();
