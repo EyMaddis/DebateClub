@@ -2,10 +2,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class CharacterMovement : MonoBehaviour
-{
-    [Range(1,2)]
-    public int PlayerId = 1;
+[RequireComponent(typeof(Character))]
+public class CharacterMovement : MonoBehaviour{
 
     //[Tooltip("Is the character looking to the left (false) or right (true)?")]
     //public bool IsFacingRight = true;
@@ -37,15 +35,7 @@ public class CharacterMovement : MonoBehaviour
     public float WallSlideEndDelay = 0.3f;
     
 
-    [Header("Trigger")]
-    public int GroundLayerId = 8;
-    public int WallLayerId = 10;
-
-    public GameObject FootInFront;
-    public GameObject FootInBack;
-    public GameObject WallTriggerBack;
-    public GameObject WallTriggerFront;
-
+  
     [Header("Input Names")]
     private string _jumpInputName;
     private string _xAxisInputName;
@@ -53,11 +43,10 @@ public class CharacterMovement : MonoBehaviour
 
 
     [Header("Debugging Only")]
-
-    public bool _isGrounded = false;
-    public bool _isWallSliding = false;
+    
     public bool _isWallSlidingByDelay = false;
-    public bool _isCrouching = false;
+
+    private Character _character;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -65,20 +54,7 @@ public class CharacterMovement : MonoBehaviour
 
     public int _jumpCount = 0;
 
-    private int _direction = 1;
-    private Animator _animator; 
-
     private float _maxVelocity;
-
-    private LayerTrigger _footInBackTrigger;
-    private LayerTrigger _footInFrontTrigger;
-    private LayerTrigger _wallInBackTrigger;
-    private LayerTrigger _wallInFrontTrigger;
-
-    private bool _backTriggered = false;
-    private bool _frontTriggered = false;
-    private bool _backFootTriggered = false;
-    private bool _frontFootTriggered = false;
 
     private float _dragBackup;
     private bool _lastFrameSliding = false;
@@ -98,33 +74,26 @@ public class CharacterMovement : MonoBehaviour
 
     void Start()
     {
-        _animator = GetComponent<Animator>() as Animator; 	// Get the "Animator" component and set it to "animator" var
-        
-        _footInBackTrigger = FootInBack.GetComponent<LayerTrigger>();
-        _footInFrontTrigger = FootInFront.GetComponent<LayerTrigger>();
-        _wallInBackTrigger = WallTriggerBack.GetComponent<LayerTrigger>();
-        _wallInFrontTrigger = WallTriggerFront.GetComponent<LayerTrigger>();
+        _character = GetComponentInParent<Character>() as Character;
         _dragBackup = rigidbody2D.drag;
 
+        
         InitializeInputs();
         RollingImpactThreshold *= RollingImpactThreshold; // square for performance
-        if (transform.localScale.x < 0) _direction = -1;
+        if (transform.localScale.x < 0) _character.Direction = -1; //TODO Bitte was????
     }
 
     private void InitializeInputs()
     {
+        var id = _character.PlayerId;
         _jumpInputName = "Jump";
         _xAxisInputName = "Horizontal";
         _yAxisInputName = "Vertical";
 
-        if (PlayerId != 1)
-        {
-            _jumpInputName += PlayerId;
-            _xAxisInputName += PlayerId;
-            _yAxisInputName += PlayerId;
-        }
-
-
+        if (id == 1) return;
+        _jumpInputName += id;
+        _xAxisInputName += id;
+        _yAxisInputName += id;
     }
 
     void Update()
@@ -148,17 +117,10 @@ public class CharacterMovement : MonoBehaviour
         _landingTrigger = false;
         _rollingTrigger = false;
 
-
-        _backTriggered = _wallInBackTrigger.isTriggered;
-        _frontTriggered = _wallInFrontTrigger.isTriggered;
-        _backFootTriggered = _footInBackTrigger.isTriggered;
-        _frontFootTriggered = _footInFrontTrigger.isTriggered;
-
         _lastFrameVelocity = _velocity;
         _velocity = rigidbody2D.velocity;
 
-        _lastFrameGrounded = _isGrounded;
-        _isGrounded = _frontFootTriggered && _backFootTriggered;
+        _lastFrameGrounded = _character.IsGrounded;
         _maxVelocity = MoveSpeed*Time.deltaTime;
 
     }
@@ -172,25 +134,25 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleDirection()
     {
-        if(_isWallSliding) return;
-        
-        if (_direction * _horizontalInput < 0)
+        if(_character.IsWallSliding) return;
+
+        if (_character.Direction * _horizontalInput < 0)
         {
-            Flip();
+            _character.Flip();
         }
     }
 
     private void HandleMovement()
     {
-        _isCrouching = false;
-        if (_isGrounded)
+        _character.IsCrouching = false;
+        if (_character.IsGrounded)
         {
             var speed = MoveSpeed;
 
             // player is pressing down: crouching
             if (_verticalInput < 0)
             {
-                _isCrouching = true;
+                _character.IsCrouching = true;
                 speed = CrouchingSpeed;
             }
 
@@ -219,7 +181,7 @@ public class CharacterMovement : MonoBehaviour
             var velocity = rigidbody2D.velocity;
             if (velocity.x > _maxVelocity || velocity.x < (_maxVelocity*-1))
             {
-                rigidbody2D.velocity = new Vector2(_maxVelocity*_direction, velocity.y);
+                rigidbody2D.velocity = new Vector2(_maxVelocity*_character.Direction, velocity.y);
             }
                 
         }
@@ -229,12 +191,12 @@ public class CharacterMovement : MonoBehaviour
        void HandleJump()
     {
         if (!Input.GetButtonDown(_jumpInputName)) return;
-        if (_isGrounded)
+        if (_character.IsGrounded)
         { // reset JumpCount
             _jumpCount = 0;
         }
 
-        if (!_isWallSliding) // regular jump
+        if (!_character.IsWallSliding) // regular jump
         {
             if (_jumpCount < MaxJumps)
             {
@@ -247,7 +209,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else // jumping from the wall
         {
-            if (_direction * _horizontalInput < 0 && _backTriggered)
+            if (_character.Direction * _horizontalInput < 0 && _character.BackTriggered)
             {
                 _inputVector.x *= -1;
                 _inputVector.y *= 1;
@@ -256,7 +218,7 @@ public class CharacterMovement : MonoBehaviour
 
             StopWalllSliding();
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
-            rigidbody2D.AddForce((_inputVector + Vector2.up + DirectionVector()).normalized * WallJumpForce, ForceMode2D.Impulse); 	// Add y force set by "jumpForce" * Time.deltaTime?
+            rigidbody2D.AddForce((_inputVector + Vector2.up + _character.DirectionVector()).normalized * WallJumpForce, ForceMode2D.Impulse); 	// Add y force set by "jumpForce" * Time.deltaTime?
         }
         
     }
@@ -266,12 +228,12 @@ public class CharacterMovement : MonoBehaviour
         _activeSliding = false;
 
         // let the character slowly slide down the wall when he jumped and pressed against the wall
-        if (/*_direction*_horizontalInput > 0 &&*/ _frontTriggered && !_isGrounded && !_isWallSliding)
+        if (/*_direction*_horizontalInput > 0 &&*/ _character.FrontTriggered && !_character.IsGrounded && !_character.IsWallSliding)
         {
             StartWallSliding();
         }
-        
-        if (_isWallSliding)
+
+        if (_character.IsWallSliding)
         {
             OnWallSliding();
         }
@@ -282,27 +244,23 @@ public class CharacterMovement : MonoBehaviour
     {
         _dragBackup = rigidbody2D.drag;
         rigidbody2D.drag = WallJumpDrag;
-        _isWallSliding = true;
+        _character.IsWallSliding = true;
         _activeSliding = true;
         _lastFrameSliding = true;
-        Flip();
+        _character.Flip();
     }
 
     // called every frame, if the character is sliding
     private void OnWallSliding()
     {
-        if ((_isWallSliding && !_backTriggered) || _verticalInput < 0)
+        if ((_character.IsWallSliding && !_character.BackTriggered) || _verticalInput < 0)
         {
             StopWalllSliding();
             return;
         }
 
-        _activeSliding = false;
-        if (_direction*_horizontalInput < 0 && _backTriggered)
-        {
-            _activeSliding = true;
-        }
-        
+        _activeSliding = false || _character.Direction * _horizontalInput < 0 && _character.BackTriggered;
+
         if(_lastFrameSliding && !_activeSliding)
         { // character stopped sliding
             StartCoroutine("EndSlidingWithDelay");
@@ -318,7 +276,7 @@ public class CharacterMovement : MonoBehaviour
         _abortWallSlidingDelay = true;
         _isWallSlidingByDelay = false;
         _activeSliding = false;
-        _isWallSliding = false;
+        _character.IsWallSliding = false;
         rigidbody2D.drag = _dragBackup;
     }
 
@@ -335,7 +293,7 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             _isWallSlidingByDelay = false;
-            _isWallSliding = false;
+            _character.IsWallSliding = false;
             rigidbody2D.drag = _dragBackup;
         }
     }
@@ -343,43 +301,14 @@ public class CharacterMovement : MonoBehaviour
     // inform the animator component about the new state of the character
     private void UpdateAnimator()
     {
-        var velX = rigidbody2D.velocity.x;
-        _animator.SetFloat("movementSpeed", Mathf.Abs(velX));
-        _animator.SetBool("isWallSliding", _isWallSliding);
-        _animator.SetBool("isCrouching", _isCrouching);
-        _animator.SetBool("isGrounded", _isGrounded);
         
         if (_rollingTrigger)
-            _animator.SetTrigger("startRolling");
+            _character.Animator.SetTrigger("startRolling");
         
         if (_jumpingTrigger)
-            _animator.SetTrigger("jumping");
+            _character.Animator.SetTrigger("jumping");
         
         if (_wallJumpingTrigger)
-            _animator.SetTrigger("wallJumping");
+            _character.Animator.SetTrigger("wallJumping");
     }
-
-
-   private void Flip()
-   {
-       // Flip the gameObject based on localScale
-       _direction *= -1;
-       Vector3 scale = gameObject.transform.localScale;
-       scale.x *= -1;
-       gameObject.transform.localScale = scale;
- 		
-       //Flip Trigger
-       bool temp = _backTriggered;
-       _backTriggered = _frontTriggered;
-       _frontTriggered = temp;
-
-       temp = _backFootTriggered;
-       _backFootTriggered = _frontFootTriggered;
-       _frontFootTriggered = temp;
-   }
-
-   private Vector2 DirectionVector()
-   {
-       return Vector2.right * _direction;
-   }
 }
