@@ -1,5 +1,6 @@
-[Ll]ibrary/
-[Tt]emp/
+Library/
+Library/*
+Temp/
 [Oo]bj/
 [Bb]uild/
 
