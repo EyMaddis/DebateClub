@@ -50,7 +50,7 @@ public class Character : MonoBehaviour {
         Animator = GetComponent<Animator>() as Animator;
 	}
 	// Update is called once per frame
-	void Update () {
+	void  Update () {
         UpdateTrigger();
         IsGrounded = FootInFrontTriggered && FootInBackTriggered;
         UpdateAnimator();

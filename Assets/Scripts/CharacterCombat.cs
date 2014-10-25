@@ -7,6 +7,14 @@ public class CharacterCombat : MonoBehaviour
 {
     private Character _character;
     private string _punchInputName;
+    
+    //Actions
+    private bool _divekicking = false;
+    private bool _punching = false;
+    private bool _groundkicking = false;
+
+
+
     // Use this for initialization
 	void Start ()
 	{
@@ -25,21 +33,71 @@ public class CharacterCombat : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () 
-    {
+	void Update ()
+	{
+	    UpdateStates();
 	    HandleCombat();
+        UpdateAnimator();
 	}
+
+    private void UpdateStates()
+    {
+         _divekicking = false;
+         _punching = false;
+         _groundkicking = false;
+        
+    }
     
     private void HandleCombat()
     {
         if (!Input.GetButtonDown(_punchInputName)) return;
         /* Get Players State via Movement System */
 
-        Debug.Log("Hit");
-        if (_character.HighHitTriggered || _character.MidHitTriggered || _character.LowHitTriggered)
+        if (_character.IsGrounded) //Ground Attack
         {
-            Debug.Log("Hit of Player ");
+            if (_character.IsCrouching) //Chrouch Attack
+            {
+                _groundkicking = true;
+                if (_character.LowHitTriggered)
+                {
+                    OnHit();
+                }
+            }
+            else //Normal Punch
+            {
+                _punching = true;
+                if (_character.MidHitTriggered)
+                {
+                   OnHit();
+                }  
+            }
+            
         }
+        else // Air Attack
+        {
+            if (_character.IsWallSliding) //WallSliding Attack
+            {
+                
+            }
+            else // Divekick;
+            {
+                _divekicking = true;
+                if (_character.LowHitTriggered)
+                {
+                   OnHit(); 
+                }
+            }
+        }
+    }
+
+    private void OnHit()
+    {
+        //TODO onHit
+    }
+
+    private void UpdateAnimator()
+    {
+        //TODO Animatior for combat
     }
 
 }

@@ -196,7 +196,7 @@ GameObject:
   - 61: {fileID: 111874945}
   - 114: {fileID: 111874944}
   - 50: {fileID: 111874943}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Foot in Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - 61: {fileID: 127487279}
   - 114: {fileID: 127487278}
   - 50: {fileID: 127487280}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Foot in Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   - 61: {fileID: 177713602}
   - 114: {fileID: 177713601}
   - 50: {fileID: 177713600}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wall Trigger Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   - 61: {fileID: 194995955}
   - 114: {fileID: 194995954}
   - 50: {fileID: 194995953}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: High Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +827,7 @@ GameObject:
   - 61: {fileID: 619098106}
   - 114: {fileID: 619098105}
   - 50: {fileID: 619098107}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wall Trigger Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +899,7 @@ GameObject:
   - 61: {fileID: 836162654}
   - 114: {fileID: 836162656}
   - 50: {fileID: 836162657}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wall Trigger Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -971,7 +971,7 @@ GameObject:
   - 61: {fileID: 845894621}
   - 114: {fileID: 845894620}
   - 50: {fileID: 845894619}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Foot in Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1302,7 +1302,7 @@ GameObject:
   - 61: {fileID: 1022970153}
   - 114: {fileID: 1022970152}
   - 50: {fileID: 1022970151}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Low Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1590,7 +1590,7 @@ GameObject:
   - 61: {fileID: 1820693971}
   - 114: {fileID: 1820693970}
   - 50: {fileID: 1820693969}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wall Trigger Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1662,7 +1662,7 @@ GameObject:
   - 61: {fileID: 1822661909}
   - 114: {fileID: 1822661910}
   - 50: {fileID: 1822661911}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Foot in Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1734,7 +1734,7 @@ GameObject:
   - 61: {fileID: 1919465030}
   - 114: {fileID: 1919465029}
   - 50: {fileID: 1919465028}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Mid Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1806,7 +1806,7 @@ GameObject:
   - 61: {fileID: 1945716377}
   - 114: {fileID: 1945716376}
   - 50: {fileID: 1945716375}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Mid Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1878,7 +1878,7 @@ GameObject:
   - 61: {fileID: 2022961196}
   - 114: {fileID: 2022961195}
   - 50: {fileID: 2022961194}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: High Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1950,7 +1950,7 @@ GameObject:
   - 61: {fileID: 2027165678}
   - 114: {fileID: 2027165677}
   - 50: {fileID: 2027165676}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Low Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
