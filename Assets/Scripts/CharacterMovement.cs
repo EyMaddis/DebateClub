@@ -98,15 +98,22 @@ public class CharacterMovement : MonoBehaviour{
 
     void Update()
     {
-        UpdateStates();
+       
         GetInput(); 			// Handles Input
         HandleDirection();
         HandleMovement(); 		// Handles Movement
 
         HandleJump();
-        HandleWallSliding();
+       
 
         UpdateAnimator();
+    }
+
+    void FixedUpdate()
+    {
+        UpdateStates();
+        HandleWallSliding();
+        
     }
 
     private void UpdateStates()
@@ -301,7 +308,6 @@ public class CharacterMovement : MonoBehaviour{
     // inform the animator component about the new state of the character
     private void UpdateAnimator()
     {
-        
         if (_rollingTrigger)
             _character.Animator.SetTrigger("startRolling");
         

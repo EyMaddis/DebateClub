@@ -49,17 +49,11 @@ public class Character : MonoBehaviour {
 	    initializeTrigger();
         Animator = GetComponent<Animator>() as Animator;
 	}
-
-    void FixedUpdate()
-    {
-        UpdateTrigger();
-        IsGrounded = FootInFrontTriggered && FootInBackTriggered;
-    }
-	
 	// Update is called once per frame
 	void Update () {
+        UpdateTrigger();
+        IsGrounded = FootInFrontTriggered && FootInBackTriggered;
         UpdateAnimator();
-	    
 	}
 
 
