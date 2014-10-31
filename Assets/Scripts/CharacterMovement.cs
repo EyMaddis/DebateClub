@@ -98,21 +98,20 @@ public class CharacterMovement : MonoBehaviour{
 
     void Update()
     {
-       
+        UpdateStates();
         GetInput(); 			// Handles Input
         HandleDirection();
         HandleMovement(); 		// Handles Movement
-
+        
         HandleJump();
-       
 
         UpdateAnimator();
     }
 
     void FixedUpdate()
     {
-        UpdateStates();
         HandleWallSliding();
+        
         
     }
 
