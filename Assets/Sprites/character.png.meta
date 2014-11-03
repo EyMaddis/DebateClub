@@ -26,6 +26,17 @@ TextureImporter:
     21300042: character_21
     21300044: character_22
     21300046: character_23
+    21300048: character_24
+    21300050: character_25
+    21300052: character_26
+    21300054: character_27
+    21300056: character_28
+    21300058: character_29
+    21300060: character_30
+    21300062: character_31
+    21300064: character_32
+    21300066: character_33
+    21300068: character_34
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -306,6 +317,116 @@ TextureImporter:
         height: 48
       alignment: 9
       pivot: {x: .5, y: 1.01999998}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 448
+        width: 72
+        height: 104
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_25
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 449
+        width: 74
+        height: 101
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_26
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 337
+        width: 47
+        height: 93
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_27
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 348
+        width: 60
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_28
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 364
+        width: 72
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_29
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 336
+        width: 70
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_30
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 337
+        width: 79
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_31
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 337
+        width: 81
+        height: 68
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_32
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 214
+        width: 65
+        height: 99
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_33
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 214
+        width: 62
+        height: 98
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_34
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 214
+        width: 53
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
