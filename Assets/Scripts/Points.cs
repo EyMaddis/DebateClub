@@ -8,19 +8,22 @@ public class Points : MonoBehaviour {
 
 
 
-	/*public void AddPoints( string player)
+	public void AddPoints(int playerID, int points)
 	{
-		if (player == "player1") 
-		{
-			Player1Points +=1;
-		}
-
-		if (player == "player2") 
-		{
-			Player2Points +=1;
-		}
+	    switch (playerID)
+	    {
+            case 1:
+                Debug.Log("player2 got hit");
+			    Player1Points += 1;
+                break;
+            case 2:
+                Debug.Log("player1 got hit");
+			    Player2Points += 1;
+                break;
+	    }
+			
 	}
-*/
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -38,8 +41,8 @@ public class Points : MonoBehaviour {
 	void OnGUI()
 	{
 		GUILayout.BeginArea(new Rect(5, 5, 500, 500));
-		GUILayout.Label("Player1: " + Player1Points);
-		GUILayout.Label("Player2: " + Player2Points);
+		GUILayout.Label("Player 1: " + Player1Points);
+		GUILayout.Label("Player 2: " + Player2Points);
 		GUILayout.EndArea();
 	}
 }

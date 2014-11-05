@@ -6,6 +6,7 @@ using System.Collections;
 public class CharacterCombat : MonoBehaviour
 {
     private Character _character;
+    private Points points;
     private Animator _animator;
     private string _punchInputName;
     
@@ -13,9 +14,6 @@ public class CharacterCombat : MonoBehaviour
     private bool _divekicking = false;
     private bool _punching = false;
     private bool _groundkicking = false;
-
-	public string nameofthisplayer; // Johan
-	private Points points;// Johan
 
     void Awake()
 	{
@@ -99,28 +97,10 @@ public class CharacterCombat : MonoBehaviour
         }
     }
 
-    private void OnHit()  // johan
+    private void OnHit() 
     {
 
-		if (nameofthisplayer == "player1")  
-		{
-			//add point for player2
-			Debug.Log("player2 got hit");
-			points.Player2Points += 1;
-		}
-		
-		if (nameofthisplayer == "player2")
-		{
-			//add point for player1
-			Debug.Log("player1 got hit");
-			points.Player1Points += 1;
-		}
-
-
-
-
-
-        //TODO onHit
+        points.AddPoints(_character.PlayerId, 1);
     }
 
     private void UpdateAnimator()
