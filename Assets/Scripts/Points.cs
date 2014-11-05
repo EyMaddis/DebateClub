@@ -14,11 +14,11 @@ public class Points : MonoBehaviour {
 	    {
             case 1:
                 Debug.Log("player2 got hit");
-			    Player1Points += 1;
+			    Player1Points += points;
                 break;
             case 2:
                 Debug.Log("player1 got hit");
-			    Player2Points += 1;
+			    Player2Points += points;
                 break;
 	    }
 			
