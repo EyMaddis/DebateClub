@@ -6,6 +6,7 @@ using System.Collections;
 public class CharacterCombat : MonoBehaviour
 {
     private Character _character;
+    private Animator _animator;
     private string _punchInputName;
     
     //Actions
@@ -18,7 +19,8 @@ public class CharacterCombat : MonoBehaviour
     // Use this for initialization
 	void Start ()
 	{
-	    _character = GetComponentInParent<Character>() as Character;
+	    _character = GetComponentInParent<Character>();
+	    _animator = GetComponentInParent<Animator>();
 	    SetInputs();
 	}
 
@@ -97,7 +99,9 @@ public class CharacterCombat : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        //TODO Animatior for combat
+        if (_punching) _animator.SetTrigger("Punching");
+//        _animator.SetBool("Divekicking", _divekicking);
+//        _animator.SetBool("Groundkicking", _groundkicking);
     }
 
 }

@@ -50,20 +50,8 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: punching
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: crouchKick
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: diveKick
-    m_Type: 4
+  - m_Name: Punching
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -154,6 +142,26 @@ Transition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: jumping
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110120611
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110267438}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Punching
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1
@@ -384,6 +392,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110197548
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110267438}
+  m_DstState: {fileID: 110200000}
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: isWallSliding
+    m_EventTreshold: 0
+    m_ExitTime: 1
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1102 &110200000
 State:
   m_ObjectHideFlags: 3
@@ -396,6 +424,21 @@ State:
   - {fileID: 7400000, guid: 28353f48ce5731648a6a5085ff843230, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 432, y: 132, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110209147
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: crouch-kick
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 077234323034318438e5dcd7870955e3, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 900, y: 228, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -425,7 +468,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: e26f7c6cdff07c24fa9f24414ddafdfa, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 600, y: 60, z: 0}
+  m_Position: {x: 720, y: -60, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -470,7 +513,22 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: 4876dc9fbd91a7247bc91974087120a8, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 432, y: -48, z: 0}
+  m_Position: {x: 444, y: -60, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110267438
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: punch
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: c920432c79698884fb08bab298b2f93b, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 924, y: 24, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -486,6 +544,21 @@ State:
   - {fileID: 7400000, guid: c08e8bd23a9b7ce4ab63317c01ab2950, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 432, y: 240, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110298042
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: jump-kick
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 3f5a0d78d54bbcb4bae49ce450c75738, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 936, y: 132, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -505,12 +578,22 @@ StateMachine:
   - {fileID: 110270475}
   - {fileID: 110236173}
   - {fileID: 110236695}
+  - {fileID: 110267438}
+  - {fileID: 110298042}
+  - {fileID: 110209147}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 0}
+      first: {fileID: 110209147}
       second: []
+    data:
+      first: {fileID: 110298042}
+      second: []
+    data:
+      first: {fileID: 110267438}
+      second:
+      - {fileID: 110197548}
     data:
       first: {fileID: 0}
       second:
@@ -518,6 +601,7 @@ StateMachine:
       - {fileID: 110144098}
       - {fileID: 110179933}
       - {fileID: 110115126}
+      - {fileID: 110120611}
     data:
       first: {fileID: 110200000}
       second:
