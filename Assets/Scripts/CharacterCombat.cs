@@ -14,7 +14,13 @@ public class CharacterCombat : MonoBehaviour
     private bool _punching = false;
     private bool _groundkicking = false;
 
+	public string nameofthisplayer; // Johan
+	private Points points;// Johan
 
+    void Awake()
+	{
+		points = FindObjectOfType<Points> ();
+	}
 
     // Use this for initialization
 	void Start ()
@@ -22,6 +28,7 @@ public class CharacterCombat : MonoBehaviour
 	    _character = GetComponentInParent<Character>();
 	    _animator = GetComponentInParent<Animator>();
 	    SetInputs();
+		//points = GetComponent<Points> ();
 	}
 
     private void SetInputs()
@@ -92,8 +99,27 @@ public class CharacterCombat : MonoBehaviour
         }
     }
 
-    private void OnHit()
+    private void OnHit()  // johan
     {
+
+		if (nameofthisplayer == "player1")  
+		{
+			//add point for player2
+			Debug.Log("player2 got hit");
+			points.Player2Points += 1;
+		}
+		
+		if (nameofthisplayer == "player2")
+		{
+			//add point for player1
+			Debug.Log("player1 got hit");
+			points.Player1Points += 1;
+		}
+
+
+
+
+
         //TODO onHit
     }
 

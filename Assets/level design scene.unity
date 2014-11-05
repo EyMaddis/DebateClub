@@ -835,6 +835,7 @@ GameObject:
   - 124: {fileID: 476200483}
   - 81: {fileID: 476200482}
   - 114: {fileID: 476200481}
+  - 114: {fileID: 476200487}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -932,7 +933,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
+--- !u!114 &476200487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476200480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36eed66fdd468d74f87a5c3b5ba365a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1Points: 0
+  Player2Points: 0
 --- !u!1 &497539878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,7 +1992,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: Target2
@@ -2753,7 +2767,7 @@ Transform:
   - {fileID: 454816472}
   - {fileID: 33000681}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &1501610959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2766,6 +2780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc31a416569b47a4a882076dc559e13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameofthisplayer: player1
 --- !u!114 &1501610960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3597,11 +3612,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
+      propertyPath: nameofthisplayer
+      value: player1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
@@ -3965,7 +3984,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_Name
@@ -3978,6 +3997,10 @@ Prefab:
     - target: {fileID: 400002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_LocalScale.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
+      propertyPath: nameofthisplayer
+      value: player2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
@@ -4024,7 +4047,7 @@ Transform:
   - {fileID: 2062391331}
   - {fileID: 1464697766}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &2084972294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4037,6 +4060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc31a416569b47a4a882076dc559e13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameofthisplayer: player2
 --- !u!114 &2084972295
 MonoBehaviour:
   m_ObjectHideFlags: 0
