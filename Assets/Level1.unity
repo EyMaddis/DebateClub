@@ -639,11 +639,11 @@ MonoBehaviour:
   Target2: {fileID: 2084972293}
   SmoothTime: .200000003
   SmoothZoomTime: .200000003
-  LowerBoundary: {x: -4.73000002, y: -6.82000017}
-  UpperBoundary: {x: -2.00999999, y: 10}
-  MinSizeY: 1
+  LowerBoundary: {x: -11.3000002, y: -6.82000017}
+  UpperBoundary: {x: 4.80000019, y: 10}
+  MinSizeY: 3
   Offset: {x: 1, y: -2}
-  ZoomMultiplierX: .300000012
+  ZoomMultiplierX: .389999986
   ZoomMultiplierY: .5
 --- !u!81 &476200482
 AudioListener:
@@ -1720,7 +1720,7 @@ Prefab:
       objectReference: {fileID: 1501610958}
     - target: {fileID: 11400000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: LowerBoundary.x
-      value: -4.73000002
+      value: -11.3000002
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: LowerBoundary.y
@@ -1728,7 +1728,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: UpperBoundary.x
-      value: -2.00999999
+      value: 4.80000019
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: m_BackGroundColor.r
@@ -1745,6 +1745,14 @@ Prefab:
     - target: {fileID: 2000000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: orthographic size
       value: 3.31145334
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: MinSizeY
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: ZoomMultiplierX
+      value: .389999986
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
