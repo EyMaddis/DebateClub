@@ -502,7 +502,7 @@ MonoBehaviour:
   CrouchingSpeed: 150
   MaxJumps: 3
   JumpForce: 6
-  InAirSpeed: .5
+  InAirSpeed: 5
   RollingImpactThreshold: 2
   WallJumpForce: 8
   WallJumpDrag: 15
