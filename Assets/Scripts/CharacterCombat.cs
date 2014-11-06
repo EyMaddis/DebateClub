@@ -99,7 +99,6 @@ public class CharacterCombat : MonoBehaviour
 
     private void OnHit() 
     {
-
         points.AddPoints(_character.PlayerId, 1);
     }
 
