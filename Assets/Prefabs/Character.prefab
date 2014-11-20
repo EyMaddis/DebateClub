@@ -500,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 300
   CrouchingSpeed: 150
+  CrouchingThresholdY: -.600000024
   MaxJumps: 3
   JumpForce: 6
   InAirSpeed: 5

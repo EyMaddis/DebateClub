@@ -8,10 +8,11 @@ public class CharacterMovement : MonoBehaviour{
     //[Tooltip("Is the character looking to the left (false) or right (true)?")]
     //public bool IsFacingRight = true;
 
-    [Header("Movement Speed")]
+    [Header("Movement")]
     public float MoveSpeed = 25f; 			// Movement Speed
     public float CrouchingSpeed = 5f; 			// Movement Speed while crouching
-
+    [Range(-.99f, 0f)]
+    public float CrouchingThresholdY = -0.6f;
 
     [Header("Jumping")]
 
@@ -36,7 +37,7 @@ public class CharacterMovement : MonoBehaviour{
     
 
   
-    [Header("Input Names")]
+    //[Header("Input Names")]
     private string _jumpInputName;
     private string _xAxisInputName;
     private string _yAxisInputName;
@@ -166,7 +167,7 @@ public class CharacterMovement : MonoBehaviour{
             var speed = MoveSpeed;
 
             // player is pressing down: crouching
-            if (_verticalInput < 0)
+            if (_verticalInput < CrouchingThresholdY)
             {
                 _character.IsCrouching = true;
                 speed = CrouchingSpeed;

@@ -85,7 +85,7 @@ public class CharacterCombat : MonoBehaviour
                 _groundkicking = true;
                 if (_character.LowHitTriggered)
                 {
-                    OnHit();
+                    //OnHit();
                 }
             }
             else //Normal Punch
