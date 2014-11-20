@@ -9,6 +9,7 @@ public class CharacterCombat : MonoBehaviour
     private Points points;
     private Animator _animator;
     private string _punchInputName;
+    private bool _punch;
     
     //Actions
     private bool _divekicking = false;
@@ -42,10 +43,27 @@ public class CharacterCombat : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    UpdateStates();
-	    HandleCombat();
+	    GetInput();
         UpdateAnimator();
 	}
+
+    void FixedUpdate()
+    {
+        UpdateStates();
+        HandleCombat();
+        ClearInput();
+    }
+
+    private void GetInput()
+    {
+        if(_punch) return;
+        _punch = Input.GetButtonDown(_punchInputName);
+    }
+
+    private void ClearInput()
+    {
+        _punch = false;
+    }
 
     private void UpdateStates()
     {
@@ -57,7 +75,7 @@ public class CharacterCombat : MonoBehaviour
     
     private void HandleCombat()
     {
-        if (!Input.GetButtonDown(_punchInputName)) return;
+        if (!_punch) return;
         /* Get Players State via Movement System */
 
         if (_character.IsGrounded) //Ground Attack

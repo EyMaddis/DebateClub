@@ -51,6 +51,7 @@ public class CharacterMovement : MonoBehaviour{
     private float _horizontalInput;
     private float _verticalInput;
     private Vector2 _inputVector;
+    private bool _jumpInput;
 
     public int _jumpCount = 0;
 
@@ -100,10 +101,7 @@ public class CharacterMovement : MonoBehaviour{
     {
         UpdateStates();
         GetInput(); 			// Handles Input
-        HandleDirection();
-        HandleMovement(); 		// Handles Movement
         
-        HandleJump();
 
         UpdateAnimator();
     }
@@ -111,8 +109,12 @@ public class CharacterMovement : MonoBehaviour{
     void FixedUpdate()
     {
         HandleWallSliding();
-        
-        
+        HandleDirection();
+        HandleMovement(); 		// Handles Movement
+
+        HandleJump();
+        ClearInput();
+
     }
 
     private void UpdateStates()
@@ -136,7 +138,15 @@ public class CharacterMovement : MonoBehaviour{
 		_horizontalInput = Input.GetAxisRaw(_xAxisInputName); 		// Set "horiztonalInput" equal to the Horizontal Axis Input
 		_verticalInput = Input.GetAxisRaw(_yAxisInputName); 			// Set "verticallInput" equal to the Vertical Axis Inpu
         _inputVector = new Vector2(_horizontalInput, _verticalInput).normalized;
+
+       if(_jumpInput) return;
+       _jumpInput = Input.GetButtonDown(_jumpInputName);
    }
+
+    private void ClearInput()
+    {
+        _jumpInput = false;
+    }
 
     private void HandleDirection()
     {
@@ -196,7 +206,7 @@ public class CharacterMovement : MonoBehaviour{
     private
        void HandleJump()
     {
-        if (!Input.GetButtonDown(_jumpInputName)) return;
+        if (!_jumpInput) return;
         if (_character.IsGrounded)
         { // reset JumpCount
             _jumpCount = 0;
