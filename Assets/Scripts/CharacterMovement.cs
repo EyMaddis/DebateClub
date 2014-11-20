@@ -213,7 +213,7 @@ public class CharacterMovement : MonoBehaviour{
             _jumpCount = 0;
         }
 
-        if (!_character.IsWallSliding) // regular jump
+        if (!_character.IsWallSliding && (_character.IsGrounded || !_character.BackTriggered)) // regular jump
         {
             if (_jumpCount < MaxJumps)
             {
