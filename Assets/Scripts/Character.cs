@@ -37,7 +37,7 @@ public class Character : MonoBehaviour {
     public Animator Animator;
 
     //private LayerTrigger _footBackTrigger;
-    private LayerTrigger _GroundCheckerTrigger;
+    private LayerTrigger _groundCheckerTrigger;
     private LayerTrigger _backTrigger;
     private LayerTrigger _frontTrigger;
     private LayerTrigger _hightHitTrigger;
@@ -62,7 +62,7 @@ public class Character : MonoBehaviour {
     private void UpdateTrigger()
     {
         //FootInBackTriggered = _footBackTrigger.isTriggered;
-        IsGrounded = _GroundCheckerTrigger.isTriggered;
+        IsGrounded = _groundCheckerTrigger.isTriggered;
         BackTriggered = !InWall && _backTrigger.isTriggered;
         FrontTriggered = !InWall && _frontTrigger.isTriggered;
         HighHitTriggered = !InWall && _hightHitTrigger.isTriggered;
@@ -105,7 +105,7 @@ public class Character : MonoBehaviour {
     private void InitializeTrigger()
     {
        // _footBackTrigger = FootInBack.GetComponent<LayerTrigger>();
-        _GroundCheckerTrigger = GroundChecker.GetComponent<LayerTrigger>();
+        _groundCheckerTrigger = GroundChecker.GetComponent<LayerTrigger>();
         _backTrigger = WallTriggerBack.GetComponent<LayerTrigger>();
         _frontTrigger = WallTriggerFront.GetComponent<LayerTrigger>();
         _hightHitTrigger = HighHit.GetComponent<LayerTrigger>();
