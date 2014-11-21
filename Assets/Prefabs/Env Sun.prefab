@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
+  - 60: {fileID: 6000000}
   m_Layer: 9
   m_Name: Env Sun
   m_TagString: Untagged
@@ -45,8 +45,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!61 &6100000
-BoxCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,14 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .550000012, y: .5}
-  m_Center: {x: -.0700000003, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: .23993659, y: -.0617542975}
+      - {x: .174999997, y: .234376177}
+      - {x: -.339376152, y: .237938583}
+      - {x: -.424312979, y: -.044069048}
+      - {x: -.308996052, y: -.286564261}
+      - {x: .0658671856, y: -.289439559}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
