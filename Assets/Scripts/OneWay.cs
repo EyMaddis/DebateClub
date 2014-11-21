@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Collider2D))]
 public class OneWay : MonoBehaviour
 {
 
@@ -14,7 +15,7 @@ public class OneWay : MonoBehaviour
         GameObject go = col.gameObject;
         if (go.tag == "Player")
         {
-            //Debug.Log("CollisionEnter!");
+            Debug.Log("CollisionEnter!");
             go.layer = Push2Layer;
             
             go.GetComponent<Character>().InWall = true;

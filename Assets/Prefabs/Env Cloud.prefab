@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
+  - 60: {fileID: 6000000}
   m_Layer: 9
   m_Name: Env Cloud
   m_TagString: Untagged
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5033145, y: -3.98432374, z: 0}
+  m_LocalPosition: {x: 3.51909924, y: -2.08575726, z: 0}
   m_LocalScale: {x: 1.59619772, y: 1.59619486, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36,7 +36,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
@@ -45,8 +45,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!61 &6100000
-BoxCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,18 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1.16999996, y: .680000007}
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: -.638847232, y: -.407391191}
+      - {x: -.283102065, y: -.5127967}
+      - {x: .164270073, y: -.492614836}
+      - {x: .501458228, y: -.382358342}
+      - {x: .682423592, y: -.230146065}
+      - {x: .798748493, y: .0597072281}
+      - {x: .561544836, y: .293967605}
+      - {x: -.738895059, y: .283382207}
+      - {x: -.853528678, y: -.113089368}
+      - {x: -.703968227, y: -.24492681}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
