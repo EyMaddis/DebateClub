@@ -22,6 +22,8 @@ public class Character : MonoBehaviour {
     public bool MidHitTriggered = false;
     public bool LowHitTriggered = false;
 
+    public bool InWall = false;
+
     [Header("Trigger: Place here")]
     public GameObject FootInFront;
     public GameObject FootInBack;
@@ -61,11 +63,11 @@ public class Character : MonoBehaviour {
     {
         FootInBackTriggered = _footBackTrigger.isTriggered;
         FootInFrontTriggered = _footFrontTrigger.isTriggered;
-        BackTriggered = _backTrigger.isTriggered;
-        FrontTriggered = _frontTrigger.isTriggered;
-        HighHitTriggered = _hightHitTrigger.isTriggered;
-        MidHitTriggered = _midHitTrigger.isTriggered;
-        LowHitTriggered = _lowHitTrigger.isTriggered;
+        BackTriggered = !InWall && _backTrigger.isTriggered;
+        FrontTriggered = !InWall && _frontTrigger.isTriggered;
+        HighHitTriggered = !InWall && _hightHitTrigger.isTriggered;
+        MidHitTriggered = !InWall && _midHitTrigger.isTriggered;
+        LowHitTriggered = !InWall && _lowHitTrigger.isTriggered;
     }
 
     public void Flip()

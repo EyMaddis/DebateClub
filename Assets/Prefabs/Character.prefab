@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
-  - 50: {fileID: 5000000}
   m_Layer: 10
   m_Name: Foot in Front
   m_TagString: Untagged
@@ -35,7 +34,7 @@ GameObject:
   - 114: {fileID: 11400010}
   m_Layer: 8
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +49,6 @@ GameObject:
   - 4: {fileID: 400004}
   - 61: {fileID: 6100004}
   - 114: {fileID: 11400004}
-  - 50: {fileID: 5000004}
   m_Layer: 10
   m_Name: Wall Trigger Back
   m_TagString: Untagged
@@ -68,7 +66,6 @@ GameObject:
   - 4: {fileID: 400006}
   - 61: {fileID: 6100006}
   - 114: {fileID: 11400006}
-  - 50: {fileID: 5000006}
   m_Layer: 10
   m_Name: Wall Trigger Front
   m_TagString: Untagged
@@ -86,7 +83,6 @@ GameObject:
   - 4: {fileID: 400008}
   - 61: {fileID: 6100008}
   - 114: {fileID: 11400008}
-  - 50: {fileID: 5000008}
   m_Layer: 10
   m_Name: Foot in Back
   m_TagString: Untagged
@@ -104,7 +100,6 @@ GameObject:
   - 4: {fileID: 400010}
   - 61: {fileID: 6100010}
   - 114: {fileID: 11400012}
-  - 50: {fileID: 5000010}
   m_Layer: 10
   m_Name: Low Hit
   m_TagString: Untagged
@@ -122,7 +117,6 @@ GameObject:
   - 4: {fileID: 400012}
   - 61: {fileID: 6100012}
   - 114: {fileID: 11400014}
-  - 50: {fileID: 5000012}
   m_Layer: 10
   m_Name: Mid Hit
   m_TagString: Untagged
@@ -140,7 +134,6 @@ GameObject:
   - 4: {fileID: 400014}
   - 61: {fileID: 6100014}
   - 114: {fileID: 11400016}
-  - 50: {fileID: 5000014}
   m_Layer: 10
   m_Name: High Hit
   m_TagString: Untagged
@@ -187,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.0974650532, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
   m_RootOrder: 2
@@ -251,21 +244,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400002}
   m_RootOrder: 4
---- !u!50 &5000000
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
 --- !u!50 &5000002
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -279,96 +257,6 @@ Rigidbody2D:
   m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!50 &5000004
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!50 &5000006
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!50 &5000008
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!50 &5000010
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!50 &5000012
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!50 &5000014
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
 --- !u!61 &6100000
@@ -622,6 +510,7 @@ MonoBehaviour:
   HighHitTriggered: 0
   MidHitTriggered: 0
   LowHitTriggered: 0
+  InWall: 0
   FootInFront: {fileID: 100000}
   FootInBack: {fileID: 100008}
   WallTriggerBack: {fileID: 100004}
