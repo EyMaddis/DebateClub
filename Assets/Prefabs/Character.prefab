@@ -11,7 +11,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   m_Layer: 10
-  m_Name: Foot in Front
+  m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +33,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400010}
   - 82: {fileID: 8200000}
+  - 82: {fileID: 8200002}
   m_Layer: 8
   m_Name: Character
   m_TagString: Player
@@ -69,23 +70,6 @@ GameObject:
   - 114: {fileID: 11400006}
   m_Layer: 10
   m_Name: Wall Trigger Front
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400008}
-  - 61: {fileID: 6100008}
-  - 114: {fileID: 11400008}
-  m_Layer: 10
-  m_Name: Foot in Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,8 +133,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0789386928, y: -.379999995, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalPosition: {x: -.0199999996, y: -.379999995, z: 0}
+  m_LocalScale: {x: 1.70000005, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
   m_RootOrder: 0
@@ -165,7 +149,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
-  - {fileID: 400008}
   - {fileID: 400004}
   - {fileID: 400006}
   - {fileID: 400014}
@@ -184,7 +167,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -196,19 +179,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
-  m_RootOrder: 3
---- !u!4 &400008
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.00891830027, y: -.379999995, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400002}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &400010
 Transform:
   m_ObjectHideFlags: 1
@@ -220,7 +191,7 @@ Transform:
   m_LocalScale: {x: .5, y: .300000012, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &400012
 Transform:
   m_ObjectHideFlags: 1
@@ -232,7 +203,7 @@ Transform:
   m_LocalScale: {x: .5, y: .300000012, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &400014
 Transform:
   m_ObjectHideFlags: 1
@@ -244,7 +215,7 @@ Transform:
   m_LocalScale: {x: .5, y: .300000012, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!50 &5000002
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -304,17 +275,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: .150000006, y: .610000014}
   m_Center: {x: 0, y: 0}
---- !u!61 &6100008
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Size: {x: .180000007, y: .209999993}
-  m_Center: {x: -.0299999993, y: -.109999999}
 --- !u!61 &6100010
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -349,6 +309,64 @@ BoxCollider2D:
   m_Size: {x: 1, y: .209999993}
   m_Center: {x: .0299999993, y: -.109999999}
 --- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8200002
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -483,19 +501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   Layers: 09000000
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9636b6ba10691634d84731b32e6fbbfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTriggered: 0
-  Layers: 09000000
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -564,16 +569,13 @@ MonoBehaviour:
   IsGrounded: 0
   IsWallSliding: 0
   IsCrouching: 0
-  FootInFrontTriggered: 0
-  FootInBackTriggered: 0
   FrontTriggered: 0
   BackTriggered: 0
   HighHitTriggered: 0
   MidHitTriggered: 0
   LowHitTriggered: 0
   InWall: 0
-  FootInFront: {fileID: 100000}
-  FootInBack: {fileID: 100008}
+  GroundChecker: {fileID: 100000}
   WallTriggerBack: {fileID: 100004}
   WallTriggerFront: {fileID: 100006}
   HighHit: {fileID: 100014}

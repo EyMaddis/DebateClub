@@ -15,20 +15,11 @@ public class OneWay : MonoBehaviour
         GameObject go = col.gameObject;
         if (go.tag == "Player")
         {
-            Debug.Log("CollisionEnter!");
+            //Debug.Log("CollisionEnter!");
             go.layer = Push2Layer;
             
             go.GetComponent<Character>().InWall = true;
             
-        }
-    }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        GameObject go = col.gameObject;
-        if (go.tag == "Player")
-        {
-            Debug.Log("Stay");
         }
     }
 
