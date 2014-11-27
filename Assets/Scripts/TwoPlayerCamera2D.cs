@@ -86,8 +86,8 @@ public class TwoPlayerCamera2D : MonoBehaviour
         var height = Mathf.Abs(Mathf.Max(yDelta - Offset.y, yDelta)) * ZoomMultiplierY;
         var height2 = Mathf.Abs(Mathf.Max(yDeltaReversed - Offset.y, yDeltaReversed)) * ZoomMultiplierY;
         
-        height = Mathf.Max(height, height2);
-        width = Mathf.Max(width, width2);
+        height = aspectRatio*Mathf.Max(height, height2);
+        width = aspectRatio*Mathf.Max(width, width2);
 
         //computing the size
         var camSizeX = Mathf.Max(width, minSizeX);
