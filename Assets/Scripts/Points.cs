@@ -3,47 +3,75 @@ using System.Collections;
 
 public class Points : MonoBehaviour {
 
-	public int Player1Points = 0;
-	public int Player2Points = 0;
+	private static readonly int[] PlayerPoints = {0,0};
+    public int WinningDifference = 2;
 
+    public Font Font;
 
 
 	public void AddPoints(int playerID, int points)
 	{
-	    switch (playerID)
-	    {
-            case 1:
-                Debug.Log("player2 got hit");
-			    Player1Points += points;
-                break;
-            case 2:
-                Debug.Log("player1 got hit");
-			    Player2Points += points;
-                break;
-	    }
-			
+        Debug.Log("player"+playerID+" got a point");
+	    PlayerPoints[playerID+-1] += points;
 	}
 
-	// Use this for initialization
-	void Start () 
-	{
-	 
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
+    /// <summary>
+    ///  Check if a player has won
+    /// </summary>
+    /// <returns>0 if nobody wins, 1 if player 1 wins, 2 for player 2</returns>
+    public int CheckWinCondition()
+    {
+        var diff = PlayerPoints[0] - PlayerPoints[1];
+        if (diff <= -WinningDifference) return 2;
+        return diff >= WinningDifference ? 1 : 0;
+    }
 
-	}
 
 	//Display on screen
 	void OnGUI()
 	{
-		GUILayout.BeginArea(new Rect(5, 5, 500, 500));
-		GUILayout.Label("Player 1: " + Player1Points);
-		GUILayout.Label("Player 2: " + Player2Points);
-		GUILayout.EndArea();
+	    DrawPoints();
+	    DrawWinner();
 	}
+
+    void DrawPoints()
+    {
+        var centeredStyle = GUI.skin.GetStyle("Label");
+        centeredStyle.alignment = TextAnchor.UpperCenter;
+        centeredStyle.fontStyle = FontStyle.Bold;
+        centeredStyle.font = Font;
+        var xCenter = (float)Screen.width / 2;
+
+
+        GUILayout.BeginArea(new Rect(xCenter - 50, 15, 100, 50));
+        GUILayout.BeginHorizontal(centeredStyle);
+
+        GUI.color = Color.blue;
+        GUILayout.Label("" + GetPoints(1));
+
+        GUILayout.FlexibleSpace();
+
+        GUI.color = Color.red;
+        GUILayout.Label("" + GetPoints(2));
+
+        GUILayout.EndHorizontal();
+        GUILayout.EndArea();
+    }
+
+    void DrawWinner()
+    {
+        
+    }
+
+    public int GetPoints(int playerId)
+    {
+        return PlayerPoints[playerId - 1];
+    }
+
+    public void Reset()
+    {
+        PlayerPoints[0] = 0;
+        PlayerPoints[1] = 0;
+    }
 }
 

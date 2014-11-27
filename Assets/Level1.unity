@@ -673,6 +673,7 @@ GameObject:
   - 81: {fileID: 476200482}
   - 114: {fileID: 476200481}
   - 114: {fileID: 476200487}
+  - 114: {fileID: 476200488}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -783,8 +784,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36eed66fdd468d74f87a5c3b5ba365a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1Points: 0
-  Player2Points: 0
+  WinningDifference: 2
+  Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
+--- !u!114 &476200488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476200480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b46ab06873586439a3654a4f33bd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &513426230
 Prefab:
   m_ObjectHideFlags: 0
@@ -3296,6 +3308,16 @@ Prefab:
       propertyPath: Target2
       value: 
       objectReference: {fileID: 2084972293}
+    - target: {fileID: 11400002, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f,
+        type: 3}
+    - target: {fileID: 11400002, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
   m_RootGameObject: {fileID: 476200480}
