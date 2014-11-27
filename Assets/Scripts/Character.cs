@@ -14,17 +14,19 @@ public class Character : MonoBehaviour {
     public bool IsGrounded = false;
     public bool IsWallSliding = false;
     public bool IsCrouching = false;
-    public bool FootInFrontTriggered = false;
-    public bool FootInBackTriggered = false;
+    //public bool FootInFrontTriggered = false;
+    //public bool FootInBackTriggered = false;
     public bool FrontTriggered = false;
     public bool BackTriggered = false;
     public bool HighHitTriggered = false;
     public bool MidHitTriggered = false;
     public bool LowHitTriggered = false;
 
+    public bool InWall = false;
+
     [Header("Trigger: Place here")]
-    public GameObject FootInFront;
-    public GameObject FootInBack;
+    public GameObject GroundChecker;
+    //public GameObject FootInBack;
     public GameObject WallTriggerBack;
     public GameObject WallTriggerFront;
     public GameObject HighHit;
@@ -34,8 +36,8 @@ public class Character : MonoBehaviour {
     [Header("Animator: No Touching")]
     public Animator Animator;
 
-    private LayerTrigger _footBackTrigger;
-    private LayerTrigger _footFrontTrigger;
+    //private LayerTrigger _footBackTrigger;
+    private LayerTrigger _groundCheckerTrigger;
     private LayerTrigger _backTrigger;
     private LayerTrigger _frontTrigger;
     private LayerTrigger _hightHitTrigger;
@@ -52,20 +54,20 @@ public class Character : MonoBehaviour {
 	// Update is called once per frame
 	void  Update () {
         UpdateTrigger();
-        IsGrounded = FootInFrontTriggered && FootInBackTriggered;
+	    //IsGrounded = FootInFrontTriggered && FootInBackTriggered;
         UpdateAnimator();
 	}
 
 
     private void UpdateTrigger()
     {
-        FootInBackTriggered = _footBackTrigger.isTriggered;
-        FootInFrontTriggered = _footFrontTrigger.isTriggered;
-        BackTriggered = _backTrigger.isTriggered;
-        FrontTriggered = _frontTrigger.isTriggered;
-        HighHitTriggered = _hightHitTrigger.isTriggered;
-        MidHitTriggered = _midHitTrigger.isTriggered;
-        LowHitTriggered = _lowHitTrigger.isTriggered;
+        //FootInBackTriggered = _footBackTrigger.isTriggered;
+        IsGrounded = _groundCheckerTrigger.isTriggered;
+        BackTriggered = !InWall && _backTrigger.isTriggered;
+        FrontTriggered = !InWall && _frontTrigger.isTriggered;
+        HighHitTriggered = !InWall && _hightHitTrigger.isTriggered;
+        MidHitTriggered = !InWall && _midHitTrigger.isTriggered;
+        LowHitTriggered = !InWall && _lowHitTrigger.isTriggered;
     }
 
     public void Flip()
@@ -81,9 +83,9 @@ public class Character : MonoBehaviour {
         BackTriggered = FrontTriggered;
         FrontTriggered = temp;
 
-        temp = FootInBackTriggered;
+       /* temp = FootInBackTriggered;
         FootInBackTriggered = FootInFrontTriggered;
-        FootInFrontTriggered = temp;
+        FootInFrontTriggered = temp;*/
     }
 
     public Vector2 DirectionVector()
@@ -102,8 +104,8 @@ public class Character : MonoBehaviour {
 
     private void InitializeTrigger()
     {
-        _footBackTrigger = FootInBack.GetComponent<LayerTrigger>();
-        _footFrontTrigger = FootInFront.GetComponent<LayerTrigger>();
+       // _footBackTrigger = FootInBack.GetComponent<LayerTrigger>();
+        _groundCheckerTrigger = GroundChecker.GetComponent<LayerTrigger>();
         _backTrigger = WallTriggerBack.GetComponent<LayerTrigger>();
         _frontTrigger = WallTriggerFront.GetComponent<LayerTrigger>();
         _hightHitTrigger = HighHit.GetComponent<LayerTrigger>();

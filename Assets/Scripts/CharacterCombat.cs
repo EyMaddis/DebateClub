@@ -16,6 +16,9 @@ public class CharacterCombat : MonoBehaviour
     private bool _punching = false;
     private bool _groundkicking = false;
 
+
+	public AudioClip[] audioClip;
+
     void Awake()
 	{
 		points = FindObjectOfType<Points> ();
@@ -94,6 +97,7 @@ public class CharacterCombat : MonoBehaviour
                 if (_character.MidHitTriggered)
                 {
                    OnHit();
+					PlaySound (0);
                 }  
             }
             
@@ -118,6 +122,7 @@ public class CharacterCombat : MonoBehaviour
     private void OnHit() 
     {
         points.AddPoints(_character.PlayerId, 1);
+
     }
 
     private void UpdateAnimator()
@@ -126,5 +131,9 @@ public class CharacterCombat : MonoBehaviour
 //        _animator.SetBool("Divekicking", _divekicking);
 //        _animator.SetBool("Groundkicking", _groundkicking);
     }
-
+	void PlaySound(int clip)
+	{
+		audio.clip =audioClip[clip];
+		audio.Play ();
+	}
 }

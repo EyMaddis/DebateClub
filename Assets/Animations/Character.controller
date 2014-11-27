@@ -68,6 +68,33 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!206 &20650240
+BlendTree:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Blend Tree
+  m_Childs:
+  - m_Motion: {fileID: 7400000, guid: 4f4e82136ada9f343993c255e752c4d7, type: 2}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: c08e8bd23a9b7ce4ab63317c01ab2950, type: 2}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  m_BlendParameter: movementSpeed
+  m_BlendParameterY: movementSpeed
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_BlendType: 0
 --- !u!1101 &110100000
 Transition:
   serializedVersion: 2
@@ -501,7 +528,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 28353f48ce5731648a6a5085ff843230, type: 2}
+  - {fileID: 0}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 432, y: 132, z: 0}
   m_IKOnFeet: 0
@@ -576,7 +603,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 4f4e82136ada9f343993c255e752c4d7, type: 2}
+  - {fileID: 20650240}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 672, y: 240, z: 0}
   m_IKOnFeet: 0
@@ -681,11 +708,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110279912}
-      second:
-      - {fileID: 110107022}
-      - {fileID: 110150757}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110137973}
@@ -736,6 +758,11 @@ StateMachine:
     data:
       first: {fileID: 110209147}
       second: []
+    data:
+      first: {fileID: 110279912}
+      second:
+      - {fileID: 110107022}
+      - {fileID: 110150757}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 708, y: 144, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
