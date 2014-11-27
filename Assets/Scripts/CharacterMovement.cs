@@ -56,7 +56,7 @@ public class CharacterMovement : MonoBehaviour{
 
     public int _jumpCount = 0;
 
-    private float _maxVelocity;
+    public float _maxVelocity;
 
     private float _dragBackup;
     private bool _lastFrameSliding = false;
@@ -130,7 +130,6 @@ public class CharacterMovement : MonoBehaviour{
         _velocity = rigidbody2D.velocity;
 
         _lastFrameGrounded = _character.IsGrounded;
-        _maxVelocity = MoveSpeed*Time.deltaTime;
 
     }
 
@@ -192,6 +191,7 @@ public class CharacterMovement : MonoBehaviour{
         }
         else //in Air
         {
+            _maxVelocity = MoveSpeed * Time.deltaTime;
             rigidbody2D.AddForce((_verticalInput < 0 ? _inputVector : new Vector2(_horizontalInput, 0))*InAirSpeed);
 
             //Stop unlimmited acceleration.

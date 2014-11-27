@@ -45,6 +45,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 61: {fileID: 6100004}
   - 50: {fileID: 5000004}
+  - 60: {fileID: 6000000}
   m_Layer: 9
   m_Name: Env BigTree
   m_TagString: Untagged
@@ -135,13 +136,37 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!60 &6000000
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Poly:
+    m_Paths:
+    - - {x: .394040912, y: .314910591}
+      - {x: .366496086, y: .764232934}
+      - {x: .253043056, y: 1.01854205}
+      - {x: -.0714066774, y: 1.01886177}
+      - {x: -.262508988, y: .818529904}
+      - {x: -.277151197, y: .351253062}
+      - {x: -.239411786, y: -.0565855578}
+      - {x: -.0514979027, y: -.193572015}
+      - {x: -.00330420653, y: -.344975412}
+      - {x: -.0015139028, y: -.685983181}
+      - {x: .204808637, y: -.683843076}
+      - {x: .202120826, y: -.323042125}
+      - {x: .33072871, y: -.18363139}
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Size: {x: 1.51999998, y: 1.32000005}
@@ -152,7 +177,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Size: {x: 2.29999995, y: 2.92000008}
@@ -163,8 +188,8 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Enabled: 0
+  m_Material: {fileID: 6200000, guid: 1ebac9f523998334baa2ee85ea886403, type: 2}
   m_IsTrigger: 0
   m_Size: {x: .150000006, y: 1.52999997}
   m_Center: {x: .0799999982, y: .219999999}
