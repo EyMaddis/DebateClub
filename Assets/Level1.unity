@@ -828,7 +828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36eed66fdd468d74f87a5c3b5ba365a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WinningDifference: 2
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
 --- !u!114 &476200488
 MonoBehaviour:
@@ -841,6 +840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b46ab06873586439a3654a4f33bd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WinningDifference: 2
+  Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
 --- !u!1001 &513426230
 Prefab:
   m_ObjectHideFlags: 0
