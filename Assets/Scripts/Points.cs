@@ -3,47 +3,61 @@ using System.Collections;
 
 public class Points : MonoBehaviour {
 
-	public int Player1Points = 0;
-	public int Player2Points = 0;
+	private static readonly int[] PlayerPoints = {0,0};
 
+    public Font Font;
 
 
 	public void AddPoints(int playerID, int points)
 	{
-	    switch (playerID)
-	    {
-            case 1:
-                Debug.Log("player2 got hit");
-			    Player1Points += points;
-                break;
-            case 2:
-                Debug.Log("player1 got hit");
-			    Player2Points += points;
-                break;
-	    }
-			
+        Debug.Log("player"+playerID+" got a point");
+	    PlayerPoints[playerID+-1] += points;
 	}
 
-	// Use this for initialization
-	void Start () 
-	{
-	 
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
 
-	}
 
 	//Display on screen
 	void OnGUI()
 	{
-		GUILayout.BeginArea(new Rect(5, 5, 500, 500));
-		GUILayout.Label("Player 1: " + Player1Points);
-		GUILayout.Label("Player 2: " + Player2Points);
-		GUILayout.EndArea();
+	    DrawPoints();
 	}
+
+    void DrawPoints()
+    {
+        var centeredStyle = new GUIStyle();
+        centeredStyle.alignment = TextAnchor.UpperCenter;
+        centeredStyle.fontStyle = FontStyle.Bold;
+        centeredStyle.font = Font;
+        centeredStyle.fontSize = 20;
+        centeredStyle.richText = true;
+        var xCenter = (float)Screen.width / 2;
+
+
+        //var oldColor = GUI.color;
+        GUILayout.BeginArea(new Rect(xCenter - 50, 15, 100, 50));
+        GUILayout.BeginHorizontal(centeredStyle);
+
+        GUILayout.Label("<color=blue>" + (GetPoints(1)-GetPoints(2))+"</color>");
+
+        GUILayout.FlexibleSpace();
+
+        GUILayout.Label("<color=red>" + (GetPoints(2) - GetPoints(1)) + "</color>");
+
+        GUILayout.EndHorizontal();
+        GUILayout.EndArea();
+        //GUI.color = oldColor;
+    }
+
+
+    public int GetPoints(int playerId)
+    {
+        return PlayerPoints[playerId - 1];
+    }
+
+    public void Reset()
+    {
+        PlayerPoints[0] = 0;
+        PlayerPoints[1] = 0;
+    }
 }
 
