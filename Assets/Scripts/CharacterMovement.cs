@@ -135,7 +135,9 @@ public class CharacterMovement : MonoBehaviour{
     }
 
    private void GetInput()
-   {
+   {    
+       if(_character.IsInputBlocked()) return;
+       
 		_horizontalInput = Input.GetAxisRaw(_xAxisInputName); 		// Set "horiztonalInput" equal to the Horizontal Axis Input
 		_verticalInput = Input.GetAxisRaw(_yAxisInputName); 			// Set "verticallInput" equal to the Vertical Axis Inpu
         _inputVector = new Vector2(_horizontalInput, _verticalInput).normalized;

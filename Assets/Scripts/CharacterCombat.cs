@@ -64,8 +64,8 @@ public class CharacterCombat : MonoBehaviour
     }
 
     private void GetInput()
-    {
-        if(_punch) return;
+    {   
+        if(_punch || _character.IsInputBlocked()) return;
         _punch = Input.GetButtonDown(_punchInputName);
     }
 
