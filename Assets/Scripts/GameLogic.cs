@@ -5,11 +5,18 @@ public class GameLogic : MonoBehaviour
 {
 
     public int WinningDifference = 2;
-    private Points _points;
     public Font Font;
+
+    private bool _firstRound;
+    private int _round;
+    private float _roundTime;
+    private Points _points;
+        
 
     void Start()
     {
+        _round = 0;
+        _firstRound = true;
         _points = GetComponent<Points>();
         GUI.color = Color.white;
     }
@@ -27,20 +34,15 @@ public class GameLogic : MonoBehaviour
         }
         #endif
 
+
+
+        _roundTime += Time.deltaTime;
+        Utils.DrawRound(_round,_roundTime,Font);
+
         int winner = CheckWinCondition();
         if (winner == 0) return;
+        Utils.DrawWinner(winner,Font);
 
-
-        var centeredStyle = new GUIStyle
-        {
-            alignment = TextAnchor.MiddleCenter,
-            fontStyle = FontStyle.Bold,
-            font = Font,
-            fontSize = 50,
-            normal = {textColor = winner == 1 ? Color.blue : Color.red}
-        };
-
-        GUI.Label(new Rect(0f, 0f, Screen.width, Screen.height), "Player " + winner + " won!", centeredStyle);
     }
 
 
@@ -49,6 +51,10 @@ public class GameLogic : MonoBehaviour
         //GUI.Label(new Rect(150f, 150f, 10f, 10f), "New Round!");
         Application.LoadLevel(Application.loadedLevelName);
         _points.Reset();
+        _round++;
+        _firstRound = false;
+        _roundTime = 0;
+
     }
 
 
