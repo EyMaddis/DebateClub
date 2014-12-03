@@ -70,7 +70,10 @@ public class CharacterCombat : MonoBehaviour
 
     private void UpdateStates()
     {
-         _divekicking = false;
+        if (_character.IsGrounded || _character.IsWallSliding)
+        {
+            _divekicking = false;
+        }
          _punching = false;
          _groundkicking = false;
         
@@ -128,7 +131,7 @@ public class CharacterCombat : MonoBehaviour
     private void UpdateAnimator()
     {
         if (_punching) _animator.SetTrigger("Punching");
-//        _animator.SetBool("Divekicking", _divekicking);
+        _animator.SetBool("Divekicking", _divekicking);
 //        _animator.SetBool("Groundkicking", _groundkicking);
     }
 	void PlaySound(int clip)
