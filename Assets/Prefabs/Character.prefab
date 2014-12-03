@@ -468,7 +468,7 @@ MonoBehaviour:
   CrouchingThresholdY: -.600000024
   MaxJumps: 3
   JumpForce: 6
-  InAirSpeed: 5
+  InAirSpeed: 75
   RollingImpactThreshold: 2
   WallJumpForce: 8
   WallJumpDrag: 15
@@ -513,8 +513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc31a416569b47a4a882076dc559e13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip:
-  - {fileID: 0}
+  PunchingSounds:
+  - {fileID: 8300000, guid: 6650725ad0f7fc647974db679c55870b, type: 3}
+  DiveKickForce: 50
+  DiveKickVerticalForce: -.0250000004
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1

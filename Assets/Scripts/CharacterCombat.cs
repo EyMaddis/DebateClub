@@ -5,20 +5,24 @@ using System.Collections;
 [RequireComponent (typeof (Character))]
 public class CharacterCombat : MonoBehaviour
 {
+    public AudioClip[] PunchingSounds;
+    public float DiveKickForce = 5.0f;
+    public float DiveKickVerticalForce = -2.0f;
+
     private Character _character;
+    private CharacterMovement _characterMovement;
     private Points points;
     private Animator _animator;
     private string _punchInputName;
     private bool _punch;
     
     //Actions
-    public bool _divekicking = false;
+    private bool _divekicking = false;
     private bool _punching = false;
     private bool _groundkicking = false;
 
-    public bool _divekickHit = false;
-
-	public AudioClip[] audioClip;
+    // states
+    private bool _divekickHit = false;
 
     void Awake()
 	{
@@ -30,6 +34,7 @@ public class CharacterCombat : MonoBehaviour
 	{
 	    _character = GetComponentInParent<Character>();
 	    _animator = GetComponentInParent<Animator>();
+	    _characterMovement = GetComponentInParent<CharacterMovement>();
 	    SetInputs();
 		//points = GetComponent<Points> ();
 	}
@@ -80,7 +85,7 @@ public class CharacterCombat : MonoBehaviour
 
          _punching = false;
          _groundkicking = false;
-        
+
     }
     
     private void HandleCombat()
@@ -115,20 +120,27 @@ public class CharacterCombat : MonoBehaviour
         {
             if (_character.IsWallSliding) //WallSliding Attack
             {
-                
+                //TODO?
             }
             else // Divekick;
             {
                 _divekicking = true;
+                Vector2 diveDirection = new Vector2(_character.Direction, DiveKickVerticalForce).normalized;
+                _character.rigidbody2D.velocity = diveDirection*DiveKickForce;
             }
         }
     }
 
     private void HandleDivekick()
     {
-        if (_divekicking && !_divekickHit && _character.LowHitTriggered)
+        if (!_divekicking) return;
+
+
+
+        if (!_divekickHit && _character.LowHitTriggered)
         {
             OnHit();
+            PlaySound(0); //TODO
             _divekickHit = true;
         }
     }
@@ -136,7 +148,6 @@ public class CharacterCombat : MonoBehaviour
     private void OnHit() 
     {
         points.AddPoints(_character.PlayerId, 1);
-
     }
 
     private void UpdateAnimator()
@@ -147,7 +158,7 @@ public class CharacterCombat : MonoBehaviour
     }
 	void PlaySound(int clip)
 	{
-		audio.clip =audioClip[clip];
+		audio.clip =PunchingSounds[clip];
 		audio.Play ();
 	}
     public bool IsDivekicking()
