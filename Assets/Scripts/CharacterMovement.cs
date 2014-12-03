@@ -73,12 +73,13 @@ public class CharacterMovement : MonoBehaviour{
     private bool _wallJumpingTrigger = false;
     private bool _landingTrigger = false;
     private bool _rollingTrigger = false;
+    private CharacterCombat _characterCombat;
 
     void Start()
     {
         _character = GetComponentInParent<Character>() as Character;
         _dragBackup = rigidbody2D.drag;
-
+        _characterCombat = GetComponent<CharacterCombat>();
         
         InitializeInputs();
         RollingImpactThreshold *= RollingImpactThreshold; // square for performance
@@ -139,6 +140,14 @@ public class CharacterMovement : MonoBehaviour{
 		_verticalInput = Input.GetAxisRaw(_yAxisInputName); 			// Set "verticallInput" equal to the Vertical Axis Inpu
         _inputVector = new Vector2(_horizontalInput, _verticalInput).normalized;
 
+       if (_characterCombat.IsDivekicking())
+       {
+           // block all inputs
+           _horizontalInput = 0;
+           _verticalInput = 0;
+           _inputVector = Vector2.zero;
+       }
+
        if(_jumpInput) return;
        _jumpInput = Input.GetButtonDown(_jumpInputName);
    }
@@ -161,6 +170,7 @@ public class CharacterMovement : MonoBehaviour{
     private void HandleMovement()
     {
         _character.IsCrouching = false;
+
         if (_character.IsGrounded)
         {
             var speed = MoveSpeed;

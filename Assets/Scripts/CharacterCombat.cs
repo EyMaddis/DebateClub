@@ -12,10 +12,11 @@ public class CharacterCombat : MonoBehaviour
     private bool _punch;
     
     //Actions
-    private bool _divekicking = false;
+    public bool _divekicking = false;
     private bool _punching = false;
     private bool _groundkicking = false;
 
+    public bool _divekickHit = false;
 
 	public AudioClip[] audioClip;
 
@@ -70,10 +71,13 @@ public class CharacterCombat : MonoBehaviour
 
     private void UpdateStates()
     {
-        if (_character.IsGrounded || _character.IsWallSliding)
+        if (_divekicking && (_character.IsGrounded || _character.IsWallSliding))
         {
             _divekicking = false;
         }
+
+        if(!_divekicking) _divekickHit = false;
+
          _punching = false;
          _groundkicking = false;
         
@@ -81,6 +85,8 @@ public class CharacterCombat : MonoBehaviour
     
     private void HandleCombat()
     {
+        HandleDivekick();
+
         if (!_punch) return;
         /* Get Players State via Movement System */
 
@@ -114,11 +120,16 @@ public class CharacterCombat : MonoBehaviour
             else // Divekick;
             {
                 _divekicking = true;
-                if (_character.LowHitTriggered)
-                {
-                   OnHit(); 
-                }
             }
+        }
+    }
+
+    private void HandleDivekick()
+    {
+        if (_divekicking && !_divekickHit && _character.LowHitTriggered)
+        {
+            OnHit();
+            _divekickHit = true;
         }
     }
 
@@ -139,4 +150,9 @@ public class CharacterCombat : MonoBehaviour
 		audio.clip =audioClip[clip];
 		audio.Play ();
 	}
+    public bool IsDivekicking()
+    {
+        return _divekicking;
+    }
 }
+ 
