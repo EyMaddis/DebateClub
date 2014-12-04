@@ -37,6 +37,9 @@ TextureImporter:
     21300064: character_32
     21300066: character_33
     21300068: character_34
+    21300070: character_35
+    21300072: character_36
+    21300074: character_37
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -427,6 +430,36 @@ TextureImporter:
         height: 86
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_35
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 108
+        width: 45
+        height: 84
+      alignment: 9
+      pivot: {x: .305714935, y: .436920166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_36
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 107
+        width: 61
+        height: 84
+      alignment: 9
+      pivot: {x: .434853226, y: .449535728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: character_37
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 113
+        width: 78
+        height: 77
+      alignment: 9
+      pivot: {x: .403030783, y: .406463832}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
