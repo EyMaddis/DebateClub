@@ -1725,6 +1725,7 @@ GameObject:
   - 114: {fileID: 476200481}
   - 114: {fileID: 476200487}
   - 114: {fileID: 476200488}
+  - 114: {fileID: 476200489}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1851,6 +1852,19 @@ MonoBehaviour:
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   Player1: {fileID: 1501610957}
   Player2: {fileID: 2084972292}
+--- !u!114 &476200489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476200480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33128a8cea40c4bbf894e65b9e69c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialoguesFile: dialogues.txt
+  Dialogues: []
 --- !u!1 &494648042
 GameObject:
   m_ObjectHideFlags: 0
@@ -5581,6 +5595,7 @@ GameObject:
   - 114: {fileID: 1501610959}
   - 82: {fileID: 1501610967}
   - 82: {fileID: 1501610966}
+  - 114: {fileID: 1501610968}
   m_Layer: 8
   m_Name: Player 1
   m_TagString: Player
@@ -5862,6 +5877,20 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1501610968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1501610957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5524c11d09e40ec42af2dbe503bc82b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextOffset: {x: -50, y: -70}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Enable: 0
 --- !u!1 &1502532693
 GameObject:
   m_ObjectHideFlags: 0

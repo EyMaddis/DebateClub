@@ -26,7 +26,6 @@ public class GameLogic : MonoBehaviour
     private bool _isWaitingForEnd;
 
 
-
     void Start()
     {
         _player1StartPosition = Player1.transform.position;
@@ -53,8 +52,7 @@ public class GameLogic : MonoBehaviour
             _points.Reset();
         }
         #endif
-
-
+        
 
         _roundTime += Time.deltaTime;
         Utils.DrawRound(_round,_roundTime,Font);
