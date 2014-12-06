@@ -14,6 +14,8 @@ GameObject:
   - 81: {fileID: 8100000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -111,8 +113,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36eed66fdd468d74f87a5c3b5ba365a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1Points: 0
-  Player2Points: 0
+  Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b46ab06873586439a3654a4f33bd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WinningDifference: 2
+  Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33128a8cea40c4bbf894e65b9e69c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialoguesFile: dialogues.txt
+  Dialogues: []
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
