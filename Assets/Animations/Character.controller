@@ -670,6 +670,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110262407
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: debate
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 9827607abc66e574890f9a17eaa828e9, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 983, y: 5, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110267438
 State:
   m_ObjectHideFlags: 3
@@ -750,6 +765,7 @@ StateMachine:
   - {fileID: 110298042}
   - {fileID: 110209147}
   - {fileID: 110279912}
+  - {fileID: 110262407}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
