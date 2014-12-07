@@ -90,12 +90,10 @@ public class SpeechBubblesAnimation : MonoBehaviour
             _style.normal.textColor = ColorPlayer1;
         }
         var renderedHeight = _style.CalcHeight(new GUIContent(text),BubbleBox.x);
-        var boxRect = new Rect(Screen.width - bubblePos.x - BubbleBox.x / 2, Screen.height - bubblePos.y - renderedHeight, BubbleBox.x, BubbleBox.y);
+        var boxRect = new Rect(bubblePos.x - BubbleBox.x / 2, bubblePos.y - renderedHeight - BubbleBox.y, BubbleBox.x, BubbleBox.y);
 
-        //GUI.Label(boxRect, text, _style);
         GUILayout.BeginArea(boxRect);
         GUILayout.Box(text, _style);
-        //GUILayout.Label(text, _style); //boxRect, text, _style);
         GUILayout.EndArea();
 
     }

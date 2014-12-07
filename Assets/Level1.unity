@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1501610957}
+  AspectRatio: 2
 --- !u!212 &13944685
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5227,6 +5228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2084972292}
+  AspectRatio: 2
 --- !u!212 &1042247492
 SpriteRenderer:
   m_ObjectHideFlags: 0
