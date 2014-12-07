@@ -1967,9 +1967,7 @@ GameObject:
   - 60: {fileID: 453009673}
   - 233: {fileID: 453009672}
   - 231: {fileID: 453009671}
-  - 231: {fileID: 453009670}
-  - 231: {fileID: 453009669}
-  - 231: {fileID: 453009668}
+  - 232: {fileID: 453009668}
   m_Layer: 9
   m_Name: Env BigTree
   m_TagString: Untagged
@@ -1977,8 +1975,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!231 &453009668
-SpringJoint2D:
+--- !u!232 &453009668
+DistanceJoint2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1986,39 +1984,10 @@ SpringJoint2D:
   m_Enabled: 1
   m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: .50999999, y: -.140000001}
-  m_ConnectedAnchor: {x: .484700352, y: -4.28773308}
-  m_Distance: .00499999989
-  m_DampingRatio: 0
-  m_Frequency: 1
---- !u!231 &453009669
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453009667}
-  m_Enabled: 1
-  m_CollideConnected: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: -.280000001, y: -.150000006}
-  m_ConnectedAnchor: {x: -22.4826412, y: -5.48084164}
-  m_Distance: .00499999989
-  m_DampingRatio: 0
-  m_Frequency: 1
---- !u!231 &453009670
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453009667}
-  m_Enabled: 1
-  m_CollideConnected: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: .49000001, y: .970000029}
-  m_ConnectedAnchor: {x: -.0372843742, y: 3.02005601}
-  m_Distance: .00499999989
-  m_DampingRatio: 0
-  m_Frequency: 1
+  m_Anchor: {x: .0900000036, y: 1.21000004}
+  m_ConnectedAnchor: {x: -10.3509874, y: -.286219388}
+  m_Distance: .5
+  m_MaxDistanceOnly: 1
 --- !u!231 &453009671
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -2028,11 +1997,11 @@ SpringJoint2D:
   m_Enabled: 1
   m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: -.230000004, y: 1.01999998}
-  m_ConnectedAnchor: {x: -19.3134441, y: 3.95217228}
+  m_Anchor: {x: .0900000036, y: 1.00999999}
+  m_ConnectedAnchor: {x: -10.3551483, y: -.936938167}
   m_Distance: .00499999989
   m_DampingRatio: 0
-  m_Frequency: 1
+  m_Frequency: 2
 --- !u!233 &453009672
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -3057,7 +3026,7 @@ GameObject:
   - 50: {fileID: 595269159}
   - 233: {fileID: 595269165}
   - 231: {fileID: 595269164}
-  - 231: {fileID: 595269163}
+  - 232: {fileID: 595269163}
   m_Layer: 9
   m_Name: Env Tree1
   m_TagString: Untagged
@@ -3128,8 +3097,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
---- !u!231 &595269163
-SpringJoint2D:
+--- !u!232 &595269163
+DistanceJoint2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -3137,11 +3106,10 @@ SpringJoint2D:
   m_Enabled: 1
   m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: -1, y: 1.99999976}
-  m_ConnectedAnchor: {x: 4.48000002, y: -3.42025256}
-  m_Distance: .00499999989
-  m_DampingRatio: 0
-  m_Frequency: 10
+  m_Anchor: {x: -1.19209304e-07, y: 1.39999998}
+  m_ConnectedAnchor: {x: 4.47265625, y: -4.25877285}
+  m_Distance: .300000012
+  m_MaxDistanceOnly: 1
 --- !u!231 &595269164
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -3151,11 +3119,11 @@ SpringJoint2D:
   m_Enabled: 1
   m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: 1, y: 2}
-  m_ConnectedAnchor: {x: 4.48000002, y: -3.42025232}
+  m_Anchor: {x: -1.1920929e-07, y: 1.19499993}
+  m_ConnectedAnchor: {x: 4.47265625, y: -4.54526758}
   m_Distance: .00499999989
   m_DampingRatio: 0
-  m_Frequency: 10
+  m_Frequency: 2
 --- !u!233 &595269165
 HingeJoint2D:
   m_ObjectHideFlags: 0
