@@ -207,10 +207,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BubblePosition1: {fileID: 400008}
   BubblePosition2: {fileID: 400006}
-  ColorPlayer1: {r: 0, g: 0, b: 1, a: 1}
-  ColorPlayer2: {r: 1, g: 0, b: 0, a: 1}
+  ColorPlayer1: {r: .33088237, g: .33088237, b: .33088237, a: 1}
+  ColorPlayer2: {r: .329411775, g: .329411775, b: .329411775, a: 1}
   FontSize: 15
-  Font: {fileID: 0}
+  Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   BubbleBox: {x: 250, y: 100}
   Sprite: {fileID: 21300000, guid: ecb717f0e6036cd4f956d85931e2ee53, type: 3}
   Duration: 1

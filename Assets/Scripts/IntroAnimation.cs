@@ -8,6 +8,7 @@ public class IntroAnimation : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animationController;
+    private Character _character;
 
 	void Start ()
 	{
@@ -15,7 +16,10 @@ public class IntroAnimation : MonoBehaviour
 	    _animationController = Player.GetComponent<Animator>();
 	    _animationController.enabled = false;
         _spriteRenderer.enabled = false;
+	    _character = Player.GetComponent<Character>();
+        _character.BlockInput(true);
 	}
+
 
     void Awake()
     {
@@ -29,5 +33,6 @@ public class IntroAnimation : MonoBehaviour
         _spriteRenderer.enabled = true;
         _animationController.enabled = true;
         Debug.Log(Player.name);
+        _character.BlockInput(false);
     }
 }

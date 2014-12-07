@@ -44,15 +44,14 @@ public class Character : MonoBehaviour {
     private LayerTrigger _midHitTrigger;
     private LayerTrigger _lowHitTrigger;
 
-    private bool _blockInput;
+    private bool _blockInput = false;
 
 
 	// Use this for initialization
 	void Start ()
 	{
 	    InitializeTrigger();
-        Animator = GetComponent<Animator>() as Animator;
-	    _blockInput = false;
+        Animator = GetComponent<Animator>();
 	}
 	// Update is called once per frame
 	void  Update () {
