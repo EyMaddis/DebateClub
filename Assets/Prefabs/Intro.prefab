@@ -55,6 +55,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400006}
+  m_Layer: 0
+  m_Name: SpeechBubble2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400008}
+  m_Layer: 0
+  m_Name: SpeechBubble1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -67,6 +97,8 @@ Transform:
   m_Children:
   - {fileID: 400004}
   - {fileID: 400002}
+  - {fileID: 400008}
+  - {fileID: 400006}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &400002
@@ -93,6 +125,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 0
+--- !u!4 &400006
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .788196802, y: .75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
+  m_RootOrder: 3
+--- !u!4 &400008
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.788196564, y: .75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
+  m_RootOrder: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -149,10 +205,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5524c11d09e40ec42af2dbe503bc82b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffsetPlayer1: {x: -125, y: -60}
-  OffsetPlayer2: {x: -25, y: -60}
+  BubblePosition1: {fileID: 400008}
+  BubblePosition2: {fileID: 400006}
   ColorPlayer1: {r: 0, g: 0, b: 1, a: 1}
   ColorPlayer2: {r: 1, g: 0, b: 0, a: 1}
+  FontSize: 15
+  Font: {fileID: 0}
+  BubbleBox: {x: 250, y: 100}
+  Sprite: {fileID: 21300000, guid: ecb717f0e6036cd4f956d85931e2ee53, type: 3}
   Duration: 1
 --- !u!114 &11400002
 MonoBehaviour:
@@ -211,7 +271,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55168526277a07a4bbc8f150b63b141b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200002
 SpriteRenderer:

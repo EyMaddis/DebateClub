@@ -7,10 +7,17 @@ using UnityEngine;
 public class SpeechBubblesAnimation : MonoBehaviour
 {
 
-    public Vector2 OffsetPlayer1 = new Vector2(0.5f, 0.5f);
-    public Vector2 OffsetPlayer2 = new Vector2(0.5f, 0.5f);
+    public Transform BubblePosition1;
+    public Transform BubblePosition2;
+
     public Color ColorPlayer1 = Color.blue;
     public Color ColorPlayer2 = Color.red;
+
+    public int FontSize = 15;
+    public Font Font;
+
+    public Vector2 BubbleBox = new Vector2(150,100);
+    public Sprite Sprite;
 
     public float Duration = 1f;
 
@@ -19,18 +26,42 @@ public class SpeechBubblesAnimation : MonoBehaviour
     private Vector3 _screenPos;
     private DialogSystem _dialogSystem;
     private DialogSystem.DialoguePhase _currentPhase;
+    private Vector3 _bubblePos1;
+    private Vector3 _bubblePos2;
 
 
     // Use this for initialization
 	void Start ()
 	{
 	    _dialogSystem = GetComponent<DialogSystem>();
-        _style.alignment = TextAnchor.UpperCenter;
+        _style.alignment = TextAnchor.LowerCenter;
+
+	    _style.normal.background = Sprite.texture;
+	    var b = 15;
+        _style.padding = new RectOffset(b, b, b, b);
+	    _style.wordWrap = true;
+	    _style.fontSize = FontSize;
+	    _style.font = Font;
 	}
+    private Texture2D CreateWhiteBackground(int width, int height, Color col)
+    {
+        Color[] pix = new Color[width * height];
+
+        for (int i = 0; i < pix.Length; i++)
+            pix[i] = col;
+
+        Texture2D result = new Texture2D(width, height);
+        result.SetPixels(pix);
+        result.Apply();
+
+        return result;
+    }
+ 
 
     void Update()
     {
-        _screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        _bubblePos1 = Camera.main.WorldToScreenPoint(BubblePosition1.position);
+        _bubblePos2 = Camera.main.WorldToScreenPoint(BubblePosition2.position);
     }
 
     void OnGUI()
@@ -51,15 +82,22 @@ public class SpeechBubblesAnimation : MonoBehaviour
         }
 
 
-        _style.normal.textColor = ColorPlayer1;
-        var offset = OffsetPlayer1;
-        if (!showPlayer1)
+        _style.normal.textColor = ColorPlayer2;
+        var bubblePos = _bubblePos2;
+        if (showPlayer1)
         {
-            offset = OffsetPlayer2;
-            _style.normal.textColor = ColorPlayer2;
+            bubblePos = _bubblePos1;
+            _style.normal.textColor = ColorPlayer1;
         }
-        
-        GUI.Label(new Rect(_screenPos.x + offset.x, Screen.height - _screenPos.y + offset.y, 150, 100), text, _style);
+        var renderedHeight = _style.CalcHeight(new GUIContent(text),BubbleBox.x);
+        var boxRect = new Rect(Screen.width - bubblePos.x - BubbleBox.x / 2, Screen.height - bubblePos.y - renderedHeight, BubbleBox.x, BubbleBox.y);
+
+        //GUI.Label(boxRect, text, _style);
+        GUILayout.BeginArea(boxRect);
+        GUILayout.Box(text, _style);
+        //GUILayout.Label(text, _style); //boxRect, text, _style);
+        GUILayout.EndArea();
+
     }
 
     public void ShowDialoguePart(DialogSystem.DialoguePhase phase)
