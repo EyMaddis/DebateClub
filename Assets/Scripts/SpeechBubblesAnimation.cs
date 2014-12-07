@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Runtime.InteropServices;
-using UnityEditorInternal;
+﻿using System.Collections;
 using UnityEngine;
 
 public class SpeechBubblesAnimation : MonoBehaviour
