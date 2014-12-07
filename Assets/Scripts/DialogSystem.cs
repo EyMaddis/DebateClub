@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using System.Collections;
 
 public class DialogSystem : MonoBehaviour
 {
-    public String DialoguesFile;
+    public string DialoguesFile;
     public Dialogue[] Dialogues;
+
+    private Dialogue _currentDialogue;
+
+    public enum DialoguePhase
+    {
+        Player2,
+        Player1Response,
+        Player2Response
+    }
 
     void Start()
     {
@@ -23,9 +30,9 @@ public class DialogSystem : MonoBehaviour
         var dialogues = new List<Dialogue>();
         var lines = fileContents.Split("\n"[0]);
         var i = 1;
-        foreach (String line in lines)
+        foreach (var line in lines)
         {
-            string[] sentences = line.Split(';');
+            var sentences = line.Split(';');
             if (sentences.Length < 3)
             {
                 print("skipped dialogue line " + i + "because it were not 3 phrases");
@@ -36,10 +43,13 @@ public class DialogSystem : MonoBehaviour
             i++;
         }
         Dialogues = dialogues.ToArray();
+        var rand = Random.Range(0, Dialogues.Length-1);
+        _currentDialogue = Dialogues[rand];
     }
 
-    void OnGUI()
+    public Dialogue GetCurrent()
     {
-        
+        return _currentDialogue;
     }
+
 }

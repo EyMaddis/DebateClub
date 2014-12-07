@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 95: {fileID: 9500000}
   - 212: {fileID: 21200000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Intro
   m_TagString: Untagged
@@ -27,9 +28,9 @@ GameObject:
   - 4: {fileID: 400002}
   - 95: {fileID: 9500002}
   - 212: {fileID: 21200002}
-  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: Player 2
+  m_Name: Player2IntroAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +46,9 @@ GameObject:
   - 4: {fileID: 400004}
   - 95: {fileID: 9500004}
   - 212: {fileID: 21200004}
-  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400006}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: PlayerIntroAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,14 +142,30 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5524c11d09e40ec42af2dbe503bc82b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OffsetPlayer1: {x: .5, y: .5}
+  OffsetPlayer2: {x: .5, y: .5}
+  ColorPlayer1: {r: 0, g: 0, b: 1, a: 1}
+  ColorPlayer2: {r: 1, g: 0, b: 0, a: 1}
+  Duration: 1
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c715f9be355a22498db391e02c56207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
---- !u!114 &11400002
+  Player: {fileID: 0}
+--- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -159,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c715f9be355a22498db391e02c56207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

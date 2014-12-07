@@ -19,31 +19,31 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 1.16666663
+    - time: 2.41666675
       value: {fileID: 21300030, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 1.25
+    - time: 2.5
       value: {fileID: 21300010, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 2.16666675
-      value: {fileID: 21300016, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 2.25
-      value: {fileID: 21300020, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 3.16666675
-      value: {fileID: 21300008, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 3.25
-      value: {fileID: 21300012, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 3.33333325
-      value: {fileID: 21300018, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 3.41666675
-      value: {fileID: 21300036, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 3.5
-      value: {fileID: 21300004, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 3.66666675
-      value: {fileID: 21300006, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 3.83333325
-      value: {fileID: 21300032, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
-    - time: 4
-      value: {fileID: 21300034, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
     - time: 4.16666651
+      value: {fileID: 21300016, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 4.25
+      value: {fileID: 21300020, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 5.16666651
+      value: {fileID: 21300008, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 5.25
+      value: {fileID: 21300012, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 5.33333349
+      value: {fileID: 21300018, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 5.41666651
+      value: {fileID: 21300036, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 5.5
+      value: {fileID: 21300004, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 5.66666651
+      value: {fileID: 21300006, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 5.83333349
+      value: {fileID: 21300032, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 6
+      value: {fileID: 21300034, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
+    - time: 6.16666651
       value: {fileID: 21300038, guid: dc42590fff23d5f458bf9b651742e307, type: 3}
     attribute: m_Sprite
     path: 
@@ -80,7 +80,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 4.25
+    m_StopTime: 6.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -96,4 +96,25 @@ AnimationClip:
     m_Mirror: 0
   m_EditorCurves: []
   m_EulerEditorCurves: []
-  m_Events: []
+  m_Events:
+  - time: 1
+    functionName: ShowDialoguePart
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.5
+    functionName: ShowDialoguePart
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 4.25
+    functionName: ShowDialoguePart
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
