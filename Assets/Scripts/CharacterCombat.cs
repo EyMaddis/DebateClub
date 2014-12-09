@@ -161,8 +161,7 @@ public class CharacterCombat : MonoBehaviour
 
     private void OnMiss()
     {
-        PlaySound(0);
-        game.AddPoints(_character.PlayerId, 1);
+        PlaySound(1);
     }
 
     private void UpdateAnimator()
