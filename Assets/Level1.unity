@@ -3621,6 +3621,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400010, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
+      propertyPath: PunchingSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_LocalPosition.x
       value: -4.86000013
@@ -3661,6 +3665,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
+      propertyPath: PunchingSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e232e785924c74241a490e232f5f6a1e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
   m_RootGameObject: {fileID: 1501610957}
@@ -6613,6 +6621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PunchingSounds:
   - {fileID: 8300000, guid: 6650725ad0f7fc647974db679c55870b, type: 3}
+  - {fileID: 8300000, guid: e232e785924c74241a490e232f5f6a1e, type: 3}
   DiveKickForce: 50
   DiveKickVerticalForce: -.0250000004
 --- !u!114 &1501610960
@@ -7984,6 +7993,10 @@ Prefab:
       propertyPath: audioClip.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
+      propertyPath: PunchingSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.69000006
@@ -8044,6 +8057,10 @@ Prefab:
       propertyPath: InAirSpeed
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
+      propertyPath: PunchingSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e232e785924c74241a490e232f5f6a1e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
   m_RootGameObject: {fileID: 2084972292}
@@ -8106,6 +8123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PunchingSounds:
   - {fileID: 8300000, guid: 6650725ad0f7fc647974db679c55870b, type: 3}
+  - {fileID: 8300000, guid: e232e785924c74241a490e232f5f6a1e, type: 3}
   DiveKickForce: 50
   DiveKickVerticalForce: -.0250000004
 --- !u!114 &2084972295
