@@ -8,15 +8,16 @@ public class GameLogic : MonoBehaviour
     public Font Font;
 
     public GameObject Player1;
-    public GameObject Player2; 
+    public GameObject Player2;
 
+    public int MaxPoints;
 
+    private static readonly int[] PlayerPoints = { 0, 0 };
 
     private bool _firstRound;
     private static int _round;
     private float _roundTime;
-    private Points _points;
-
+    
     private Vector2 _player1StartPosition;
     private Vector2 _player2StartPosition;
 
@@ -36,7 +37,6 @@ public class GameLogic : MonoBehaviour
 
         _round = 0;
         _firstRound = true;
-        _points = GetComponent<Points>();
         GUI.color = Color.white;
     }
 
@@ -50,7 +50,7 @@ public class GameLogic : MonoBehaviour
         }
         if (GUI.Button(new Rect(120f, 10f, 100f, 20f), "Reset Points"))
         {
-            _points.Reset();
+            ResetPoints();
         }
         #endif
 
@@ -59,7 +59,7 @@ public class GameLogic : MonoBehaviour
 			Application.LoadLevel(0);
 		}
 
-
+        Utils.DrawPoints(PlayerPoints, Font);
         
 
         _roundTime += Time.deltaTime;
@@ -86,7 +86,7 @@ public class GameLogic : MonoBehaviour
         Player1.GetComponent<Character>().Direction = _player1StartDirection;
         Player2.GetComponent<Character>().Direction = _player2StartDirection;
 
-        _points.Reset();
+        ResetPoints();
         _round++;
         _firstRound = false;
         _roundTime = 0;
@@ -100,9 +100,18 @@ public class GameLogic : MonoBehaviour
     /// <returns>0 if nobody wins, 1 if player 1 wins, 2 for player 2</returns>
     public int CheckWinCondition()
     {
-        var diff = _points.GetPoints(1) - _points.GetPoints(2);
-        if (diff <= -WinningDifference) return 2;
-        return diff >= WinningDifference ? 1 : 0;
+        if (PlayerPoints[0] >= MaxPoints)
+        {
+            return 1;
+        }
+        else if (PlayerPoints[1] >= MaxPoints)
+        {
+            return 2;
+        }
+        else
+        {
+            return 0;
+        }    
     }
 
 
@@ -115,8 +124,18 @@ public class GameLogic : MonoBehaviour
         EndRound();
         Player1.GetComponent<Character>().BlockInput(false);
         Player2.GetComponent<Character>().BlockInput(false);
-        
-        
+    }
+
+    public void AddPoints(int playerID, int points)
+    {
+        Debug.Log("player" + playerID + " got a point");
+        PlayerPoints[playerID + -1] += points;
+    }
+
+    public void ResetPoints()
+    {
+        PlayerPoints[0] = 0;
+        PlayerPoints[1] = 0;
     }
 
 }
