@@ -34,37 +34,7 @@ public class Utils {
         GUI.Label(new Rect(0f, 0f, Screen.width, Screen.height), "Player " + player + " won!", centeredStyle);
     }
 
-    public static void DrawRound(int round, float time, Font font)
-    {
-        if (time < 5)
-        {
-            var centeredStyle = new GUIStyle
-            {
-                alignment = TextAnchor.MiddleCenter,
-                fontStyle = FontStyle.Bold,
-                font = font,
-                fontSize = 50,
-                normal = {textColor = Color.green}
-            };
 
-            GUI.Label(new Rect(0f, -100f, Screen.width, Screen.height), "Round " + round, centeredStyle);
-        }
-        else
-        {
-            var centeredStyle = new GUIStyle
-            {
-                alignment = TextAnchor.UpperRight,
-                font = font,
-                fontSize = 20,
-                richText = true,
-                normal = { textColor = Color.green }
-            };
-
-            GUI.Label(new Rect(-100f, 0f, Screen.width, Screen.height), "Round " + round, centeredStyle);
-        }
-
-        
-    }
 
     public static void DrawPoints(int[] points, Font font)
     {
@@ -93,5 +63,27 @@ public class Utils {
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
         //GUI.color = oldColor;
+    }
+
+    // http://forum.unity3d.com/threads/outlined-text.43698/
+    public static void DrawOutline(Rect position, string text, GUIStyle style, Color outColor, Color inColor, int thickness = 1){
+        //var backupStyle = style;
+
+        for(var i = 1; i <= thickness; i++)
+        {
+            style.normal.textColor = outColor;
+            position.x-= i;
+            GUI.Label(position, text, style);
+            position.x += 2*i;
+            GUI.Label(position, text, style);
+            position.x-=i;
+            position.y-=i;
+            GUI.Label(position, text, style);
+            position.y += 2*i;
+            GUI.Label(position, text, style);
+            position.y-=i;
+            style.normal.textColor = inColor;
+            GUI.Label(position, text, style);
+        } 
     }
 }
