@@ -72,6 +72,9 @@ public class GameLogic : MonoBehaviour
 
         Player1.transform.position = _player1StartPosition;
         Player2.transform.position = _player2StartPosition;
+        Player1.transform.localScale = new Vector3(_player1StartDirection,1,1);
+        Player2.transform.localScale = new Vector3(_player2StartDirection,1,1);
+       
         Player1.GetComponent<Character>().Direction = _player1StartDirection;
         Player2.GetComponent<Character>().Direction = _player2StartDirection;
 
