@@ -2575,6 +2575,8 @@ MonoBehaviour:
   Player2: {fileID: 2084972292}
   MaxPoints: 1
   Intro: {fileID: 309302852}
+  RoundColor: {r: 0, g: 0, b: 0, a: 0}
+  RoundOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!82 &476200489
 AudioSource:
   m_ObjectHideFlags: 0

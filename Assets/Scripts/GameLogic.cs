@@ -12,6 +12,10 @@ public class GameLogic : MonoBehaviour
     public GameObject Player2;
 
     public int MaxPoints;
+    public Animator Intro;
+
+    [Header("GUI")] public Color RoundColor;
+    public Color RoundOutlineColor;
 
     private static readonly int[] PlayerPoints = { 0, 0 };
 
@@ -26,7 +30,6 @@ public class GameLogic : MonoBehaviour
     private int _player2StartDirection;
 
     private bool _isWaitingForEnd;
-    public Animator Intro;
 
     private float _lerpT = 0;
     private bool _introStopped = false;
