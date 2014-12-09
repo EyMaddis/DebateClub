@@ -89,8 +89,8 @@ public class GameLogic : MonoBehaviour
         if(_introStopped)
             _roundTime += Time.deltaTime;
 
-        DrawRound();
         DrawWinner();
+        DrawRound();
     }
 
 
@@ -190,8 +190,12 @@ public class GameLogic : MonoBehaviour
     {
         _introStopped = true;
     }
+
     private void DrawWinner()
     {
+
+
+
         var winner = CheckWinCondition();
         var roundWinner = CheckRoundWinCondition();
         var end = winner != 0 || roundWinner != 0;
@@ -199,12 +203,13 @@ public class GameLogic : MonoBehaviour
         if (winner == 0 && roundWinner == 0) return; // no need to do draw the winner/end the round.
         var endRoundOnly = roundWinner != 0 && winner == 0;
 
-        if (_isWaitingForEnd) return;
-        if (end) StartCoroutine("WaitForEnd", endRoundOnly);
+        if (end && !_isWaitingForEnd) 
+            StartCoroutine("WaitForEnd", endRoundOnly);
+     
+        var player = roundWinner;
 
+        Debug.Log("Round: "+roundWinner+" game:" + winner);
 
-        var player = 0;
-        player = roundWinner;
         if (!endRoundOnly) player = winner;
         var centeredStyle = new GUIStyle
         {
@@ -212,12 +217,15 @@ public class GameLogic : MonoBehaviour
             fontStyle = FontStyle.Bold,
             font = Font,
             fontSize = 50,
-            normal = { textColor = PlayerWinColors[player] }
+            normal = { textColor = PlayerWinColors[player-1] }
         };
-        var text = "Player " + player+1 + " got a point";
-        if (!endRoundOnly) text = "Player " + player+1 + " won!"; ;
 
-        Utils.DrawOutline(new Rect(0f, 0f, Screen.width, Screen.height), text, centeredStyle, TextOutlineColor, 2);
-        //GUI.Label(new Rect(0f, 0f, Screen.width, Screen.height), text, centeredStyle);
+        var text = "Player " + player + " got a point";
+        if (!endRoundOnly) text = "Player " + player + " won!"; 
+
+        var size = centeredStyle.CalcSize(new GUIContent(text));
+
+        var box = new Rect(Screen.width / 2f - size.x / 2f, Screen.height / 2f - size.y / 2f, size.x, size.y);
+        Utils.DrawOutline(box, text, centeredStyle, TextOutlineColor, 2);
     }
 }

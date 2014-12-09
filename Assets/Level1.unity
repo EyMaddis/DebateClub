@@ -2443,7 +2443,6 @@ GameObject:
   - 124: {fileID: 476200483}
   - 81: {fileID: 476200482}
   - 114: {fileID: 476200481}
-  - 114: {fileID: 476200487}
   - 114: {fileID: 476200488}
   - 82: {fileID: 476200489}
   m_Layer: 0
@@ -2544,19 +2543,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &476200487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 7d6018c23cbbfda4a8b3df3504c0ec90,
-    type: 2}
-  m_PrefabInternal: {fileID: 1424680961}
-  m_GameObject: {fileID: 476200480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eed66fdd468d74f87a5c3b5ba365a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
 --- !u!114 &476200488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2569,16 +2555,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b46ab06873586439a3654a4f33bd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoundWinningDifference: 1
   WinningDifference: 2
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   Player1: {fileID: 1501610957}
   Player2: {fileID: 2084972292}
   MaxPoints: 1
   Intro: {fileID: 309302852}
+  TextOutlineColor: {r: .137254909, g: .137254909, b: .137254909, a: 1}
   RoundColorStart: {r: 1, g: 1, b: 1, a: 1}
-  RoundOutlineColorStart: {r: .137254909, g: .137254909, b: .137254909, a: 1}
   RoundColorEnd: {r: 1, g: 1, b: 1, a: 1}
-  RoundOutlineColorEnd: {r: .137254909, g: .137254909, b: .137254909, a: 1}
+  PlayerWinColors:
+  - {r: .20588237, g: .20588237, b: 1, a: 1}
+  - {r: 1, g: .176470578, b: .176470578, a: 1}
   Medal: {fileID: 21300000, guid: 54416ee2e42988442b646283bab9fc4e, type: 3}
 --- !u!82 &476200489
 AudioSource:
@@ -6474,8 +6463,49 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 54416ee2e42988442b646283bab9fc4e,
         type: 3}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: PlayerWinColors.Array.data[0].r
+      value: .20588237
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: PlayerWinColors.Array.data[0].g
+      value: .20588237
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: PlayerWinColors.Array.data[0].b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: PlayerWinColors.Array.data[1].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: PlayerWinColors.Array.data[1].g
+      value: .176470578
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: PlayerWinColors.Array.data[1].b
+      value: .176470578
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: TextOutlineColor.r
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: TextOutlineColor.g
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: TextOutlineColor.b
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: TextOutlineColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400006, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
   m_RootGameObject: {fileID: 476200480}
   m_IsPrefabParent: 0
