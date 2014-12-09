@@ -11,8 +11,9 @@ public class IntroAnimation : MonoBehaviour
     private Animator _animationController;
     private Character _character;
     private TwoPlayerCamera2D _twoPlayerCamera;
+    private GameLogic _gameLogic;
 
-	void Start ()
+    void Start ()
 	{
 	    _spriteRenderer = Player.GetComponent<SpriteRenderer>();
 	    _animationController = Player.GetComponent<Animator>();
@@ -23,6 +24,7 @@ public class IntroAnimation : MonoBehaviour
 
         _twoPlayerCamera = Camera.main.GetComponent<TwoPlayerCamera2D>();
 	    _twoPlayerCamera.enabled = false;
+	    _gameLogic = FindObjectOfType<GameLogic>();
 	}
 
 
@@ -35,9 +37,11 @@ public class IntroAnimation : MonoBehaviour
 
     public void ShowPlayer()
     {
+        Debug.Log("Show player");
         _spriteRenderer.enabled = true;
         _animationController.enabled = true;
         _character.BlockInput(false);
         _twoPlayerCamera.enabled = true;
+        _gameLogic.DeclareIntroEnd();
     }
 }

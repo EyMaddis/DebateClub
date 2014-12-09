@@ -2461,6 +2461,7 @@ MonoBehaviour:
   Player1: {fileID: 1501610957}
   Player2: {fileID: 2084972292}
   MaxPoints: 1
+  Intro: {fileID: 309302852}
 --- !u!82 &476200489
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6342,6 +6343,10 @@ Prefab:
       propertyPath: MaxPoints
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: Intro
+      value: 
+      objectReference: {fileID: 309302852}
     m_RemovedComponents:
     - {fileID: 11400006, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
