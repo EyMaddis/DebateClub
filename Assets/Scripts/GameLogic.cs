@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 [RequireComponent(typeof(Points))]
 public class GameLogic : MonoBehaviour
@@ -25,6 +26,10 @@ public class GameLogic : MonoBehaviour
     private int _player2StartDirection;
 
     private bool _isWaitingForEnd;
+    public Animator Intro;
+
+    private float _lerpT = 0;
+    private bool _introStopped = false;
 
 
     void Start()
@@ -35,7 +40,7 @@ public class GameLogic : MonoBehaviour
         _player1StartDirection = Player1.GetComponent<Character>().Direction;
         _player2StartDirection = Player2.GetComponent<Character>().Direction;
 
-        _round = 0;
+        _round = 1;
         _firstRound = true;
         GUI.color = Color.white;
     }
@@ -61,9 +66,9 @@ public class GameLogic : MonoBehaviour
 
         Utils.DrawPoints(PlayerPoints, Font);
         
-
-        _roundTime += Time.deltaTime;
-        Utils.DrawRound(_round,_roundTime,Font);
+        if(_introStopped)
+            _roundTime += Time.deltaTime;
+        DrawRound(_round,_roundTime,Font);
 
         int winner = CheckWinCondition();
         if (winner == 0) return;
@@ -138,4 +143,33 @@ public class GameLogic : MonoBehaviour
         PlayerPoints[1] = 0;
     }
 
+    private void DrawRound(int round, float time, Font font)
+    {
+        var box = new Rect(Screen.width / 2f - 100f, Screen.height / 2f - 50f, 200f, 100f);
+        if (_introStopped)
+        {
+            var lerpTime = Math.Max(0, _roundTime-1);
+            var centeredStyle = new GUIStyle
+            {
+                alignment = TextAnchor.MiddleCenter,
+                font = font,
+                fontSize = (int)Mathf.Lerp(50f, 20f, lerpTime),
+                richText = true,
+                normal = { textColor = Color.Lerp(Color.green, Color.white, lerpTime) }
+            };
+
+            box = new Rect(
+                Mathf.Lerp(box.xMin, Screen.width - box.width - 15, lerpTime),
+                Mathf.Lerp(box.yMin, 0, lerpTime),
+                box.width, box.height);
+
+            GUI.Label(box, "Round " + round, centeredStyle);
+            _lerpT += Time.deltaTime;
+        }
+    }
+
+    public void DeclareIntroEnd()
+    {
+        _introStopped = true;
+    }
 }
