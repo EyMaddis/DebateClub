@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1501610957}
+  AspectRatio: 2
 --- !u!212 &13944685
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2331,6 +2332,7 @@ GameObject:
   - 114: {fileID: 476200481}
   - 114: {fileID: 476200487}
   - 114: {fileID: 476200488}
+  - 82: {fileID: 476200489}
   m_Layer: 0
   m_Name: Camera & Logic
   m_TagString: MainCamera
@@ -2458,6 +2460,64 @@ MonoBehaviour:
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   Player1: {fileID: 1501610957}
   Player2: {fileID: 2084972292}
+--- !u!82 &476200489
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476200480}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: fd4626adf8d4c3d4484cffce74aae740, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .150000006
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &491684856
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,6 +3655,10 @@ Prefab:
     - target: {fileID: 100002, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b5d67dee870b8a4db4c9a72b4bd20a2, type: 2}
@@ -5195,6 +5259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2084972292}
+  AspectRatio: 2
 --- !u!212 &1042247492
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7494,6 +7559,10 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2084972292}
+    - target: {fileID: 21200000, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
   m_RootGameObject: {fileID: 309302850}

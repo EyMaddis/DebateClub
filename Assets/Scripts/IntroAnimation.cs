@@ -5,10 +5,12 @@ public class IntroAnimation : MonoBehaviour
 {
 
     public GameObject Player;
+    public float AspectRatio = 21/9;
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animationController;
     private Character _character;
+    private TwoPlayerCamera2D _twoPlayerCamera;
 
 	void Start ()
 	{
@@ -18,6 +20,9 @@ public class IntroAnimation : MonoBehaviour
         _spriteRenderer.enabled = false;
 	    _character = Player.GetComponent<Character>();
         _character.BlockInput(true);
+
+        _twoPlayerCamera = Camera.main.GetComponent<TwoPlayerCamera2D>();
+	    _twoPlayerCamera.enabled = false;
 	}
 
 
@@ -32,7 +37,7 @@ public class IntroAnimation : MonoBehaviour
     {
         _spriteRenderer.enabled = true;
         _animationController.enabled = true;
-        Debug.Log(Player.name);
         _character.BlockInput(false);
+        _twoPlayerCamera.enabled = true;
     }
 }

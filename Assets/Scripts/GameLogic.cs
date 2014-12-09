@@ -45,6 +45,7 @@ public class GameLogic : MonoBehaviour
         #if UNITY_EDITOR   
         if (GUI.Button(new Rect(10f, 10f, 100f, 20f), "Restart Level")) 
         {
+			Application.LoadLevel(1);
             EndRound();
         }
         if (GUI.Button(new Rect(120f, 10f, 100f, 20f), "Reset Points"))
@@ -52,6 +53,13 @@ public class GameLogic : MonoBehaviour
             _points.Reset();
         }
         #endif
+
+		if (GUI.Button(new Rect(230f, 10f, 100f, 20f), "Main Menu")) 
+		{
+			Application.LoadLevel(0);
+		}
+
+
         
 
         _roundTime += Time.deltaTime;
