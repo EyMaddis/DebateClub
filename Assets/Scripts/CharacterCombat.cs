@@ -155,7 +155,7 @@ public class CharacterCombat : MonoBehaviour
     private void OnHit() 
     {
         PlaySound(0);
-        game.AddPoints(_character.PlayerId, 1);
+        game.AddPoint(_character.PlayerId);
     }
 
     private void OnMiss()

@@ -2555,12 +2555,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b46ab06873586439a3654a4f33bd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoundWinningDifference: 1
   WinningDifference: 2
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   Player1: {fileID: 1501610957}
   Player2: {fileID: 2084972292}
-  MaxPoints: 1
+  MaxPointsPerRound: 1
   Intro: {fileID: 309302852}
   TextOutlineColor: {r: .137254909, g: .137254909, b: .137254909, a: 1}
   RoundColorStart: {r: 1, g: 1, b: 1, a: 1}
