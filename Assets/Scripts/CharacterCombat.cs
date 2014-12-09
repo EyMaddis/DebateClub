@@ -131,8 +131,9 @@ public class CharacterCombat : MonoBehaviour
             }
             else // Divekick;
             {
+
+                if (!_divekicking) OnMiss();
                 _divekicking = true;
-                OnMiss();
                 Vector2 diveDirection = new Vector2(_character.Direction, DiveKickVerticalForce).normalized;
                 _character.rigidbody2D.velocity = diveDirection*DiveKickForce;
             }
