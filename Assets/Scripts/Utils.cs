@@ -35,45 +35,6 @@ public class Utils {
     }
 
 
-    private static float _lerpT = 0;
-    public static void DrawRound(int round, float time, Font font)
-    {
-        var box = new Rect(Screen.width/2f - 100f, Screen.height/2f - 50f, 200f, 100f);
-        if (time < 5)
-        {
-            var centeredStyle = new GUIStyle
-            {
-                alignment = TextAnchor.MiddleCenter,
-                fontStyle = FontStyle.Bold,
-                font = font,
-                fontSize = 50,
-                normal = {textColor = Color.green}
-            };
-
-            GUI.Label(box, "Round " + round, centeredStyle);
-        }
-        else
-        {
-            var centeredStyle = new GUIStyle
-            {
-                alignment = TextAnchor.MiddleCenter,
-                font = font,
-                fontSize = (int)Mathf.Lerp(50f, 20f, _lerpT),
-                richText = true,
-                normal = { textColor = Color.Lerp(Color.green, Color.white, _lerpT) }
-            };
-
-            box = new Rect(
-                Mathf.Lerp(box.xMin, Screen.width - box.width - 15, _lerpT), 
-                Mathf.Lerp(box.yMin, 0, _lerpT), 
-                box.width, box.height);
-            
-            GUI.Label(box, "Round " + round, centeredStyle);
-            _lerpT += Time.deltaTime;
-        }
-
-        
-    }
 
     public static void DrawPoints(int[] points, Font font)
     {
@@ -102,5 +63,27 @@ public class Utils {
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
         //GUI.color = oldColor;
+    }
+
+    // http://forum.unity3d.com/threads/outlined-text.43698/
+    public static void DrawOutline(Rect position, string text, GUIStyle style, Color outColor, Color inColor, int thickness = 1){
+        //var backupStyle = style;
+
+        for(var i = 1; i <= thickness; i++)
+        {
+            style.normal.textColor = outColor;
+            position.x-= i;
+            GUI.Label(position, text, style);
+            position.x += 2*i;
+            GUI.Label(position, text, style);
+            position.x-=i;
+            position.y-=i;
+            GUI.Label(position, text, style);
+            position.y += 2*i;
+            GUI.Label(position, text, style);
+            position.y-=i;
+            style.normal.textColor = inColor;
+            GUI.Label(position, text, style);
+        } 
     }
 }

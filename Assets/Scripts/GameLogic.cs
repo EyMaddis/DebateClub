@@ -68,8 +68,7 @@ public class GameLogic : MonoBehaviour
         
         if(_introStopped)
             _roundTime += Time.deltaTime;
-        DrawRound(_round,_roundTime,Font);
-
+        DrawRound();
         int winner = CheckWinCondition();
         if (winner == 0) return;
         Utils.DrawWinner(winner,Font);
@@ -143,7 +142,7 @@ public class GameLogic : MonoBehaviour
         PlayerPoints[1] = 0;
     }
 
-    private void DrawRound(int round, float time, Font font)
+    private void DrawRound()
     {
         var box = new Rect(Screen.width / 2f - 100f, Screen.height / 2f - 50f, 200f, 100f);
         if (_introStopped)
@@ -152,7 +151,7 @@ public class GameLogic : MonoBehaviour
             var centeredStyle = new GUIStyle
             {
                 alignment = TextAnchor.MiddleCenter,
-                font = font,
+                font = Font,
                 fontSize = (int)Mathf.Lerp(50f, 20f, lerpTime),
                 richText = true,
                 normal = { textColor = Color.Lerp(Color.green, Color.white, lerpTime) }
@@ -163,7 +162,8 @@ public class GameLogic : MonoBehaviour
                 Mathf.Lerp(box.yMin, 0, lerpTime),
                 box.width, box.height);
 
-            GUI.Label(box, "Round " + round, centeredStyle);
+            GUI.Label(box, "Round " + _round, centeredStyle);
+            Utils.DrawOutline(box, "Round " + _round, centeredStyle, Color.black, Color.white, (int) Mathf.Lerp(3, 2, lerpTime));
             _lerpT += Time.deltaTime;
         }
     }
