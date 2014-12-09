@@ -282,7 +282,7 @@ public class CharacterMovement : MonoBehaviour{
     // called every frame, if the character is sliding
     private void OnWallSliding()
     {
-        if ((_character.IsWallSliding && !_character.BackTriggered) || _verticalInput < 0)
+        if ((_character.IsWallSliding && !_character.BackTriggered) || _verticalInput < 0 || _character.IsGrounded)
         {
             StopWalllSliding();
             return;
