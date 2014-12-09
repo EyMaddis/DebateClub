@@ -2575,8 +2575,10 @@ MonoBehaviour:
   Player2: {fileID: 2084972292}
   MaxPoints: 1
   Intro: {fileID: 309302852}
-  RoundColor: {r: 0, g: 0, b: 0, a: 0}
-  RoundOutlineColor: {r: 0, g: 0, b: 0, a: 0}
+  RoundColorStart: {r: 1, g: 1, b: 1, a: 1}
+  RoundOutlineColorStart: {r: .137254909, g: .137254909, b: .137254909, a: 1}
+  RoundColorEnd: {r: 1, g: 1, b: 1, a: 1}
+  RoundOutlineColorEnd: {r: .137254909, g: .137254909, b: .137254909, a: 1}
 --- !u!82 &476200489
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6402,6 +6404,70 @@ Prefab:
       propertyPath: Intro
       value: 
       objectReference: {fileID: 309302852}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorStart.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorStart.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorStart.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorEnd.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorEnd.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorEnd.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorStart.r
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorStart.g
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorStart.b
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorEnd.r
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorEnd.g
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorEnd.b
+      value: .137254909
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorStart.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorStart.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundColorEnd.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: RoundOutlineColorEnd.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400006, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}

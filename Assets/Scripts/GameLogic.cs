@@ -14,8 +14,12 @@ public class GameLogic : MonoBehaviour
     public int MaxPoints;
     public Animator Intro;
 
-    [Header("GUI")] public Color RoundColor;
-    public Color RoundOutlineColor;
+    [Header("GUI")] 
+    public Color RoundColorStart;
+    public Color RoundOutlineColorStart;
+
+    public Color RoundColorEnd;
+    public Color RoundOutlineColorEnd;
 
     private static readonly int[] PlayerPoints = { 0, 0 };
 
@@ -33,6 +37,7 @@ public class GameLogic : MonoBehaviour
 
     private float _lerpT = 0;
     private bool _introStopped = false;
+    private GUIStyle _roundStyle;
 
 
     void Start()
@@ -42,6 +47,15 @@ public class GameLogic : MonoBehaviour
 
         _player1StartDirection = Player1.GetComponent<Character>().Direction;
         _player2StartDirection = Player2.GetComponent<Character>().Direction;
+
+        _roundStyle = new GUIStyle
+        {
+            alignment = TextAnchor.MiddleCenter,
+            font = Font,
+            fontSize = 50,
+            richText = true,
+            normal = { textColor =  RoundColorStart}
+        };
 
         _round = 1;
         _firstRound = true;
@@ -122,15 +136,23 @@ public class GameLogic : MonoBehaviour
     }
 
 
-    IEnumerator WaitForEnd()
+    private IEnumerator WaitForEnd()
     {
         _isWaitingForEnd = true;
-        Player1.GetComponent<Character>().BlockInput(true);
-        Player2.GetComponent<Character>().BlockInput(true);
+        var players = new []{Player1, Player2};
+        
+        foreach (var player in players)
+        {
+            player.GetComponent<Character>().BlockInput(true);
+        }
+
         yield return new WaitForSeconds(2);
         EndRound();
-        Player1.GetComponent<Character>().BlockInput(false);
-        Player2.GetComponent<Character>().BlockInput(false);
+
+        foreach (var player in players)
+        {
+            player.GetComponent<Character>().BlockInput(false);
+        }
     }
 
     public void AddPoints(int playerID, int points)
@@ -151,22 +173,17 @@ public class GameLogic : MonoBehaviour
         if (_introStopped)
         {
             var lerpTime = Math.Max(0, _roundTime-1);
-            var centeredStyle = new GUIStyle
-            {
-                alignment = TextAnchor.MiddleCenter,
-                font = Font,
-                fontSize = (int)Mathf.Lerp(50f, 20f, lerpTime),
-                richText = true,
-                normal = { textColor = Color.Lerp(Color.green, Color.white, lerpTime) }
-            };
-
+           
             box = new Rect(
                 Mathf.Lerp(box.xMin, Screen.width - box.width - 15, lerpTime),
                 Mathf.Lerp(box.yMin, 0, lerpTime),
                 box.width, box.height);
+            
+            _roundStyle.fontSize = (int) Mathf.Lerp(50f, 20f, lerpTime);
+            _roundStyle.normal.textColor = Color.Lerp(RoundColorStart, RoundColorEnd, lerpTime);
 
-            GUI.Label(box, "Round " + _round, centeredStyle);
-            Utils.DrawOutline(box, "Round " + _round, centeredStyle, Color.black, Color.white, (int) Mathf.Lerp(3, 2, lerpTime));
+            GUI.Label(box, "Round " + _round, _roundStyle);
+            Utils.DrawOutline(box, "Round " + _round, _roundStyle, Color.Lerp(RoundOutlineColorStart, RoundOutlineColorEnd, lerpTime), (int)Mathf.Lerp(3, 2, lerpTime));
             _lerpT += Time.deltaTime;
         }
     }

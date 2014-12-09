@@ -66,8 +66,8 @@ public class Utils {
     }
 
     // http://forum.unity3d.com/threads/outlined-text.43698/
-    public static void DrawOutline(Rect position, string text, GUIStyle style, Color outColor, Color inColor, int thickness = 1){
-        //var backupStyle = style;
+    public static void DrawOutline(Rect position, string text, GUIStyle style, Color outColor, int thickness = 1){
+        var backupColor = style.normal.textColor;
 
         for(var i = 1; i <= thickness; i++)
         {
@@ -82,7 +82,7 @@ public class Utils {
             position.y += 2*i;
             GUI.Label(position, text, style);
             position.y-=i;
-            style.normal.textColor = inColor;
+            style.normal.textColor = backupColor;
             GUI.Label(position, text, style);
         } 
     }
