@@ -20,6 +20,17 @@ public class LayerTrigger : MonoBehaviour {
 		}
 	}
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.isTrigger) return;
+        if (Layers.Contains(other.gameObject.layer))
+        {
+            // hit 
+            isTriggered = true;
+
+        }
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.isTrigger) return;
