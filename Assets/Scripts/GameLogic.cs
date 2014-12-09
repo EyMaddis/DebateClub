@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Resources;
 using UnityEngine;
 using System.Collections;
-[RequireComponent(typeof(Points))]
+
 public class GameLogic : MonoBehaviour
 {
 
+    public int RoundWinningDifference = 1;
     public int WinningDifference = 2;
     public Font Font;
 
@@ -15,15 +17,18 @@ public class GameLogic : MonoBehaviour
     public Animator Intro;
 
     [Header("GUI")] 
+    
+    public Color TextOutlineColor;
     public Color RoundColorStart;
-    public Color RoundOutlineColorStart;
-
     public Color RoundColorEnd;
-    public Color RoundOutlineColorEnd;
+
+    public Color[] PlayerWinColors = {Color.blue, Color.red};
+
+    public Sprite Medal;
 
     private static readonly int[] PlayerPoints = { 0, 0 };
+    private static readonly int[] PlayerRoundsWon = {0, 0};
 
-    private bool _firstRound;
     private static int _round;
     private float _roundTime;
     
@@ -35,7 +40,6 @@ public class GameLogic : MonoBehaviour
 
     private bool _isWaitingForEnd;
 
-    private float _lerpT = 0;
     private bool _introStopped = false;
     private GUIStyle _roundStyle;
 
@@ -58,7 +62,6 @@ public class GameLogic : MonoBehaviour
         };
 
         _round = 1;
-        _firstRound = true;
         GUI.color = Color.white;
     }
 
@@ -72,7 +75,7 @@ public class GameLogic : MonoBehaviour
         }
         if (GUI.Button(new Rect(120f, 10f, 100f, 20f), "Reset Points"))
         {
-            ResetPoints();
+            ResetPoints(true);
         }
         #endif
 
@@ -85,18 +88,13 @@ public class GameLogic : MonoBehaviour
         
         if(_introStopped)
             _roundTime += Time.deltaTime;
-        DrawRound();
-        int winner = CheckWinCondition();
-        if (winner == 0) return;
-        Utils.DrawWinner(winner,Font);
-        
-        if(_isWaitingForEnd) return;
-        StartCoroutine("WaitForEnd");
 
+        DrawRound();
+        DrawWinner();
     }
 
 
-    public void EndRound()
+    public void EndRound(bool endGame = false)
     {
 
         Player1.transform.position = _player1StartPosition;
@@ -107,9 +105,8 @@ public class GameLogic : MonoBehaviour
         Player1.GetComponent<Character>().Direction = _player1StartDirection;
         Player2.GetComponent<Character>().Direction = _player2StartDirection;
 
-        ResetPoints();
+        ResetPoints(endGame);
         _round++;
-        _firstRound = false;
         _roundTime = 0;
         _isWaitingForEnd = false;
     }
@@ -119,24 +116,22 @@ public class GameLogic : MonoBehaviour
     ///  Check if a player has won
     /// </summary>
     /// <returns>0 if nobody wins, 1 if player 1 wins, 2 for player 2</returns>
-    public int CheckWinCondition()
+    public int CheckRoundWinCondition()
     {
         if (PlayerPoints[0] >= MaxPoints)
-        {
             return 1;
-        }
-        else if (PlayerPoints[1] >= MaxPoints)
-        {
-            return 2;
-        }
-        else
-        {
-            return 0;
-        }    
+        return PlayerPoints[1] >= MaxPoints ? 2 : 0;
+    }
+
+    public int CheckWinCondition()
+    {
+        var diff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
+        if (diff <= -RoundWinningDifference) return 2;
+        return diff >= RoundWinningDifference ? 1 : 0;
     }
 
 
-    private IEnumerator WaitForEnd()
+    private IEnumerator WaitForEnd(bool endRoundOnly)
     {
         _isWaitingForEnd = true;
         var players = new []{Player1, Player2};
@@ -147,7 +142,7 @@ public class GameLogic : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2);
-        EndRound();
+        EndRound(endRoundOnly);
 
         foreach (var player in players)
         {
@@ -161,11 +156,15 @@ public class GameLogic : MonoBehaviour
         PlayerPoints[playerID + -1] += points;
     }
 
-    public void ResetPoints()
+    public void ResetPoints(bool endGame)
     {
+        PlayerRoundsWon[0] = 0;
+        PlayerRoundsWon[1] = 0;
+        if (!endGame) return;
         PlayerPoints[0] = 0;
         PlayerPoints[1] = 0;
     }
+
 
     private void DrawRound()
     {
@@ -183,13 +182,42 @@ public class GameLogic : MonoBehaviour
             _roundStyle.normal.textColor = Color.Lerp(RoundColorStart, RoundColorEnd, lerpTime);
 
             GUI.Label(box, "Round " + _round, _roundStyle);
-            Utils.DrawOutline(box, "Round " + _round, _roundStyle, Color.Lerp(RoundOutlineColorStart, RoundOutlineColorEnd, lerpTime), (int)Mathf.Lerp(3, 2, lerpTime));
-            _lerpT += Time.deltaTime;
+            Utils.DrawOutline(box, "Round " + _round, _roundStyle, TextOutlineColor, (int)Mathf.Lerp(3, 2, lerpTime));
         }
     }
 
     public void DeclareIntroEnd()
     {
         _introStopped = true;
+    }
+    private void DrawWinner()
+    {
+        var winner = CheckWinCondition();
+        var roundWinner = CheckRoundWinCondition();
+        var end = winner != 0 || roundWinner != 0;
+
+        if (winner == 0 && roundWinner == 0) return; // no need to do draw the winner/end the round.
+        var endRoundOnly = roundWinner != 0 && winner == 0;
+
+        if (_isWaitingForEnd) return;
+        if (end) StartCoroutine("WaitForEnd", endRoundOnly);
+
+
+        var player = 0;
+        player = roundWinner;
+        if (!endRoundOnly) player = winner;
+        var centeredStyle = new GUIStyle
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontStyle = FontStyle.Bold,
+            font = Font,
+            fontSize = 50,
+            normal = { textColor = PlayerWinColors[player] }
+        };
+        var text = "Player " + player+1 + " got a point";
+        if (!endRoundOnly) text = "Player " + player+1 + " won!"; ;
+
+        Utils.DrawOutline(new Rect(0f, 0f, Screen.width, Screen.height), text, centeredStyle, TextOutlineColor, 2);
+        //GUI.Label(new Rect(0f, 0f, Screen.width, Screen.height), text, centeredStyle);
     }
 }
