@@ -2460,6 +2460,7 @@ MonoBehaviour:
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   Player1: {fileID: 1501610957}
   Player2: {fileID: 2084972292}
+  MaxPoints: 1
 --- !u!82 &476200489
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6336,6 +6337,10 @@ Prefab:
     - target: {fileID: 2000000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
       propertyPath: orthographic size
       value: 2.03731346
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: MaxPoints
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400006, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}

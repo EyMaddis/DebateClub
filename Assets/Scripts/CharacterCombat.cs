@@ -11,7 +11,7 @@ public class CharacterCombat : MonoBehaviour
 
     private Character _character;
     private CharacterMovement _characterMovement;
-    private Points points;
+    private GameLogic game;
     private Animator _animator;
     private string _punchInputName;
     private bool _punch;
@@ -26,7 +26,7 @@ public class CharacterCombat : MonoBehaviour
 
     void Awake()
 	{
-		points = FindObjectOfType<Points> ();
+		game = FindObjectOfType<GameLogic> ();
 	}
 
     // Use this for initialization
@@ -104,15 +104,22 @@ public class CharacterCombat : MonoBehaviour
                 {
                     //OnHit();
                 }
+                else
+                {
+                    OnMiss();
+                }
             }
             else //Normal Punch
             {
                 _punching = true;
                 if (_character.MidHitTriggered)
                 {
-                   OnHit();
-					PlaySound (0);
-                }  
+                    OnHit();
+                }
+                else
+                {
+                    OnMiss();
+                }
             }
             
         }
@@ -135,19 +142,26 @@ public class CharacterCombat : MonoBehaviour
     {
         if (!_divekicking) return;
 
-
-
         if (!_divekickHit && _character.LowHitTriggered)
         {
             OnHit();
-            PlaySound(0); //TODO
             _divekickHit = true;
+        }
+        else
+        {
+            OnMiss();
         }
     }
 
     private void OnHit() 
     {
-        points.AddPoints(_character.PlayerId, 1);
+        PlaySound(0);
+        game.AddPoints(_character.PlayerId, 1);
+    }
+
+    private void OnMiss()
+    {
+        PlaySound(1);
     }
 
     private void UpdateAnimator()
