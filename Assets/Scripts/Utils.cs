@@ -20,22 +20,6 @@ public class Utils {
      * Display on Screen
      * *******************************************/      
      
-    public static void DrawWinner(int player, Font font)
-    {
-        var centeredStyle = new GUIStyle
-        {
-            alignment = TextAnchor.MiddleCenter,
-            fontStyle = FontStyle.Bold,
-            font = font,
-            fontSize = 50,
-            normal = { textColor = player == 1 ? Color.blue : Color.red }
-        };
-
-        GUI.Label(new Rect(0f, 0f, Screen.width, Screen.height), "Player " + player + " won!", centeredStyle);
-    }
-
-
-
     public static void DrawPoints(int[] points, Font font)
     {
         var centeredStyle = new GUIStyle()

@@ -2579,6 +2579,7 @@ MonoBehaviour:
   RoundOutlineColorStart: {r: .137254909, g: .137254909, b: .137254909, a: 1}
   RoundColorEnd: {r: 1, g: 1, b: 1, a: 1}
   RoundOutlineColorEnd: {r: .137254909, g: .137254909, b: .137254909, a: 1}
+  Medal: {fileID: 21300000, guid: 54416ee2e42988442b646283bab9fc4e, type: 3}
 --- !u!82 &476200489
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6468,6 +6469,11 @@ Prefab:
       propertyPath: RoundOutlineColorEnd.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
+      propertyPath: Medal
+      value: 
+      objectReference: {fileID: 21300000, guid: 54416ee2e42988442b646283bab9fc4e,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 11400006, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 7d6018c23cbbfda4a8b3df3504c0ec90, type: 2}
