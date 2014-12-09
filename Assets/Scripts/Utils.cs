@@ -34,8 +34,11 @@ public class Utils {
         GUI.Label(new Rect(0f, 0f, Screen.width, Screen.height), "Player " + player + " won!", centeredStyle);
     }
 
+
+    private static float _lerpT = 0;
     public static void DrawRound(int round, float time, Font font)
     {
+        var box = new Rect(Screen.width/2f - 100f, Screen.height/2f - 50f, 200f, 100f);
         if (time < 5)
         {
             var centeredStyle = new GUIStyle
@@ -47,20 +50,26 @@ public class Utils {
                 normal = {textColor = Color.green}
             };
 
-            GUI.Label(new Rect(0f, -100f, Screen.width, Screen.height), "Round " + round, centeredStyle);
+            GUI.Label(box, "Round " + round, centeredStyle);
         }
         else
         {
             var centeredStyle = new GUIStyle
             {
-                alignment = TextAnchor.UpperRight,
+                alignment = TextAnchor.MiddleCenter,
                 font = font,
-                fontSize = 20,
+                fontSize = (int)Mathf.Lerp(50f, 20f, _lerpT),
                 richText = true,
-                normal = { textColor = Color.green }
+                normal = { textColor = Color.Lerp(Color.green, Color.white, _lerpT) }
             };
 
-            GUI.Label(new Rect(-100f, 0f, Screen.width, Screen.height), "Round " + round, centeredStyle);
+            box = new Rect(
+                Mathf.Lerp(box.xMin, Screen.width - box.width - 15, _lerpT), 
+                Mathf.Lerp(box.yMin, 0, _lerpT), 
+                box.width, box.height);
+            
+            GUI.Label(box, "Round " + round, centeredStyle);
+            _lerpT += Time.deltaTime;
         }
 
         
