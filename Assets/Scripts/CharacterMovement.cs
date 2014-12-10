@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour{
     public float CrouchingSpeed = 5f; 			// Movement Speed while crouching
     [Range(-.99f, 0f)]
     public float CrouchingThresholdY = -0.6f;
+    public float ControllerThreshold =  0.6f;
 
     [Header("Jumping")]
 
@@ -112,7 +113,7 @@ public class CharacterMovement : MonoBehaviour{
     {
         HandleWallSliding();
         HandleDirection();
-        HandleMovement(); 		// Handles Movement
+        HandleMovement(); 	
 
         HandleJump();
         ClearInput();
@@ -137,9 +138,13 @@ public class CharacterMovement : MonoBehaviour{
    private void GetInput()
    {    
        if(_character.IsInputBlocked()) return;
-       
-		_horizontalInput = Input.GetAxisRaw(_xAxisInputName); 		// Set "horiztonalInput" equal to the Horizontal Axis Input
-		_verticalInput = Input.GetAxisRaw(_yAxisInputName); 			// Set "verticallInput" equal to the Vertical Axis Inpu
+
+       // Set "horiztonalInput" equal to the Horizontal Axis Input
+       _horizontalInput = Input.GetAxisRaw(_xAxisInputName);
+
+       // Set "verticallInput" equal to the Vertical Axis Inpu
+       _verticalInput = Input.GetAxisRaw(_yAxisInputName);
+      
         _inputVector = new Vector2(_horizontalInput, _verticalInput).normalized;
 
        if (_characterCombat.IsDivekicking())
@@ -204,7 +209,7 @@ public class CharacterMovement : MonoBehaviour{
         else //in Air
         {
             _maxVelocity = MoveSpeed * Time.deltaTime;
-            rigidbody2D.AddForce((_verticalInput < 0 ? _inputVector : new Vector2(_horizontalInput, 0))*InAirSpeed);
+            rigidbody2D.AddForce((_verticalInput < (ControllerThreshold *-1) ? _inputVector : new Vector2(_horizontalInput, 0))*InAirSpeed);
 
             //Stop unlimmited acceleration.
             var velocity = rigidbody2D.velocity;
@@ -238,7 +243,7 @@ public class CharacterMovement : MonoBehaviour{
         }
         else // jumping from the wall
         {
-            if (_character.Direction * _horizontalInput < 0 && _character.BackTriggered)
+            if (_character.Direction * _horizontalInput < ControllerThreshold *-1 && _character.BackTriggered)
             {
                 _inputVector.x *= -1;
                 _inputVector.y *= 1;
@@ -282,7 +287,7 @@ public class CharacterMovement : MonoBehaviour{
     // called every frame, if the character is sliding
     private void OnWallSliding()
     {
-        if ((_character.IsWallSliding && !_character.BackTriggered) || _verticalInput < 0 || _character.IsGrounded)
+        if ((_character.IsWallSliding && !_character.BackTriggered) || _verticalInput < ControllerThreshold * -1 )
         {
             StopWalllSliding();
             return;
