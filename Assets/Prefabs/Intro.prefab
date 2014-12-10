@@ -272,7 +272,7 @@ MonoBehaviour:
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   BubbleBox: {x: 250, y: 100}
   Sprite: {fileID: 21300000, guid: ecb717f0e6036cd4f956d85931e2ee53, type: 3}
-  Duration: 1
+  Duration: 1.5
   clip: {fileID: 8300000, guid: 2847c396386a6f941bfb8173fabaee0b, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -299,7 +299,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialoguesFile: dialogues.txt
-  Dialogues: []
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
