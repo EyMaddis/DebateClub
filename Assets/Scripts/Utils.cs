@@ -16,38 +16,6 @@ public class Utils {
         return new Vector2(vec.x, vec.y);
     }
 
-    /*********************************************
-     * Display on Screen
-     * *******************************************/      
-     
-    public static void DrawPoints(int[] points, Font font)
-    {
-        var centeredStyle = new GUIStyle()
-        {
-            alignment = TextAnchor.UpperCenter,
-            fontStyle = FontStyle.Bold,
-            font = font,
-            fontSize = 20,
-            richText = true
-        };
-        
-        var xCenter = (float)Screen.width / 2;
-
-
-        //var oldColor = GUI.color;
-        GUILayout.BeginArea(new Rect(xCenter - 50, 15, 100, 50));
-        GUILayout.BeginHorizontal(centeredStyle);
-
-        GUILayout.Label("<color=blue>" + (points[0] - points[1]) + "</color>");
-
-        GUILayout.FlexibleSpace();
-
-        GUILayout.Label("<color=red>" + (points[1] - points[0]) + "</color>");
-
-        GUILayout.EndHorizontal();
-        GUILayout.EndArea();
-        //GUI.color = oldColor;
-    }
 
     // http://forum.unity3d.com/threads/outlined-text.43698/
     public static void DrawOutline(Rect position, string text, GUIStyle style, Color outColor, int thickness = 1){
