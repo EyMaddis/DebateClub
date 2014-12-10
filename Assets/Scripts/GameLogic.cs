@@ -24,6 +24,10 @@ public class GameLogic : MonoBehaviour
     public Color[] PlayerWinColors = {Color.blue, Color.red};
 
     public Sprite Medal;
+    public Sprite RestartSprite;
+    public Sprite MainMenuSprite;
+    public int ButtonMargin = 20;
+    public int TopButtonOffset = 90;
 
     private static int[] PlayerRoundPoints = { 0, 0 };
     private static int[] PlayerRoundsWon = { 0, 0 };
@@ -39,8 +43,6 @@ public class GameLogic : MonoBehaviour
 
     private bool _isWaitingForEnd;
     private bool _askForNewRound;
-    private bool _mainMenuPressed;
-    private bool _restartPressed;
 
     private bool _introStopped = false;
     private GUIStyle _roundStyle;
@@ -83,20 +85,43 @@ public class GameLogic : MonoBehaviour
         {
             ResetPoints(true);
         }
-        #endif
-
-		if (GUI.Button(new Rect(230f, 10f, 100f, 20f), "Main Menu") || _mainMenuPressed) 
+		if (GUI.Button(new Rect(230f, 10f, 100f, 20f), "Main Menu")) 
 		{
 			Application.LoadLevel(0);
 		}
+        #endif
+
 
         if (_askForNewRound)
         {
-            if (GUI.Button(new Rect(10f, 10f, 100f, 20f), "Restart Level") || _restartPressed)
+
+            var startRect = RestartSprite.textureRect;
+            var exitRect = MainMenuSprite.textureRect;
+
+            var width = startRect.width + exitRect.width + ButtonMargin; ;
+            var height = Math.Max(startRect.height,exitRect.height);
+
+            var box = new Rect(Screen.width / 2F - width / 2f, Screen.height / 2f - height / 2f + TopButtonOffset, width, height);
+            var blankStyle = new GUIStyle();
+
+            GUILayout.BeginArea(box, blankStyle);
+            GUILayout.BeginHorizontal(blankStyle);
+            if (GUILayout.Button(RestartSprite.texture, blankStyle))
             {
                 Application.LoadLevel(1);
                 EndRound();
             }
+
+            GUILayout.FlexibleSpace();
+
+            if (GUILayout.Button(MainMenuSprite.texture, blankStyle))
+            {
+                Application.LoadLevel(0); // main menu
+            }
+
+            GUILayout.EndHorizontal();
+            GUILayout.EndArea();
+
         }
 
         Utils.DrawPoints(PlayerRoundPoints, Font);
@@ -112,11 +137,6 @@ public class GameLogic : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        _mainMenuPressed = Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Escape);
-        _restartPressed = Input.GetButtonDown("Start") || Input.GetKeyDown(KeyCode.Return);
-    }
 
     public void EndRound(bool endGame = false)
     {
