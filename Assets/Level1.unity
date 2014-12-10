@@ -1362,7 +1362,7 @@ MonoBehaviour:
   Font: {fileID: 12800000, guid: 545a5fa22d088724ea05ea2cc6f2f76f, type: 3}
   BubbleBox: {x: 250, y: 100}
   Sprite: {fileID: 21300000, guid: ecb717f0e6036cd4f956d85931e2ee53, type: 3}
-  Duration: 1
+  Duration: 1.5
   clip: {fileID: 8300000, guid: 2847c396386a6f941bfb8173fabaee0b, type: 3}
 --- !u!114 &309302855
 MonoBehaviour:
@@ -3848,6 +3848,10 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2084972292}
+    - target: {fileID: 11400000, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
+      propertyPath: Duration
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
   m_RootGameObject: {fileID: 309302850}

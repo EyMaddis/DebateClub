@@ -110,7 +110,7 @@ public class GameLogic : MonoBehaviour
 
         }
 
-        Utils.DrawPoints(PlayerRoundPoints, Font);
+        //Utils.DrawPoints(PlayerRoundPoints, Font);
         
         if(_introStopped)
             _roundTime += Time.deltaTime;
