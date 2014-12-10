@@ -9,6 +9,8 @@ public class CharacterCombat : MonoBehaviour
     public float DiveKickForce = 5.0f;
     public float DiveKickVerticalForce = -2.0f;
 
+    public float InputBlockFallback = 2f; // max 2 seconds
+
     private Character _character;
     private CharacterMovement _characterMovement;
     private GameLogic game;
@@ -119,6 +121,7 @@ public class CharacterCombat : MonoBehaviour
             {
                 _punching = true;
                 _character.BlockInput(true);
+                StartCoroutine(StopPunchingCoroutine());
                 if (_character.MidHitTriggered)
                 {
                     OnHit();
@@ -187,6 +190,13 @@ public class CharacterCombat : MonoBehaviour
     {
         _isPunching = false;
         _character.BlockInput(false);
+        StopCoroutine("StopPunchingCoroutine");
+    }
+
+    IEnumerator StopPunchingCoroutine()
+    {
+        yield return new WaitForSeconds(InputBlockFallback);
+        StopPunching();
     }
 
     public bool IsDivekicking()
