@@ -6,13 +6,11 @@ public class MainMenu : MonoBehaviour
 {
 
     public Sprite StartGameSprite;
-    public Sprite StartGameSpriteActive;
     public Sprite ExitGameSprite;
-    public Sprite ExitGameSpriteActive;
 
     public int Margin = 15;
 
-    private GUIStyle _blankStyle = new GUIStyle();
+    private readonly GUIStyle _blankStyle = new GUIStyle();
 
     void Start()
     {
@@ -42,20 +40,9 @@ public class MainMenu : MonoBehaviour
             Application.Quit();
         }
 
-
-
         GUILayout.EndVertical();
         GUILayout.EndArea();
 
-//        if (GUI.Button(new Rect(Screen.width / 2F - rect.width / 2f, Screen.height / 2f - rect.height / 2f, rect.width, rect.height), StartGameSprite.texture, _blankStyle))
-//		{
-//			Application.LoadLevel(1);
-//		}
-//
-//        if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height / 2, Screen.width / 5, Screen.height / 10), "Exit", _blankStyle))
-//		{
-//			Application.Quit();
-//		}
 	}
 
 }
