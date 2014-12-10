@@ -136,8 +136,15 @@ public class CharacterMovement : MonoBehaviour{
     }
 
    private void GetInput()
-   {    
-       if(_character.IsInputBlocked()) return;
+   {
+       if (_character.IsInputBlocked())
+       {
+           _horizontalInput = 0;
+           _verticalInput = 0;
+           _inputVector = Vector2.zero;
+           _jumpInput = false;
+           return;
+       }
 
        // Set "horiztonalInput" equal to the Horizontal Axis Input
        _horizontalInput = Input.GetAxisRaw(_xAxisInputName);
@@ -208,14 +215,16 @@ public class CharacterMovement : MonoBehaviour{
         else //in Air
         {
             _maxVelocity = MoveSpeed * Time.deltaTime;
-            rigidbody2D.AddForce((_verticalInput < (ControllerThreshold *-1) ? _inputVector : new Vector2(_horizontalInput, 0))*InAirSpeed);
-
+            //rigidbody2D.AddForce((_verticalInput < (ControllerThreshold *-1) ? _inputVector : new Vector2(_horizontalInput, 0))*InAirSpeed);
+            rigidbody2D.AddForce((new Vector2(_horizontalInput, 0)*InAirSpeed));
+            
             //Stop unlimmited acceleration.
             var velocity = rigidbody2D.velocity;
             if (velocity.x > _maxVelocity || velocity.x < (_maxVelocity*-1))
             {
-                rigidbody2D.velocity = new Vector2(_maxVelocity*_character.Direction, velocity.y);
+                rigidbody2D.velocity = new Vector2(_maxVelocity * _character.Direction, velocity.y);
             }
+           
                 
         }
     }
