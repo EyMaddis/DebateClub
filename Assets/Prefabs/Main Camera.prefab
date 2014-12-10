@@ -183,6 +183,10 @@ MonoBehaviour:
   - {r: .20588237, g: .20588237, b: 1, a: 1}
   - {r: 1, g: .176470578, b: .176470578, a: 1}
   Medal: {fileID: 21300000, guid: 54416ee2e42988442b646283bab9fc4e, type: 3}
+  RestartSprite: {fileID: 21300000, guid: d78da3f5834b831418eea4dc8dd69bce, type: 3}
+  MainMenuSprite: {fileID: 21300000, guid: b0c88d054e07f004d9c1ac443b04ebe1, type: 3}
+  ButtonMargin: 20
+  TopButtonOffset: 90
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

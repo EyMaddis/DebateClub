@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using System.Resources;
 using UnityEngine;
 using System.Collections;
@@ -52,6 +53,8 @@ public class GameLogic : MonoBehaviour
     // playerId (1 or 2), 0 => no winner
     private int _roundWinner = 0;
     private int _gameWinner = 0;
+
+    private int _playerDiff = 0;
 
 
     void Start()
@@ -169,7 +172,7 @@ public class GameLogic : MonoBehaviour
     {
         PlayerRoundPoints[playerID-1]++;
         var points = PlayerRoundPoints[playerID - 1];
-        var otherPlayer = playerID == 1 ? 2 : 1;
+
 
         Debug.Log("player" + playerID + " got a point");
 
@@ -179,12 +182,12 @@ public class GameLogic : MonoBehaviour
             _roundWinner = playerID;
             PlayerRoundsWon[playerID - 1]++;
         }
-        var diff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
-        if (diff <= -WinningDifference)
+        _playerDiff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
+        if (_playerDiff <= -WinningDifference)
         {
             _gameWinner = 2;
         }
-        else if (diff >= WinningDifference)
+        else if (_playerDiff >= WinningDifference)
         {
             _gameWinner = 1;
         }
@@ -198,13 +201,11 @@ public class GameLogic : MonoBehaviour
 
     public void ResetPoints(bool endGame)
     {
-        Debug.Log("RESET POINTS");
         PlayerRoundPoints[0] = 0;
         PlayerRoundPoints[1] = 0;
         _roundWinner = 0;
         _gameWinner = 0;
         if (!endGame) return;
-        Debug.Log("Reset rounds!");
         PlayerRoundsWon[0] = 0;
         PlayerRoundsWon[1] = 0;
     }
@@ -260,14 +261,20 @@ public class GameLogic : MonoBehaviour
         var centeredStyle = new GUIStyle
         {
             alignment = TextAnchor.MiddleCenter,
-            fontStyle = FontStyle.Bold,
             font = Font,
-            fontSize = 50,
+            fontSize = 40,
             normal = { textColor = PlayerWinColors[player-1] }
         };
 
-        var text = "Player " + player + " got a point";
-        if (!endRoundOnly) text = "Player " + player + " won!"; 
+
+        var text = "Player " + player + " invalidated the argument";
+
+        if (_playerDiff != 0)
+        {
+            text = "Player " + player + " established a theory";
+        }
+
+        if (!endRoundOnly) text = "Player " + player + " won the debate!"; 
 
         var size = centeredStyle.CalcSize(new GUIContent(text));
 
