@@ -284,7 +284,7 @@ GameObject:
   - 4: {fileID: 1658586278}
   - 114: {fileID: 1658586279}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,6 +313,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b240317a0befe94a8f9fdcf4738fcc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGameSprite: {fileID: 21300000, guid: ccc6c383af7ac454c8d914f62a20b64a, type: 3}
+  StartGameSpriteActive: {fileID: 21300004, guid: 982352191d9220e4184fb67245235fbb,
+    type: 3}
+  ExitGameSprite: {fileID: 21300000, guid: 46ac010004bff22488b2c23c4196fdf3, type: 3}
+  ExitGameSpriteActive: {fileID: 21300006, guid: 982352191d9220e4184fb67245235fbb,
+    type: 3}
+  Margin: 15
 --- !u!1 &1686665711
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +570,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1887079435}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df34d714339421743811018bd2161464, type: 3}
   m_Name: 
