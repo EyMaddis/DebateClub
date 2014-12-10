@@ -113,10 +113,14 @@ public class GameLogic : MonoBehaviour
         _round++;
         _roundTime = 0;
         _isWaitingForEnd = false;
+        Player1.GetComponent<Character>().BlockInput(false);
+        Player2.GetComponent<Character>().BlockInput(false);
+        
     }
 
     private IEnumerator WaitForEnd(bool endRoundOnly)
     {
+        
         _isWaitingForEnd = true;
         var players = new []{Player1, Player2};
         
@@ -218,6 +222,8 @@ public class GameLogic : MonoBehaviour
         }
      
         var player = _roundWinner;
+        Player1.GetComponent<Character>().BlockInput(true);
+        Player2.GetComponent<Character>().BlockInput(true);
 
 //        Debug.Log("Round winner: "+_roundWinner+" game:" + _gameWinner);
 
