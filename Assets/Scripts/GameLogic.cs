@@ -194,14 +194,14 @@ public class GameLogic : MonoBehaviour
         if (points >= MaxPointsPerRound)
         { // player has won the round
             _roundWinner = playerID;
-            PlayerRoundsWon[playerID - 1]++;
+            PlayerRoundsWon[(playerID - 1)]++;
+            Debug.Log("Points: " + PlayerRoundsWon[0]+"||"+PlayerRoundsWon[1]);
         }
-        var diff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
-        if (diff <= -WinningDifference)
+        if (PlayerRoundsWon[0] + WinningDifference <= PlayerRoundsWon[1])
         {
             _gameWinner = 2;
         }
-        else if (diff >= WinningDifference)
+        else if (PlayerRoundsWon[1] + WinningDifference <= PlayerRoundsWon[0])
         {
             _gameWinner = 1;
         }
