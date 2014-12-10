@@ -11,6 +11,9 @@ TextureImporter:
     21300012: start menu_6
     21300014: start menu_7
     21300016: start menu_8
+    21300018: start menu_9
+    21300020: start menu_10
+    21300022: start menu_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,7 +59,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 12
-        y: 404
+        y: 916
         width: 237
         height: 84
       alignment: 0
@@ -65,10 +68,10 @@ TextureImporter:
     - name: start menu_1
       rect:
         serializedVersion: 2
-        x: 268
-        y: 399
-        width: 236
-        height: 81
+        x: 264
+        y: 912
+        width: 237
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -76,7 +79,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 12
-        y: 312
+        y: 824
         width: 236
         height: 84
       alignment: 0
@@ -86,7 +89,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 264
-        y: 312
+        y: 824
         width: 240
         height: 81
       alignment: 0
@@ -96,7 +99,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11
-        y: 220
+        y: 732
         width: 237
         height: 81
       alignment: 0
@@ -106,7 +109,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 268
-        y: 214
+        y: 726
         width: 236
         height: 82
       alignment: 0
@@ -116,7 +119,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 124
+        y: 636
         width: 238
         height: 84
       alignment: 0
@@ -126,7 +129,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 264
-        y: 116
+        y: 628
         width: 238
         height: 84
       alignment: 0
@@ -136,9 +139,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 38
+        y: 550
         width: 236
         height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: start menu_9
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 456
+        width: 237
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: start menu_10
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 454
+        width: 237
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: start menu_11
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 364
+        width: 237
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
