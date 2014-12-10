@@ -115,26 +115,6 @@ public class GameLogic : MonoBehaviour
         _isWaitingForEnd = false;
     }
 
-
-    /// <summary>
-    ///  Check if a player has won
-    /// </summary>
-    /// <returns>0 if nobody wins, 1 if player 1 wins, 2 for player 2</returns>
-//    public int CheckRoundWinCondition()
-//    {
-//        if (PlayerRoundPoints[0] >= MaxPointsPerRound)
-//            return 1;
-//        return PlayerRoundPoints[1] >= MaxPointsPerRound ? 2 : 0;
-//    }
-//
-//    public int CheckWinCondition()
-//    {
-//        var diff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
-//        if (diff <= -WinningDifference) return 2;
-//        return diff >= WinningDifference ? 1 : 0;
-//    }
-
-
     private IEnumerator WaitForEnd(bool endRoundOnly)
     {
         _isWaitingForEnd = true;
