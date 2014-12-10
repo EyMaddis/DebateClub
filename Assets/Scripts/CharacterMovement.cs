@@ -147,14 +147,13 @@ public class CharacterMovement : MonoBehaviour{
       
         _inputVector = new Vector2(_horizontalInput, _verticalInput).normalized;
 
-       if (_characterCombat.IsDivekicking())
+       if (_characterCombat.IsDivekicking() || _characterCombat.PressedPunch())
        {
            // block all inputs
            _horizontalInput = 0;
            _verticalInput = 0;
            _inputVector = Vector2.zero;
        }
-
        if(_jumpInput) return;
        _jumpInput = Input.GetButtonDown(_jumpInputName);
    }

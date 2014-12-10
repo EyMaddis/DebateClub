@@ -188,5 +188,10 @@ public class CharacterCombat : MonoBehaviour
     {
         return _divekicking;
     }
+
+    public bool PressedPunch()
+    {
+        return _punch;
+    }
 }
  
