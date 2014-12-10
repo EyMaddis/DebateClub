@@ -40,21 +40,7 @@ public class SpeechBubblesAnimation : MonoBehaviour
 	    _style.fontSize = FontSize;
 	    _style.font = Font;
 	}
-    private Texture2D CreateWhiteBackground(int width, int height, Color col)
-    {
-        Color[] pix = new Color[width * height];
-
-        for (int i = 0; i < pix.Length; i++)
-            pix[i] = col;
-
-        Texture2D result = new Texture2D(width, height);
-        result.SetPixels(pix);
-        result.Apply();
-
-        return result;
-    }
- 
-
+    
     void Update()
     {
         _bubblePos1 = Camera.main.WorldToScreenPoint(BubblePosition1.position);
@@ -97,6 +83,8 @@ public class SpeechBubblesAnimation : MonoBehaviour
 
     public void ShowDialoguePart(DialogSystem.DialoguePhase phase)
     {
+
+        StopCoroutine("Hide");
         _currentPhase = phase;
         _showBubble = true;
         Debug.Log("Starting to show dialogue phase: "+phase);
