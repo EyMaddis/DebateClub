@@ -39,6 +39,8 @@ public class GameLogic : MonoBehaviour
 
     private bool _isWaitingForEnd;
     private bool _askForNewRound;
+    private bool _mainMenuPressed;
+    private bool _restartPressed;
 
     private bool _introStopped = false;
     private GUIStyle _roundStyle;
@@ -83,14 +85,14 @@ public class GameLogic : MonoBehaviour
         }
         #endif
 
-		if (GUI.Button(new Rect(230f, 10f, 100f, 20f), "Main Menu")) 
+		if (GUI.Button(new Rect(230f, 10f, 100f, 20f), "Main Menu") || _mainMenuPressed) 
 		{
 			Application.LoadLevel(0);
 		}
 
         if (_askForNewRound)
         {
-            if (GUI.Button(new Rect(10f, 10f, 100f, 20f), "Restart Level"))
+            if (GUI.Button(new Rect(10f, 10f, 100f, 20f), "Restart Level") || _restartPressed)
             {
                 Application.LoadLevel(1);
                 EndRound();
@@ -110,6 +112,11 @@ public class GameLogic : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        _mainMenuPressed = Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Escape);
+        _restartPressed = Input.GetButtonDown("Start") || Input.GetKeyDown(KeyCode.Return);
+    }
 
     public void EndRound(bool endGame = false)
     {
