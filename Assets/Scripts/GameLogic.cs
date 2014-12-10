@@ -5,15 +5,14 @@ using System.Collections;
 
 public class GameLogic : MonoBehaviour
 {
-
-    public int RoundWinningDifference = 1;
     public int WinningDifference = 2;
     public Font Font;
 
     public GameObject Player1;
     public GameObject Player2;
 
-    public int MaxPoints;
+    [Range(1,3)]
+    public int MaxPointsPerRound = 1;
     public Animator Intro;
 
     [Header("GUI")] 
@@ -26,8 +25,8 @@ public class GameLogic : MonoBehaviour
 
     public Sprite Medal;
 
-    private static readonly int[] PlayerPoints = { 0, 0 };
-    private static readonly int[] PlayerRoundsWon = {0, 0};
+    private static int[] PlayerRoundPoints = { 0, 0 };
+    private static int[] PlayerRoundsWon = { 0, 0 };
 
     private static int _round;
     private float _roundTime;
@@ -42,6 +41,10 @@ public class GameLogic : MonoBehaviour
 
     private bool _introStopped = false;
     private GUIStyle _roundStyle;
+
+    // playerId (1 or 2), 0 => no winner
+    private int _roundWinner = 0;
+    private int _gameWinner = 0;
 
 
     void Start()
@@ -84,13 +87,14 @@ public class GameLogic : MonoBehaviour
 			Application.LoadLevel(0);
 		}
 
-        Utils.DrawPoints(PlayerPoints, Font);
+        Utils.DrawPoints(PlayerRoundPoints, Font);
         
         if(_introStopped)
             _roundTime += Time.deltaTime;
 
-        DrawWinner();
+        CheckWinner();
         DrawRound();
+        //Debug.Log("Rounds p1 " + PlayerRoundsWon[0] + " p2 " + PlayerRoundsWon[1]+"; "+CheckWinCondition());
     }
 
 
@@ -116,19 +120,19 @@ public class GameLogic : MonoBehaviour
     ///  Check if a player has won
     /// </summary>
     /// <returns>0 if nobody wins, 1 if player 1 wins, 2 for player 2</returns>
-    public int CheckRoundWinCondition()
-    {
-        if (PlayerPoints[0] >= MaxPoints)
-            return 1;
-        return PlayerPoints[1] >= MaxPoints ? 2 : 0;
-    }
-
-    public int CheckWinCondition()
-    {
-        var diff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
-        if (diff <= -RoundWinningDifference) return 2;
-        return diff >= RoundWinningDifference ? 1 : 0;
-    }
+//    public int CheckRoundWinCondition()
+//    {
+//        if (PlayerRoundPoints[0] >= MaxPointsPerRound)
+//            return 1;
+//        return PlayerRoundPoints[1] >= MaxPointsPerRound ? 2 : 0;
+//    }
+//
+//    public int CheckWinCondition()
+//    {
+//        var diff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
+//        if (diff <= -WinningDifference) return 2;
+//        return diff >= WinningDifference ? 1 : 0;
+//    }
 
 
     private IEnumerator WaitForEnd(bool endRoundOnly)
@@ -142,7 +146,7 @@ public class GameLogic : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2);
-        EndRound(endRoundOnly);
+        EndRound(!endRoundOnly);
 
         foreach (var player in players)
         {
@@ -150,19 +154,48 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    public void AddPoints(int playerID, int points)
+    public void AddPoint(int playerID)
     {
+        PlayerRoundPoints[playerID-1]++;
+        var points = PlayerRoundPoints[playerID - 1];
+        var otherPlayer = playerID == 1 ? 2 : 1;
+
         Debug.Log("player" + playerID + " got a point");
-        PlayerPoints[playerID + -1] += points;
+
+
+        if (points >= MaxPointsPerRound)
+        { // player has won the round
+            _roundWinner = playerID;
+            PlayerRoundsWon[playerID - 1]++;
+        }
+        var diff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
+        if (diff <= -WinningDifference)
+        {
+            _gameWinner = 2;
+        }
+        else if (diff >= WinningDifference)
+        {
+            _gameWinner = 1;
+        }
+        else
+        {
+            Debug.Log("No winner yet!");
+            return;
+        }
+        Debug.Log("player "+playerID+" won!");
     }
 
     public void ResetPoints(bool endGame)
     {
+        Debug.Log("RESET POINTS");
+        PlayerRoundPoints[0] = 0;
+        PlayerRoundPoints[1] = 0;
+        _roundWinner = 0;
+        _gameWinner = 0;
+        if (!endGame) return;
+        Debug.Log("Reset rounds!");
         PlayerRoundsWon[0] = 0;
         PlayerRoundsWon[1] = 0;
-        if (!endGame) return;
-        PlayerPoints[0] = 0;
-        PlayerPoints[1] = 0;
     }
 
 
@@ -191,26 +224,24 @@ public class GameLogic : MonoBehaviour
         _introStopped = true;
     }
 
-    private void DrawWinner()
+    private void CheckWinner()
     {
+        
 
+        if (_roundWinner == 0) return; // no need to do draw the winner/end the round.
+        var endRoundOnly = _gameWinner == 0;
 
-
-        var winner = CheckWinCondition();
-        var roundWinner = CheckRoundWinCondition();
-        var end = winner != 0 || roundWinner != 0;
-
-        if (winner == 0 && roundWinner == 0) return; // no need to do draw the winner/end the round.
-        var endRoundOnly = roundWinner != 0 && winner == 0;
-
-        if (end && !_isWaitingForEnd) 
-            StartCoroutine("WaitForEnd", endRoundOnly);
+        if (!_isWaitingForEnd)
+        {
+            Debug.Log("end round only? "+ endRoundOnly);
+            StartCoroutine(WaitForEnd(endRoundOnly));
+        }
      
-        var player = roundWinner;
+        var player = _roundWinner;
 
-        Debug.Log("Round: "+roundWinner+" game:" + winner);
+//        Debug.Log("Round winner: "+_roundWinner+" game:" + _gameWinner);
 
-        if (!endRoundOnly) player = winner;
+        if (!endRoundOnly) player = _gameWinner;
         var centeredStyle = new GUIStyle
         {
             alignment = TextAnchor.MiddleCenter,
