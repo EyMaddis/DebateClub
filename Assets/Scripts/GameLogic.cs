@@ -38,6 +38,7 @@ public class GameLogic : MonoBehaviour
     private int _player2StartDirection;
 
     private bool _isWaitingForEnd;
+    private bool _askForNewRound;
 
     private bool _introStopped = false;
     private GUIStyle _roundStyle;
@@ -70,7 +71,7 @@ public class GameLogic : MonoBehaviour
 
     void OnGUI()
     {
-        #if UNITY_EDITOR   
+        #if false  
         if (GUI.Button(new Rect(10f, 10f, 100f, 20f), "Restart Level")) 
         {
 			Application.LoadLevel(1);
@@ -87,6 +88,15 @@ public class GameLogic : MonoBehaviour
 			Application.LoadLevel(0);
 		}
 
+        if (_askForNewRound)
+        {
+            if (GUI.Button(new Rect(10f, 10f, 100f, 20f), "Restart Level"))
+            {
+                Application.LoadLevel(1);
+                EndRound();
+            }
+        }
+
         Utils.DrawPoints(PlayerRoundPoints, Font);
         
         if(_introStopped)
@@ -94,13 +104,16 @@ public class GameLogic : MonoBehaviour
 
         CheckWinner();
         DrawRound();
-        //Debug.Log("Rounds p1 " + PlayerRoundsWon[0] + " p2 " + PlayerRoundsWon[1]+"; "+CheckWinCondition());
+        
+
+
+
     }
 
 
     public void EndRound(bool endGame = false)
     {
-
+       
         Player1.transform.position = _player1StartPosition;
         Player2.transform.position = _player2StartPosition;
         Player1.transform.localScale = new Vector3(_player1StartDirection,1,1);
@@ -118,7 +131,7 @@ public class GameLogic : MonoBehaviour
         
     }
 
-    private IEnumerator WaitForEnd(bool endRoundOnly)
+    private IEnumerator WaitForEnd()
     {
         
         _isWaitingForEnd = true;
@@ -130,12 +143,7 @@ public class GameLogic : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2);
-        EndRound(!endRoundOnly);
-
-        foreach (var player in players)
-        {
-            player.GetComponent<Character>().BlockInput(false);
-        }
+        EndRound();
     }
 
     public void AddPoint(int playerID)
@@ -210,15 +218,13 @@ public class GameLogic : MonoBehaviour
 
     private void CheckWinner()
     {
-        
-
+        _askForNewRound = false;
         if (_roundWinner == 0) return; // no need to do draw the winner/end the round.
         var endRoundOnly = _gameWinner == 0;
 
-        if (!_isWaitingForEnd)
+        if (!_isWaitingForEnd && endRoundOnly)
         {
-            Debug.Log("end round only? "+ endRoundOnly);
-            StartCoroutine(WaitForEnd(endRoundOnly));
+           StartCoroutine(WaitForEnd());
         }
      
         var player = _roundWinner;
@@ -227,7 +233,11 @@ public class GameLogic : MonoBehaviour
 
 //        Debug.Log("Round winner: "+_roundWinner+" game:" + _gameWinner);
 
-        if (!endRoundOnly) player = _gameWinner;
+        if (!endRoundOnly)
+        {
+            player = _gameWinner;
+            _askForNewRound = true;
+        }
         var centeredStyle = new GUIStyle
         {
             alignment = TextAnchor.MiddleCenter,
@@ -244,5 +254,6 @@ public class GameLogic : MonoBehaviour
 
         var box = new Rect(Screen.width / 2f - size.x / 2f, Screen.height / 2f - size.y / 2f, size.x, size.y);
         Utils.DrawOutline(box, text, centeredStyle, TextOutlineColor, 2);
+        
     }
 }
