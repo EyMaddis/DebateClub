@@ -4,7 +4,8 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
-
+    private bool _startPressed;
+    private bool _backPressed;
     public Sprite StartGameSprite;
     public Sprite ExitGameSprite;
 
@@ -29,13 +30,13 @@ public class MainMenu : MonoBehaviour
 
         GUILayout.BeginArea(box, _blankStyle);
         GUILayout.BeginVertical(_blankStyle);
-        if (GUILayout.Button(StartGameSprite.texture, _blankStyle))
+        if (GUILayout.Button(StartGameSprite.texture, _blankStyle) || _startPressed)
         {
             Application.LoadLevel(1);
         }
         GUILayout.FlexibleSpace();
 	    
-        if (GUILayout.Button(ExitGameSprite.texture, _blankStyle))
+        if (GUILayout.Button(ExitGameSprite.texture, _blankStyle) || _backPressed)
         {
             Application.Quit();
         }
@@ -44,5 +45,12 @@ public class MainMenu : MonoBehaviour
         GUILayout.EndArea();
 
 	}
+
+    void Update()
+    {
+        _backPressed = Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Escape);
+        _startPressed = Input.GetButtonDown("Start") || Input.GetKeyDown(KeyCode.Return);
+    }
+
 
 }

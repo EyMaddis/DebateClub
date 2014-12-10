@@ -43,6 +43,8 @@ public class GameLogic : MonoBehaviour
 
     private bool _isWaitingForEnd;
     private bool _askForNewRound;
+    private bool _startPressed;
+    private bool _backPressed;
 
     private bool _introStopped = false;
     private GUIStyle _roundStyle;
@@ -90,7 +92,7 @@ public class GameLogic : MonoBehaviour
 			Application.LoadLevel(0);
 		}
         #endif
-
+        
 
         if (_askForNewRound)
         {
@@ -106,7 +108,7 @@ public class GameLogic : MonoBehaviour
 
             GUILayout.BeginArea(box, blankStyle);
             GUILayout.BeginHorizontal(blankStyle);
-            if (GUILayout.Button(RestartSprite.texture, blankStyle))
+            if (GUILayout.Button(RestartSprite.texture, blankStyle) || _startPressed)
             {
                 Application.LoadLevel(1);
                 EndRound();
@@ -131,10 +133,16 @@ public class GameLogic : MonoBehaviour
 
         CheckWinner();
         DrawRound();
-        
+    }
 
+    void Update()
+    {
+        _backPressed = Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Escape);
+        _startPressed = Input.GetButtonDown("Start") || Input.GetKeyDown(KeyCode.Return);
 
-
+        if (_backPressed){
+            Application.LoadLevel(0); // main menu
+        }
     }
 
 
