@@ -1377,7 +1377,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialoguesFile: dialogues.txt
-  Dialogues: []
 --- !u!82 &309302856
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6680,6 +6679,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e232e785924c74241a490e232f5f6a1e, type: 3}
   DiveKickForce: 50
   DiveKickVerticalForce: -.0250000004
+  InputBlockFallback: 2
 --- !u!114 &1501610960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8114,6 +8114,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e232e785924c74241a490e232f5f6a1e, type: 3}
   DiveKickForce: 50
   DiveKickVerticalForce: -.0250000004
+  InputBlockFallback: 2
 --- !u!114 &2084972295
 MonoBehaviour:
   m_ObjectHideFlags: 0
