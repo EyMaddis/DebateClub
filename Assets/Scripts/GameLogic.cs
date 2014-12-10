@@ -112,6 +112,7 @@ public class GameLogic : MonoBehaviour
             {
                 Application.LoadLevel(1);
                 EndRound();
+                ResetPoints(true);
             }
 
             GUILayout.FlexibleSpace();
