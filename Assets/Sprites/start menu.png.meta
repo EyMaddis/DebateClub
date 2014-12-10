@@ -8,6 +8,9 @@ TextureImporter:
     21300006: start menu_3
     21300008: start menu_4
     21300010: start menu_5
+    21300012: start menu_6
+    21300014: start menu_7
+    21300016: start menu_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,19 +76,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 12
-        y: 278
-        width: 237
-        height: 82
+        y: 312
+        width: 236
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: start menu_3
       rect:
         serializedVersion: 2
-        x: 267
-        y: 276
-        width: 237
-        height: 82
+        x: 264
+        y: 312
+        width: 240
+        height: 81
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -93,7 +96,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11
-        y: 152
+        y: 220
         width: 237
         height: 81
       alignment: 0
@@ -103,7 +106,37 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 268
-        y: 146
+        y: 214
+        width: 236
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: start menu_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 124
+        width: 238
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: start menu_7
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 116
+        width: 238
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: start menu_8
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 38
         width: 236
         height: 82
       alignment: 0
