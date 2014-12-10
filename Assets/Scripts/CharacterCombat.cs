@@ -23,6 +23,7 @@ public class CharacterCombat : MonoBehaviour
 
     // states
     private bool _divekickHit = false;
+    private bool _isPunching = false;
 
     void Awake()
 	{
@@ -64,8 +65,13 @@ public class CharacterCombat : MonoBehaviour
     }
 
     private void GetInput()
-    {   
-        if(_punch || _character.IsInputBlocked()) return;
+    {
+        if (_character.IsInputBlocked())
+        {
+            _punch = false;
+            return;
+        }
+        if (_punch) return;
         _punch = Input.GetButtonDown(_punchInputName);
     }
 
@@ -112,6 +118,7 @@ public class CharacterCombat : MonoBehaviour
             else //Normal Punch
             {
                 _punching = true;
+                _character.BlockInput(true);
                 if (_character.MidHitTriggered)
                 {
                     OnHit();
@@ -174,9 +181,22 @@ public class CharacterCombat : MonoBehaviour
 		audio.clip =PunchingSounds[clip];
 		audio.Play ();
 	}
+
+    // AnimationEvent
+    public void StopPunching()
+    {
+        _isPunching = false;
+        _character.BlockInput(false);
+    }
+
     public bool IsDivekicking()
     {
         return _divekicking;
+    }
+
+    public bool PressedPunch()
+    {
+        return _punch;
     }
 }
  

@@ -14,7 +14,7 @@ GameObject:
   - 81: {fileID: 8100000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400006}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.91212177, y: -2.38913584, z: -10}
+  m_LocalPosition: {x: -3.79396868, y: -7.51392221, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,7 +54,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 2.03731346
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -73,6 +73,64 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: fd4626adf8d4c3d4484cffce74aae740, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 1
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!92 &9200000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -118,26 +176,13 @@ MonoBehaviour:
   Player2: {fileID: 0}
   MaxPointsPerRound: 1
   Intro: {fileID: 0}
-  TextOutlineColor: {r: 0, g: 0, b: 0, a: 0}
-  RoundColorStart: {r: 0, g: 0, b: 0, a: 0}
-  RoundColorEnd: {r: 0, g: 0, b: 0, a: 0}
+  TextOutlineColor: {r: .137254909, g: .137254909, b: .137254909, a: 1}
+  RoundColorStart: {r: 1, g: 1, b: 1, a: 1}
+  RoundColorEnd: {r: 1, g: 1, b: 1, a: 1}
   PlayerWinColors:
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  Medal: {fileID: 0}
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c33128a8cea40c4bbf894e65b9e69c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialoguesFile: dialogues.txt
-  Dialogues: []
+  - {r: .20588237, g: .20588237, b: 1, a: 1}
+  - {r: 1, g: .176470578, b: .176470578, a: 1}
+  Medal: {fileID: 21300000, guid: 54416ee2e42988442b646283bab9fc4e, type: 3}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
