@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DialogSystem : MonoBehaviour
 {
-    public string DialoguesFile;
-    public Dialogue[] Dialogues;
+    private static int last = -1;
 
-    private Dialogue _currentDialogue;
+    public string DialoguesFile;
+    private Dialogue[] _dialogues = new Dialogue[0];
+
+    private int _currentDialogue;
 
     public enum DialoguePhase
     {
@@ -18,7 +20,15 @@ public class DialogSystem : MonoBehaviour
 
     void Start()
     {
-        LoadDialogues();
+        if (_dialogues.Length == 0) // do not load if level restarts
+            LoadDialogues();
+        if (_currentDialogue == last)
+        {
+            _currentDialogue++; // choose the next one
+            _currentDialogue %= _dialogues.Length;
+        }
+        last = _currentDialogue;
+
     }
 
     private void LoadDialogues()
@@ -42,14 +52,14 @@ public class DialogSystem : MonoBehaviour
             print("loaded dialogue "+i+": "+line);
             i++;
         }
-        Dialogues = dialogues.ToArray();
-        var rand = Random.Range(0, Dialogues.Length-1);
-        _currentDialogue = Dialogues[rand];
+        _dialogues = dialogues.ToArray();
+        var rand = Random.Range(0, _dialogues.Length-1);
+        _currentDialogue = rand;
     }
 
     public Dialogue GetCurrent()
     {
-        return _currentDialogue;
+        return _dialogues[_currentDialogue];
     }
 
 }
