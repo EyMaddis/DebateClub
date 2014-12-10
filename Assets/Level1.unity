@@ -2508,6 +2508,9 @@ MonoBehaviour:
   Player2: {fileID: 2084972292}
   MaxPointsPerRound: 1
   Intro: {fileID: 309302852}
+  TextTookLead: Player {0} established a theory
+  TextBalanced: Player {0} invalidated the argument
+  TextWins: Player {0} won the debate!
   TextOutlineColor: {r: .137254909, g: .137254909, b: .137254909, a: 1}
   RoundColorStart: {r: 1, g: 1, b: 1, a: 1}
   RoundColorEnd: {r: 1, g: 1, b: 1, a: 1}
@@ -5422,6 +5425,10 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2084972292}
+    - target: {fileID: 11400000, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
+      propertyPath: Duration
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
   m_RootGameObject: {fileID: 309302850}

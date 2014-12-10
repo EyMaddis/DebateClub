@@ -16,7 +16,14 @@ public class GameLogic : MonoBehaviour
     public int MaxPointsPerRound = 1;
     public Animator Intro;
 
-    [Header("GUI")] 
+    [Header("GUI")] [Tooltip("use {0} for the player id")]
+    public string TextTookLead = "Player {0} established a theory";
+
+    [Tooltip("use {0} for the player id")]
+    public string TextBalanced = "Player {0} invalidated the argument";
+
+    [Tooltip("use {0} for the player id")]
+    public string TextWins = "Player {0} won the debate!";
     
     public Color TextOutlineColor;
     public Color RoundColorStart;
@@ -30,8 +37,8 @@ public class GameLogic : MonoBehaviour
     public int ButtonMargin = 20;
     public int TopButtonOffset = 90;
 
-    private static int[] PlayerRoundPoints = { 0, 0 };
-    private static int[] PlayerRoundsWon = { 0, 0 };
+    private static readonly int[] PlayerRoundPoints = { 0, 0 };
+    private static readonly int[] PlayerRoundsWon = { 0, 0 };
 
     private static int _round;
     private float _roundTime;
@@ -92,6 +99,8 @@ public class GameLogic : MonoBehaviour
             var box = new Rect(Screen.width / 2F - width / 2f, Screen.height / 2f - height / 2f + TopButtonOffset, width, height);
             var blankStyle = new GUIStyle();
 
+            // might run into: Getting control 0's position in a group with only 0 controls when doing Repaint Aborting
+            // I could fix it, but would be more work and since it's aborting, it still works perfectly.
             GUILayout.BeginArea(box, blankStyle);
             GUILayout.BeginHorizontal(blankStyle);
             if (GUILayout.Button(RestartSprite.texture, blankStyle) || _startPressed)
@@ -113,13 +122,12 @@ public class GameLogic : MonoBehaviour
 
         }
 
-        //Utils.DrawPoints(PlayerRoundPoints, Font);
         
         if(_introStopped)
             _roundTime += Time.deltaTime;
 
-        CheckWinner();
-        DrawRound();
+        DrawWinner();
+        if (!_askForNewRound) DrawRound();
     }
 
     void Update()
@@ -168,19 +176,19 @@ public class GameLogic : MonoBehaviour
         EndRound();
     }
 
-    public void AddPoint(int playerID)
+    public void AddPoint(int playerId)
     {
-        PlayerRoundPoints[playerID-1]++;
-        var points = PlayerRoundPoints[playerID - 1];
+        PlayerRoundPoints[playerId-1]++;
+        var points = PlayerRoundPoints[playerId - 1];
 
 
-        Debug.Log("player" + playerID + " got a point");
+        Debug.Log("player" + playerId + " got a point");
 
 
         if (points >= MaxPointsPerRound)
         { // player has won the round
-            _roundWinner = playerID;
-            PlayerRoundsWon[playerID - 1]++;
+            _roundWinner = playerId;
+            PlayerRoundsWon[playerId - 1]++;
         }
         _playerDiff = PlayerRoundsWon[0] - PlayerRoundsWon[1];
         if (_playerDiff <= -WinningDifference)
@@ -196,7 +204,7 @@ public class GameLogic : MonoBehaviour
             Debug.Log("No winner yet!");
             return;
         }
-        Debug.Log("player "+playerID+" won!");
+        Debug.Log("player "+playerId+" won!");
     }
 
     public void ResetPoints(bool endGame)
@@ -236,7 +244,7 @@ public class GameLogic : MonoBehaviour
         _introStopped = true;
     }
 
-    private void CheckWinner()
+    private void DrawWinner()
     {
         _askForNewRound = false;
         if (_roundWinner == 0) return; // no need to do draw the winner/end the round.
@@ -251,7 +259,6 @@ public class GameLogic : MonoBehaviour
         Player1.GetComponent<Character>().BlockInput(true);
         Player2.GetComponent<Character>().BlockInput(true);
 
-//        Debug.Log("Round winner: "+_roundWinner+" game:" + _gameWinner);
 
         if (!endRoundOnly)
         {
@@ -267,15 +274,14 @@ public class GameLogic : MonoBehaviour
         };
 
 
-        var text = "Player " + player + " invalidated the argument";
-
+        var text = TextBalanced;
         if (_playerDiff != 0)
         {
-            text = "Player " + player + " established a theory";
+            text = TextTookLead;
         }
 
-        if (!endRoundOnly) text = "Player " + player + " won the debate!"; 
-
+        if (!endRoundOnly) text = TextWins;
+        text = String.Format(text, player);
         var size = centeredStyle.CalcSize(new GUIContent(text));
 
         var box = new Rect(Screen.width / 2f - size.x / 2f, Screen.height / 2f - size.y / 2f, size.x, size.y);
