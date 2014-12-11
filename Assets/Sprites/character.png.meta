@@ -202,7 +202,7 @@ TextureImporter:
         width: 47
         height: 67
       alignment: 9
-      pivot: {x: .350972921, y: .470132858}
+      pivot: {x: .5, y: .379999995}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_12
       rect:
@@ -212,7 +212,7 @@ TextureImporter:
         width: 57
         height: 45
       alignment: 9
-      pivot: {x: .526332915, y: .666773796}
+      pivot: {x: .526332915, y: .189999998}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: character_13
       rect:

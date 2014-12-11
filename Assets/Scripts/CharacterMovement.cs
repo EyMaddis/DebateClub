@@ -72,7 +72,7 @@ public class CharacterMovement : MonoBehaviour{
     // triggers that are only true for one frame (for the animator)
     private bool _jumpingTrigger = false;
     private bool _wallJumpingTrigger = false;
-    private bool _landingTrigger = false;
+    //private bool _landingTrigger = false;
     private bool _rollingTrigger = false;
     private CharacterCombat _characterCombat;
 
@@ -106,7 +106,6 @@ public class CharacterMovement : MonoBehaviour{
         GetInput(); 			// Handles Input
         
 
-        UpdateAnimator();
     }
 
     void FixedUpdate()
@@ -117,6 +116,7 @@ public class CharacterMovement : MonoBehaviour{
 
         HandleJump();
         ClearInput();
+        //UpdateAnimator();
 
     }
 
@@ -125,7 +125,7 @@ public class CharacterMovement : MonoBehaviour{
         // reset triggers
         _jumpingTrigger = false;
         _wallJumpingTrigger = false;
-        _landingTrigger = false;
+        //_landingTrigger = false;
         _rollingTrigger = false;
 
         _lastFrameVelocity = _velocity;
@@ -198,7 +198,7 @@ public class CharacterMovement : MonoBehaviour{
             // did not stand before, so probably landed right now
             if (!_lastFrameGrounded) // TODO does not always work!
             {
-                _landingTrigger = true;
+                //_landingTrigger = true;
                 // landing very hard? Maybe unreliable
                 var forceSquared = _lastFrameVelocity.SqrMagnitude();
                 if (forceSquared >= RollingImpactThreshold)
@@ -229,8 +229,7 @@ public class CharacterMovement : MonoBehaviour{
         }
     }
 
-    private
-       void HandleJump()
+    private void HandleJump()
     {
         if (!_jumpInput) return;
         if (_character.IsGrounded)
@@ -242,10 +241,11 @@ public class CharacterMovement : MonoBehaviour{
         {
             if (_jumpCount < MaxJumps)
             {
+                Debug.Log("Jump handled!");
+                _jumpingTrigger = true; // trigger
                 _jumpCount++;
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0); // Set the y velocity to 0
                 rigidbody2D.AddForce((_inputVector + Vector2.up).normalized * JumpForce, ForceMode2D.Impulse); 	// Add y force set by "jumpForce" * Time.deltaTime?                
-                _jumpingTrigger = true; // trigger
             } 
            
         }
@@ -345,9 +345,11 @@ public class CharacterMovement : MonoBehaviour{
     {
         if (_rollingTrigger)
             _character.Animator.SetTrigger("startRolling");
-        
+
         if (_jumpingTrigger)
+        {
             _character.Animator.SetTrigger("jumping");
+        }
         
         if (_wallJumpingTrigger)
             _character.Animator.SetTrigger("wallJumping");
