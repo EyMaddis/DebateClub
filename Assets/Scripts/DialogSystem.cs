@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿
 using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
 
 public class DialogSystem : MonoBehaviour
 {
     private static int last = -1;
-
-    public string DialoguesFile;
+    public TextAsset DialoguesFile; // quick fix to make sure unity exports this file!
+    //public string DialoguesFile;
     private Dialogue[] _dialogues = new Dialogue[0];
 
     private int _currentDialogue;
@@ -29,13 +30,13 @@ public class DialogSystem : MonoBehaviour
         }
         last = _currentDialogue;
 
+
     }
 
     private void LoadDialogues()
     {
-        var sr = new StreamReader(Application.dataPath + "/" + DialoguesFile);
-        var fileContents = sr.ReadToEnd();
-        sr.Close();
+        //var sr = new StreamReader(Application.dataPath + "/" + DialoguesFile);
+        var fileContents = DialoguesFile.text;
 
         var dialogues = new List<Dialogue>();
         var lines = fileContents.Split("\n"[0]);

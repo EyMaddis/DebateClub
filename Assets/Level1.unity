@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33128a8cea40c4bbf894e65b9e69c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialoguesFile: dialogues.txt
+  DialoguesFile: {fileID: 4900000, guid: 16491ce5351ec5141929a40ea91ba5f4, type: 3}
 --- !u!82 &309302856
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5429,6 +5429,18 @@ Prefab:
       propertyPath: Duration
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
+      propertyPath: Dialogues
+      value: 
+      objectReference: {fileID: 4900000, guid: 16491ce5351ec5141929a40ea91ba5f4, type: 3}
+    - target: {fileID: 11400004, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
+      propertyPath: DialoguesDependency
+      value: 
+      objectReference: {fileID: 4900000, guid: 16491ce5351ec5141929a40ea91ba5f4, type: 3}
+    - target: {fileID: 11400004, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
+      propertyPath: DialoguesFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 16491ce5351ec5141929a40ea91ba5f4, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3177aee77b2e08643be1d880899d4259, type: 2}
   m_RootGameObject: {fileID: 309302850}
